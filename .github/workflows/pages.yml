@@ -46,8 +46,12 @@ jobs:
           check.close()
           if check.slides != 8:
               raise SystemExit(f"Expected 8 slides, found {check.slides}")
-          if "Federated Learning for Collaborative Healthcare AI Using NVIDIA FLARE." not in " ".join(check.text):
+          text = " ".join(" ".join(check.text).split())
+          expected = "Federated Learning for Collaborative Healthcare AI Without Moving Patient Records."
+          if expected not in text:
               raise SystemExit("Expected cover subtitle is missing")
+          if "Federated Learning for Collaborative Healthcare AI Using NVIDIA FLARE" in text:
+              raise SystemExit("Cover must not pin a federated-learning platform")
           print("Presentation structure and cover copy validated.")
           PY
       - name: Upload Pages artifact
