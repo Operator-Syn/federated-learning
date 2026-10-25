@@ -39,14 +39,18 @@
     .slide.active .inner>*:nth-child(4){animation-delay:.21s}
     .slide.active .inner>*:nth-child(5){animation-delay:.28s}
     .slide.active .inner>*:nth-child(6){animation-delay:.35s}
-    @keyframes rise{from{opacity:0;clip-path:inset(0 0 14% 0)}to{opacity:1;clip-path:inset(0)}}
+    @keyframes rise{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
 
     @keyframes progressScan{to{transform:translateX(calc(var(--track-width) - 1.125rem))}}
     .refs a{color:var(--blue);font-weight:800;text-decoration-thickness:2px;text-underline-offset:.12em;overflow-wrap:anywhere}.refs a:hover{background:var(--yellow);color:var(--ink)}
     /* Let animated cards and their hard shadows breathe; keep the slide number inside the viewport. */
     .slide{overflow:visible}
     .slide::after{right:0;bottom:0;display:block;width:2.2em;height:.9em;overflow:hidden;font-size:min(44vh,30rem,40vw)}
-    @media(max-width:700px){.slide{padding-inline:clamp(1.25rem,4vw,1.8rem)}}
+    /* Keep the cover content-driven: short viewports scroll instead of clipping text inside a fixed-height hero. */
+    .slide[data-n="01"]{padding:0}
+    .hero{position:relative;inset:auto;height:auto;min-height:100svh;overflow:visible}
+    @media(max-width:700px){.slide{padding-inline:clamp(1.25rem,4vw,1.8rem)}.slide[data-n="01"]{padding:0}.hero{padding:calc(var(--top-h) + 1rem) clamp(1.25rem,7vw,2rem) calc(var(--bar-h) + 2rem)}}
+    @media(max-height:800px) and (min-width:701px){.hero h1{font-size:clamp(3.3rem,8.4vw,6.5rem)}.hero .lead{font-size:clamp(1.05rem,2vw,1.45rem)}}
     .step-btn[aria-pressed="true"]{animation:stepPulse 2.8s ease-in-out infinite}
     @keyframes stepPulse{0%,100%{box-shadow:5px 5px 0 var(--ink)}50%{box-shadow:5px 5px 0 var(--ink),0 0 0 4px rgba(45,69,200,.18)}}
     /* Ongoing motion follows the meaning of each slide, rather than replaying entrance effects. */
