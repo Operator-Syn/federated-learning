@@ -44,8 +44,8 @@ jobs:
           check = PresentationCheck()
           check.feed(page.read_text(encoding="utf-8"))
           check.close()
-          if check.slides != 9:
-              raise SystemExit(f"Expected 9 slides, found {check.slides}")
+          if check.slides != 10:
+              raise SystemExit(f"Expected 10 slides, found {check.slides}")
           text = " ".join(" ".join(check.text).split())
           expected = "Federated Learning for Collaborative Healthcare AI Without Moving Patient Records."
           if expected not in text:
