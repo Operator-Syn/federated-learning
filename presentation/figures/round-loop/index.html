@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>One federated round — four phases</title>
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Page furniture for the standalone figure. A slide or an embed
+       turns this off with ?chrome=0. */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0}
+    body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",Arial,Helvetica,sans-serif;font-size:clamp(1rem,1.45vw,1.28rem);line-height:1.62;font-weight:450;padding:clamp(1rem,3vw,2.4rem)}
+    .fl-figure{max-width:780px}
+    button{font:inherit;color:inherit}
+    button:focus-visible{outline:4px solid var(--blue);outline-offset:4px}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/lucide@1.61.0/dist/umd/lucide.min.js" integrity="sha384-wx1iBc8a89SnsJAxZPb9eNEoMn4t/Wg111+QJyasxB9Om4SDDtkJeBuXx4NiRwa8" crossorigin="anonymous"></script>
+</head>
+<body>
+  <figure class="fl-figure" aria-label="One federated round, in four phases">
+    <ol class="steps" aria-label="Steps in one federated round">
+      <li><button class="step-btn" type="button" data-step="0" aria-pressed="true"><span>1</span>The server shares the model</button></li>
+      <li><button class="step-btn" type="button" data-step="1" aria-pressed="false"><span>2</span>Each site trains on its own records</button></li>
+      <li><button class="step-btn" type="button" data-step="2" aria-pressed="false"><span>3</span>Only the updates travel back</button></li>
+      <li><button class="step-btn" type="button" data-step="3" aria-pressed="false"><span>4</span>The server averages them into one model</button></li>
+    </ol>
+
+    <div class="fl-stage" data-phase="0">
+      <div class="site" data-row="1"><b>Health station A</b><small>its own patient records</small><span class="local">stays here</span></div>
+      <div class="wire" data-row="1"><i class="tip" data-lucide="arrow-right" aria-hidden="true"></i></div>
+      <div class="site" data-row="2"><b>Health station B</b><small>its own patient records</small><span class="local">stays here</span></div>
+      <div class="wire" data-row="2"><i class="tip" data-lucide="arrow-right" aria-hidden="true"></i></div>
+      <div class="site" data-row="3"><b>Health station C</b><small>its own patient records</small><span class="local">stays here</span></div>
+      <div class="wire" data-row="3"><i class="tip" data-lucide="arrow-right" aria-hidden="true"></i></div>
+      <div class="fl-hub"><b>Aggregator</b><small>averages the updates</small><span class="fl-model" id="fl-model">v1</span></div>
+    </div>
+
+    <p class="fl-what" id="fl-what" aria-live="polite">Sharing model v1 with every site</p>
+    <figcaption class="fl-key">
+      <span><i class="key-local"></i>records stay local</span>
+      <span><i class="key-wire"></i>updates travel</span>
+    </figcaption>
+  </figure>
+
+  <script>
+    /*
+     * Four-phase loop for one federated round.
+     *
+     * The figure advances phase 0 -> 1 -> 2 -> 3 and then wraps, bumping
+     * the model version, so the visitor sees the round repeat rather than
+     * stop. State lives in three places, all set by paint():
+     *
+     *   .fl-stage[data-phase]  drives every visual change (see style.css)
+     *   aria-pressed           marks the active step button for assistive tech
+     *   #fl-what               one sentence naming the current action
+     *
+     * URL parameters make the same page usable as a still or an embed:
+     *
+     *   ?phase=N     freeze on phase N and never rotate  -> screenshot source
+     *   ?controls=0  hide the four buttons               -> diagram only
+     *   ?chrome=0    drop page padding and background    -> iframe embed
+     *   ?speed=MS    phase duration, default 2800
+     *   ?autoplay=0  start on phase 0 and wait for a click
+     *
+     * When embedded, the page reports its own height to the parent so the
+     * iframe can size itself instead of guessing.
+     */
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const isOff = (key) => params.get(key) === '0';
+      const number = (key, fallback) => (params.has(key) ? Number(params.get(key)) : fallback);
+
+      const stage = document.querySelector('.fl-stage');
+      const steps = [...document.querySelectorAll('.step-btn')];
+      const modelEl = document.querySelector('#fl-model');
+      const whatEl = document.querySelector('#fl-what');
+      if (!stage) return;
+
+      /* Layout modes. Read before paint so the first frame is correct. */
+      if (isOff('controls')) document.documentElement.dataset.controls = '0';
+      if (isOff('chrome')) document.documentElement.dataset.chrome = '0';
+
+      const PHASE_MS = number('speed', 2800);
+      const LAST = 3;
+      const copy = [
+        (v) => `Sharing model ${v} with every site`,
+        () => 'At each site · training on local records',
+        () => 'Sites return updates only',
+        (v) => `At the server · averaging into ${v}`
+      ];
+
+      let phase = 0;
+      let round = 1;
+      let timer = null;
+      let visible = true;
+
+      /* A pinned phase means this instance is a still: no rotation, and the
+         model version stays whatever the phase implies. */
+      const pinned = params.has('phase');
+      let autoplay = !pinned && !isOff('autoplay');
+      if (pinned) phase = Math.min(LAST, Math.max(0, number('phase', 0)));
+
+      function label(version) {
+        return `v${version}`;
+      }
+
+      function paint() {
+        const shown = phase === LAST ? round + 1 : round;
+        stage.dataset.phase = String(phase);
+        steps.forEach((btn, i) => btn.setAttribute('aria-pressed', String(i === phase)));
+        modelEl.textContent = label(shown);
+        whatEl.textContent = copy[phase](label(shown));
+        reportHeight();
+      }
+
+      function advance() {
+        if (phase === LAST) {
+          round += 1;
+          phase = 0;
+        } else {
+          phase += 1;
+        }
+        paint();
+      }
+
+      function schedule() {
+        clearInterval(timer);
+        timer = null;
+        if (!autoplay || !visible) return;
+        timer = setInterval(advance, PHASE_MS);
+      }
+
+      steps.forEach((btn) => btn.addEventListener('click', () => {
+        phase = Number(btn.dataset.step);
+        paint();
+        schedule();
+      }));
+
+      /* Rotate only while the figure is actually on screen. */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          visible = entries.some((entry) => entry.isIntersecting);
+          schedule();
+        }, { threshold: 0.25 }).observe(stage);
+      }
+
+      /* Tell an embedding parent how tall we are. Same-origin only; a
+         standalone visit is a no-op. */
+      function reportHeight() {
+        if (window.parent === window) return;
+        window.parent.postMessage({
+          type: 'figure:height',
+          height: Math.ceil(document.body.getBoundingClientRect().height)
+        }, '*');
+      }
+      if ('ResizeObserver' in window) new ResizeObserver(reportHeight).observe(document.body);
+      window.addEventListener('load', reportHeight);
+      /* The webfont changes metrics after first paint, so measure again once
+         it settles — otherwise the parent sizes the frame a few pixels short. */
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+
+      paint();
+      schedule();
+
+      /* The icons arrive as a deferred script, so draw them after parsing. */
+      const drawIcons = () => {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', drawIcons);
+      else drawIcons();
+    })();
+  </script>
+</body>
+</html>
