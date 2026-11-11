@@ -1,0 +1,106 @@
+/* One federated round — figure styles.
+ *
+ * Styles only the interactive round loop: the four step buttons, the
+ * three stations, the wires they speak across, and the aggregator.
+ * Tokens come from ../tokens.css.
+ *
+ * The phase model is CSS-only: `.fl-stage[data-phase="N"]` selects which
+ * state is visible, and the script in round-loop.html only flips that
+ * attribute. Adding a phase therefore means adding a block here, not
+ * rewriting the animation.
+ */
+
+/* ---- controls ---- */
+.steps{list-style:none;margin:0 0 .2rem;padding:0;display:grid;gap:.55rem;max-width:48ch}
+.steps li{margin:0}
+.step-btn{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;background:#fff;border:var(--line);box-shadow:3px 3px 0 var(--ink);padding:.55rem .7rem;font-weight:800;font-size:clamp(.95rem,1.05vw,1.06rem);line-height:1.3;cursor:pointer;font-family:inherit;color:inherit;transition:background-color .2s,transform .15s,box-shadow .15s}
+.step-btn>span{display:grid;place-items:center;flex:none;width:1.75em;height:1.75em;border:2px solid var(--ink);background:var(--paper);font-size:.8em;font-weight:900}
+.step-btn:hover{background:var(--lime)}
+.step-btn[aria-pressed="true"]{background:var(--yellow);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);animation:stepPulse 2.8s ease-in-out infinite}
+@keyframes stepPulse{0%,100%{box-shadow:5px 5px 0 var(--ink)}50%{box-shadow:5px 5px 0 var(--ink),0 0 0 4px rgba(45,69,200,.18)}}
+
+/* ---- stage ---- */
+.fl-figure{margin:0;padding:clamp(1.5rem,4vw,2.75rem);display:flex;flex-direction:column;gap:1rem}
+.fl-stage{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,.9fr);grid-template-rows:repeat(3,minmax(76px,1fr));gap:.75rem 0;align-items:stretch}
+.site{grid-column:1;display:flex;flex-direction:column;justify-content:center;gap:.2rem;border:var(--line);background:#fff;box-shadow:3px 3px 0 var(--ink);padding:.7rem .8rem;transition:background-color .35s,transform .35s}
+.site b{font-size:clamp(1rem,1.15vw,1.12rem);line-height:1.2;font-weight:900}
+.site small{font-size:.88rem;line-height:1.3;font-weight:700;color:#3a3a3a}
+.local{align-self:flex-start;margin-top:.2rem;font-size:.72rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;background:var(--pink);border:2px solid var(--ink);padding:.05rem .32rem}
+
+/* The wire is a dashed line drawn as a repeating gradient, so the
+   "marching ants" motion costs nothing extra to animate. */
+.wire{grid-column:2;position:relative}
+.wire::before{content:"";position:absolute;left:0;right:1.5rem;top:50%;height:4px;transform:translateY(-50%);background-image:repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 13px);background-size:13px 4px;animation:march .55s linear infinite}
+.wire .tip{position:absolute;right:.15rem;top:50%;transform:translateY(-50%);width:1.25rem;height:1.25rem;color:var(--ink);stroke-width:3;transition:opacity .3s,transform .3s}
+@keyframes march{to{background-position-x:13px}}
+
+/* Direction of travel per phase. */
+.fl-stage[data-phase="0"] .wire .tip{left:.15rem;right:auto;transform:translateY(-50%) rotate(180deg);opacity:1}
+.fl-stage[data-phase="1"] .wire .tip,.fl-stage[data-phase="3"] .wire .tip{opacity:0}
+.fl-stage[data-phase="1"] .wire::before,.fl-stage[data-phase="3"] .wire::before{animation-play-state:paused;opacity:.3}
+.fl-stage[data-phase="0"] .wire::before{left:1.5rem;right:0;animation-direction:reverse;background-image:repeating-linear-gradient(90deg,var(--blue) 0 6px,transparent 6px 13px)}
+
+/* What each phase does to the stations and the hub. */
+.fl-stage[data-phase="1"] .site{background:var(--yellow)}
+.fl-stage[data-phase="1"] .local{background:var(--lime)}
+.fl-stage[data-phase="2"] .site{background:var(--lime)}
+.fl-stage[data-phase="2"] .wire::before{background-image:repeating-linear-gradient(90deg,var(--blue) 0 6px,transparent 6px 13px)}
+.fl-stage[data-phase="3"] .fl-hub{background:var(--ink);transform:scale(1.02)}
+
+.fl-what{margin:0;font-size:.92rem;line-height:1.4;font-weight:800;min-height:1.4em}
+.fl-hub{grid-column:3;grid-row:1/4;align-self:center;display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;border:var(--line);background:var(--blue);color:#fff;box-shadow:var(--shadow);padding:1.25rem 1.1rem;transition:background-color .35s,transform .35s}
+.fl-hub b{font-size:1.2rem;font-weight:900}
+.fl-hub small{font-size:.9rem;line-height:1.35;font-weight:600;color:#eef1ff}
+.fl-model{align-self:flex-start;margin-top:.5rem;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:.05rem .5rem;font-weight:900;font-size:1rem}
+
+/* ---- legend ---- */
+.fl-key{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.85rem;font-weight:800}
+.fl-key span{display:flex;align-items:center;gap:.4rem}
+.fl-key i{display:inline-block;width:1.5rem;height:.7rem}
+.key-local{background:var(--pink);border:2px solid var(--ink)}
+.key-wire{background-image:repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 8px);background-size:8px 3px;height:.2rem!important}
+
+/* ---- embed modes ----
+ * data-controls="0" drops the buttons, for a diagram-only still.
+ * data-chrome="0" drops page padding and background, for iframe embeds.
+ */
+html[data-controls="0"] .steps{display:none}
+html[data-chrome="0"],html[data-chrome="0"] body{background:transparent}
+html[data-chrome="0"] body{padding:0}
+/* An embedded figure is sized by its parent, so it must not scroll itself. */
+html[data-chrome="0"],html[data-chrome="0"] body{overflow:hidden}
+
+/* ---- narrow containers ----
+ * Container queries, not media queries: this figure is embedded at roughly
+ * half a slide's width, so its layout must respond to the box it is given
+ * rather than to the viewport. A viewport query here would collapse the
+ * stage inside the deck's two-column slide.
+ */
+.fl-figure{container-type:inline-size}
+
+@container (max-width: 480px){
+  .steps{gap:.4rem}
+  .step-btn{padding:.45rem .6rem}
+  .fl-stage{grid-template-columns:1fr;grid-template-rows:repeat(3,auto);gap:.45rem}
+  .site{flex-direction:row;align-items:center;flex-wrap:wrap;gap:.15rem .5rem;padding:.5rem .6rem}
+  .site small{flex:1 1 9ch}
+  .local{margin-top:0}
+  .wire,.fl-key{display:none}
+  .fl-hub{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;align-items:center;gap:.45rem;margin-top:.1rem;padding:.7rem .8rem}
+  .fl-hub .fl-model{margin-top:0}
+}
+@container (max-width: 340px){
+  .step-btn{font-size:.82rem;padding:.3rem .4rem;box-shadow:2px 2px 0 var(--ink)}
+  .step-btn>span{width:1.45em;height:1.45em;font-size:.72em}
+  .fl-figure{gap:.4rem}
+  .fl-stage{gap:.3rem}
+  .site{padding:.35rem .45rem;box-shadow:2px 2px 0 var(--ink)}
+  .site b{font-size:.88rem}
+  .site small{font-size:.74rem}
+  .local{font-size:.58rem;padding:.02rem .22rem}
+  .fl-hub{padding:.45rem .55rem;box-shadow:3px 3px 0 var(--ink)}
+  .fl-hub b{font-size:.9rem}
+  .fl-hub small{font-size:.74rem}
+  .fl-model{font-size:.8rem;padding:0 .3rem}
+  .fl-what{font-size:.8rem}
+}
