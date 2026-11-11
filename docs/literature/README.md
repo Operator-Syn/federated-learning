@@ -23,8 +23,8 @@ docs/literature/
 └── snapshots/                # frozen text of the page as retrieved, for auditing quotes
 ```
 
-Sibling clusters: [`../proposal/`](../proposal/) holds what the study claims, and
-[`../interoperability/`](../interoperability/) holds the FHIR and PH Core layer.
+Sibling clusters: [`../proposal/`](../proposal/topic-2-proposal.md) holds what the study claims, and
+[`../interoperability/`](../interoperability/ph-core-brief.md) holds the FHIR and PH Core layer.
 
 ## Sources
 
