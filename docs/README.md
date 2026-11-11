@@ -11,13 +11,14 @@ Everything the study needs to defend itself, organised by the question each docu
 rather than by file type. A reader looking for "what does the standard actually cover" and a
 reader looking for "what has already been published" should land in different directories.
 
-Three clusters, one per kind of question:
+Three knowledge clusters, one per kind of question, plus a directory for the source documents
+they were derived from:
 
 | Directory | Answers | Read first |
 |---|---|---|
-| [`proposal/`](proposal/) | What this study claims, and how it is bounded | [`topic-2-proposal.md`](proposal/topic-2-proposal.md) |
-| [`interoperability/`](interoperability/) | What schema the data contract targets, and what the standard leaves out | [`ph-core-brief.md`](interoperability/ph-core-brief.md) |
-| [`literature/`](literature/) | What has been established elsewhere, and what it leaves open | [`literature/README.md`](literature/README.md) |
+| [`proposal/`](proposal/topic-2-proposal.md) | What this study claims, and how it is bounded | [`topic-2-proposal.md`](proposal/topic-2-proposal.md) |
+| [`interoperability/`](interoperability/ph-core-brief.md) | What schema the data contract targets, and what the standard leaves out | [`ph-core-brief.md`](interoperability/ph-core-brief.md) |
+| [`literature/`](literature/README.md) | What has been established elsewhere, and what it leaves open | [`literature/README.md`](literature/README.md) |
 
 ## proposal/
 
@@ -49,6 +50,19 @@ draft can be traced back to text.
 | [`rrl-matrix.md`](literature/rrl-matrix.md) | Analysis: the role of each source, what it cannot support, and the gap they jointly leave |
 | `sources/R01…R05.md` | One note per source: method, reported numbers, limits, and the sentence it can support |
 | `snapshots/`, `fulltext/`, `pdf/` | Retrieved artifacts, kept so a quotation can be audited later |
+
+The three directories are the vault root's only clusters. `docs/` is the Obsidian vault
+(`.obsidian/` here is gitignored); every link is a relative markdown link, so the same files
+resolve on GitHub and in the vault.
+
+## reference/
+
+Inputs, not arguments. These are the documents the study came from, kept so a claim about its
+origins can be checked.
+
+| Document | What it is |
+|---|---|
+| [`csc198-topic-brief.pdf`](reference/csc198-topic-brief.pdf) | The CSC198 handout listing Topics 1–3, originally `CSC198-Group-Beira-Jagonia-Ybanez.pdf`. Topic 2 is this study; the proposal cites it as its origin. |
 
 ## Conventions
 
