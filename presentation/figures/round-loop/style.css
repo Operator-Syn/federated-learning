@@ -1,8 +1,8 @@
 /* One federated round — figure styles.
  *
- * Styles only the interactive round loop: the four step buttons, the
- * three stations, the wires they speak across, and the aggregator.
- * Tokens come from ../tokens.css.
+ * Styles the round loop: the three stations, the wires they speak across,
+ * and the aggregator. Tokens come from ../../tokens.css; the step buttons
+ * come from ../_shared/steps.css.
  *
  * The phase model is CSS-only: `.fl-stage[data-phase="N"]` selects which
  * state is visible, and the script in round-loop.html only flips that
@@ -10,14 +10,7 @@
  * rewriting the animation.
  */
 
-/* ---- controls ---- */
-.steps{list-style:none;margin:0 0 .2rem;padding:0;display:grid;gap:.55rem;max-width:48ch}
-.steps li{margin:0}
-.step-btn{display:flex;align-items:center;gap:.7rem;width:100%;text-align:left;background:#fff;border:var(--line);box-shadow:3px 3px 0 var(--ink);padding:.55rem .7rem;font-weight:800;font-size:clamp(.95rem,1.05vw,1.06rem);line-height:1.3;cursor:pointer;font-family:inherit;color:inherit;transition:background-color .2s,transform .15s,box-shadow .15s}
-.step-btn>span{display:grid;place-items:center;flex:none;width:1.75em;height:1.75em;border:2px solid var(--ink);background:var(--paper);font-size:.8em;font-weight:900}
-.step-btn:hover{background:var(--lime)}
-.step-btn[aria-pressed="true"]{background:var(--yellow);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);animation:stepPulse 2.8s ease-in-out infinite}
-@keyframes stepPulse{0%,100%{box-shadow:5px 5px 0 var(--ink)}50%{box-shadow:5px 5px 0 var(--ink),0 0 0 4px rgba(45,69,200,.18)}}
+/* Step buttons come from ../_shared/steps.css. */
 
 /* ---- stage ---- */
 .fl-figure{margin:0;padding:clamp(1.5rem,4vw,2.75rem);display:flex;flex-direction:column;gap:1rem}
@@ -79,8 +72,6 @@ html[data-chrome="0"],html[data-chrome="0"] body{overflow:hidden}
 .fl-figure{container-type:inline-size}
 
 @container (max-width: 480px){
-  .steps{gap:.4rem}
-  .step-btn{padding:.45rem .6rem}
   .fl-stage{grid-template-columns:1fr;grid-template-rows:repeat(3,auto);gap:.45rem}
   .site{flex-direction:row;align-items:center;flex-wrap:wrap;gap:.15rem .5rem;padding:.5rem .6rem}
   .site small{flex:1 1 9ch}
@@ -90,8 +81,6 @@ html[data-chrome="0"],html[data-chrome="0"] body{overflow:hidden}
   .fl-hub .fl-model{margin-top:0}
 }
 @container (max-width: 340px){
-  .step-btn{font-size:.82rem;padding:.3rem .4rem;box-shadow:2px 2px 0 var(--ink)}
-  .step-btn>span{width:1.45em;height:1.45em;font-size:.72em}
   .fl-figure{gap:.4rem}
   .fl-stage{gap:.3rem}
   .site{padding:.35rem .45rem;box-shadow:2px 2px 0 var(--ink)}
