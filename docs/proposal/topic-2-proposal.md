@@ -6,7 +6,7 @@ group: Beira, Jagonia, Ybanez
 status: draft
 created: 2026-10-20
 updated: 2026-10-20
-source: "CSC198-Group-Beira-Jagonia-Ybanez.pdf (Topic 2), grounded in Iligan City CHO access"
+source: "docs/reference/csc198-topic-brief.pdf (Topic 2), grounded in Iligan City CHO access"
 ---
 
 # Inclusion-Aware Client Selection for Federated Learning under Intermittent Connectivity
