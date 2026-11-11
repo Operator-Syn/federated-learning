@@ -1,0 +1,20 @@
+/* Shared design tokens.
+ *
+ * Loaded by the deck (presentation/index.html) and by every standalone
+ * figure page under presentation/figures/, so a palette change lands in
+ * both places at once.
+ *
+ * Keep this file to custom properties only. Each consumer is responsible
+ * for its own body, typography and layout, because a slide and an
+ * embedded figure need different page furniture.
+ */
+:root{
+  --paper:#f4f0e8;
+  --ink:#171717;
+  --blue:#2d45c8;
+  --lime:#c7f36b;
+  --pink:#ff8eaa;
+  --yellow:#ffd447;
+  --line:4px solid var(--ink);
+  --shadow:11px 11px 0 var(--ink);
+}
