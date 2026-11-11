@@ -24,13 +24,6 @@
 </head>
 <body>
   <figure class="fl-figure" aria-label="One federated round, in four phases">
-    <ol class="steps" aria-label="Steps in one federated round">
-      <li><button class="step-btn" type="button" data-step="0" aria-pressed="true"><span>1</span>The server shares the model</button></li>
-      <li><button class="step-btn" type="button" data-step="1" aria-pressed="false"><span>2</span>Each site trains on its own records</button></li>
-      <li><button class="step-btn" type="button" data-step="2" aria-pressed="false"><span>3</span>Only the updates travel back</button></li>
-      <li><button class="step-btn" type="button" data-step="3" aria-pressed="false"><span>4</span>The server averages them into one model</button></li>
-    </ol>
-
     <div class="fl-stage" data-phase="0">
       <div class="site" data-row="1"><b>Health station A</b><small>its own patient records</small><span class="local">stays here</span></div>
       <div class="wire" data-row="1"><i class="tip" data-lucide="arrow-right" aria-hidden="true"></i></div>
@@ -46,6 +39,13 @@
       <span><i class="key-local"></i>records stay local</span>
       <span><i class="key-wire"></i>updates travel</span>
     </figcaption>
+
+    <ol class="steps" aria-label="Steps in one federated round">
+      <li><button class="step-btn" type="button" data-step="0" aria-pressed="true"><span>1</span>The server shares the model</button></li>
+      <li><button class="step-btn" type="button" data-step="1" aria-pressed="false"><span>2</span>Each site trains on its own records</button></li>
+      <li><button class="step-btn" type="button" data-step="2" aria-pressed="false"><span>3</span>Only the updates travel back</button></li>
+      <li><button class="step-btn" type="button" data-step="3" aria-pressed="false"><span>4</span>The server averages them into one model</button></li>
+    </ol>
   </figure>
 
   <script>
