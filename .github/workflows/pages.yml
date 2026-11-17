@@ -54,6 +54,35 @@ jobs:
               raise SystemExit("Cover must not pin a federated-learning platform")
           print("Presentation structure and cover copy validated.")
           PY
+      - name: Validate standalone figures
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          figure = Path("presentation/figures/round-loop/index.html")
+          style = Path("presentation/figures/round-loop/style.css")
+          tokens = Path("presentation/tokens.css")
+          for path in (figure, style, tokens):
+              if not path.is_file():
+                  raise SystemExit(f"{path} is missing")
+
+          html = figure.read_text(encoding="utf-8")
+          steps = (
+              "The server shares the model",
+              "Each site trains on its own records",
+              "Only the updates travel back",
+              "The server averages them into one model",
+          )
+          for step in steps:
+              if step not in html:
+                  raise SystemExit(f"round-loop figure is missing step: {step}")
+
+          deck = Path("presentation/index.html").read_text(encoding="utf-8")
+          if 'src="figures/round-loop/index.html' not in deck:
+              raise SystemExit("deck does not embed the round-loop figure")
+
+          print("Figure pages validated.")
+          PY
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
