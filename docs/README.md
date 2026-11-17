@@ -16,10 +16,11 @@ Research PDFs use `SurnameYear - Full Title.pdf`; the unattributed course handou
 ## Bibliography
 
 `docs/literature/references.bib` is generated, never hand-edited. It is exported from the
-**Thesis_BJY** Zotero group library (id `6767052`) by `scripts/refresh-references.sh`, which needs
-Zotero running with the local API enabled and Better BibTeX installed. Citation keys come from
-Better BibTeX, so they stay stable across exports. Re-run the script after adding or fixing items
-in Zotero; a failed or empty export leaves the existing `.bib` untouched.
+**Thesis_BJY** Zotero group library (id `6767052`) by `scripts/refresh-references.py`, which needs
+Zotero running with the local API enabled and Better BibTeX installed. Entries are grouped by
+collection (the same topic tree as the folders below), then by first author and year within each
+group; citation keys come from Better BibTeX, so they stay stable across exports. Re-run the script
+after adding or fixing items in Zotero; a failed or empty export leaves the existing `.bib` untouched.
 
 **92 PDFs across 17 categories.**
 
