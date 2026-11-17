@@ -1,94 +1,4 @@
-
-@misc{liFedBNFederatedLearning2021,
-	title = {{FedBN}: {Federated} {Learning} on {Non}-{IID} {Features} via {Local} {Batch} {Normalization}},
-	shorttitle = {{FedBN}},
-	url = {http://arxiv.org/abs/2102.07623},
-	doi = {10.48550/arXiv.2102.07623},
-	abstract = {The emerging paradigm of federated learning (FL) strives to enable collaborative training of deep models on the network edge without centrally aggregating raw data and hence improving data privacy. In most cases, the assumption of independent and identically distributed samples across local clients does not hold for federated learning setups. Under this setting, neural network training performance may vary significantly according to the data distribution and even hurt training convergence. Most of the previous work has focused on a difference in the distribution of labels or client shifts. Unlike those settings, we address an important problem of FL, e.g., different scanners/sensors in medical imaging, different scenery distribution in autonomous driving (highway vs. city), where local clients store examples with different distributions compared to other clients, which we denote as feature shift non-iid. In this work, we propose an effective method that uses local batch normalization to alleviate the feature shift before averaging models. The resulting scheme, called FedBN, outperforms both classical FedAvg, as well as the state-of-the-art for non-iid data (FedProx) on our extensive experiments. These empirical results are supported by a convergence analysis that shows in a simplified setting that FedBN has a faster convergence rate than FedAvg. Code is available at https://github.com/med-air/FedBN.},
-	urldate = {2026-11-17},
-	publisher = {arXiv},
-	author = {Li, Xiaoxiao and Jiang, Meirui and Zhang, Xiaofei and Kamp, Michael and Dou, Qi},
-	month = may,
-	year = {2021},
-	note = {arXiv:2102.07623 [cs.LG]},
-	keywords = {Computer Science - Machine Learning},
-	annote = {Comment: Accepted at ICLR 2021},
-	file = {Preprint PDF:/home/yashindo/Zotero/storage/6FUABW5P/Li et al. - 2021 - FedBN Federated Learning on Non-IID Features via Local Batch Normalization.pdf:application/pdf;Snapshot:/home/yashindo/Zotero/storage/LBLNYK2J/2102.html:text/html},
-}
-
-
-@article{muFedProcPrototypicalContrastive2023,
-	title = {{FedProc}: {Prototypical} contrastive federated learning on non-{IID} data},
-	volume = {143},
-	issn = {0167-739X},
-	shorttitle = {{FedProc}},
-	url = {https://www.sciencedirect.com/science/article/pii/S0167739X23000262},
-	doi = {10.1016/j.future.2023.01.019},
-	abstract = {Federated learning (FL) enables multiple clients to jointly train high-performance deep learning models while maintaining the training data locally. However, it is challenging to accomplish this form of efficient collaborative learning when all the clients’ local data are not independent and identically distributed (i.e., non-IID). Despite extensive efforts to address this challenge, the results for image classification tasks remain inadequate. In this paper, we propose FedProc: prototypical contrastive federated learning. The core idea of this approach is to utilize the prototypes as global knowledge to correct the drift of each client’s local training. Specifically, we designed a local network structure and a global prototype contrast loss to regulate the training of the local model. These efforts make the direction of local optimization consistent with the global optimum such that the global model achieves good performance on non-IID data. Evaluative studies supported by theoretical significance demonstrate that FedProc improves accuracy by 1.6\% to 7.9\% with an acceptable computational cost compared to state-of-the-art federated learning methods.},
-	urldate = {2026-11-17},
-	journal = {Future Generation Computer Systems},
-	author = {Mu, Xutong and Shen, Yulong and Cheng, Ke and Geng, Xueli and Fu, Jiaxuan and Zhang, Tao and Zhang, Zhiwei},
-	month = jun,
-	year = {2023},
-	keywords = {Contrastive learning, Federated learning, Non-IID data, Prototypes, Prototypical contrastive loss, Prototypical networks},
-	pages = {93--104},
-	file = {ScienceDirect Snapshot:/home/yashindo/Zotero/storage/TTQ439JJ/S0167739X23000262.html:text/html;Submitted Version:/home/yashindo/Zotero/storage/FB4YQ9YG/Mu et al. - 2023 - FedProc Prototypical contrastive federated learning on non-IID data.pdf:application/pdf},
-}
-
-
-@article{yeminiRobustSemiDecentralizedFederated2024,
-	title = {Robust {Semi}-{Decentralized} {Federated} {Learning} via {Collaborative} {Relaying}},
-	volume = {23},
-	issn = {1558-2248},
-	url = {https://ieeexplore.ieee.org/document/10366207},
-	doi = {10.1109/TWC.2023.3342095},
-	abstract = {Intermittent connectivity of clients to the parameter server (PS) is a major bottleneck in federated edge learning frameworks. The lack of constant connectivity induces a large generalization gap, especially when the local data distribution amongst clients exhibits heterogeneity. To overcome intermittent communication outages between clients and the central PS, we introduce the concept of collaborative relaying wherein the participating clients relay their neighbors’ local updates to the PS in order to boost the participation of clients with poor connectivity to the PS. We propose a semi-decentralized federated learning framework in which at every communication round, each client initially computes a local averaging of a subset of its neighboring clients’ updates, and eventually transmits to the PS a weighted average of its own update and those of its neighbors’. We appropriately optimize these local averaging weights to ensure that the global update at the PS is unbiased with minimal variance – consequently improving the convergence rate. Numerical evaluations on the CIFAR-10 dataset demonstrate that our collaborative relaying approach outperforms federated averaging-based benchmarks for learning over intermittently-connected networks such as when the clients communicate over millimeter wave channels with intermittent blockages.},
-	number = {7},
-	urldate = {2026-11-17},
-	journal = {IEEE Transactions on Wireless Communications},
-	author = {Yemini, Michal and Saha, Rajarshi and Ozfatura, Emre and Gündüz, Deniz and Goldsmith, Andrea J.},
-	month = jul,
-	year = {2024},
-	keywords = {Collaboration, collaborative relaying, convergence, Convergence, Federated learning, intermittent connectivity, Optimization, Servers, Topology, weight optimization, Wireless communication},
-	pages = {7520--7536},
-	file = {Snapshot:/home/yashindo/Zotero/storage/RN34VSDF/10366207.html:text/html;Submitted Version:/home/yashindo/Zotero/storage/C4RDQHU5/Yemini et al. - 2024 - Robust Semi-Decentralized Federated Learning via Collaborative Relaying.pdf:application/pdf},
-}
-
-
-@article{joshiFederatedLearningHealthcare2022,
-	title = {Federated {Learning} for {Healthcare} {Domain} - {Pipeline}, {Applications} and {Challenges}},
-	volume = {3},
-	url = {https://dl.acm.org/doi/10.1145/3533708},
-	doi = {10.1145/3533708},
-	abstract = {Federated learning is the process of developing machine learning models over datasets distributed across data centers such as hospitals, clinical research labs, and mobile devices while preventing data leakage. This survey examines previous research and studies on federated learning in the healthcare sector across a range of use cases and applications. Our survey shows what challenges, methods, and applications a practitioner should be aware of in the topic of federated learning. This paper aims to lay out existing research and list the possibilities of federated learning for healthcare industries.},
-	number = {4},
-	urldate = {2026-11-17},
-	journal = {ACM Trans. Comput. Healthcare},
-	author = {Joshi, Madhura and Pal, Ankit and Sankarasubbu, Malaikannan},
-	month = nov,
-	year = {2022},
-	pages = {40:1--40:36},
-	file = {Full Text PDF:/home/yashindo/Zotero/storage/Y7B3IWJG/Joshi et al. - 2022 - Federated Learning for Healthcare Domain - Pipeline, Applications and Challenges.pdf:application/pdf},
-}
-
-
-@misc{nguyenFederatedLearningBuffered2022,
-	title = {Federated {Learning} with {Buffered} {Asynchronous} {Aggregation}},
-	url = {http://arxiv.org/abs/2106.06639},
-	doi = {10.48550/arXiv.2106.06639},
-	abstract = {Scalability and privacy are two critical concerns for cross-device federated learning (FL) systems. In this work, we identify that synchronous FL - synchronized aggregation of client updates in FL - cannot scale efficiently beyond a few hundred clients training in parallel. It leads to diminishing returns in model performance and training speed, analogous to large-batch training. On the other hand, asynchronous aggregation of client updates in FL (i.e., asynchronous FL) alleviates the scalability issue. However, aggregating individual client updates is incompatible with Secure Aggregation, which could result in an undesirable level of privacy for the system. To address these concerns, we propose a novel buffered asynchronous aggregation method, FedBuff, that is agnostic to the choice of optimizer, and combines the best properties of synchronous and asynchronous FL. We empirically demonstrate that FedBuff is 3.3x more efficient than synchronous FL and up to 2.5x more efficient than asynchronous FL, while being compatible with privacy-preserving technologies such as Secure Aggregation and differential privacy. We provide theoretical convergence guarantees in a smooth non-convex setting. Finally, we show that under differentially private training, FedBuff can outperform FedAvgM at low privacy settings and achieve the same utility for higher privacy settings.},
-	urldate = {2026-11-17},
-	publisher = {arXiv},
-	author = {Nguyen, John and Malik, Kshitiz and Zhan, Hongyuan and Yousefpour, Ashkan and Rabbat, Michael and Malek, Mani and Huba, Dzmitry},
-	month = mar,
-	year = {2022},
-	note = {arXiv:2106.06639 [cs.LG]},
-	keywords = {Computer Science - Machine Learning},
-	annote = {Comment: Accepted at AISTATS 2022. Previously accepted at FL-ICML 2021},
-	file = {Full Text PDF:/home/yashindo/Zotero/storage/AKRXGYJH/Nguyen et al. - 2022 - Federated Learning with Buffered Asynchronous Aggregation.pdf:application/pdf;Snapshot:/home/yashindo/Zotero/storage/BKHHLHLM/2106.html:text/html},
-}
-
-
+% ---- federated-learning/applications (2) ----
 @article{crowsonSystematicReviewFederated2022,
 	title = {A systematic review of federated learning applications for biomedical data},
 	volume = {1},
@@ -107,8 +17,23 @@
 	pages = {e0000033},
 	file = {PDF:/home/yashindo/Zotero/storage/F7GCPUAW/Crowson et al. - 2022 - A systematic review of federated learning applications for biomedical data.pdf:application/pdf},
 }
+@article{joshiFederatedLearningHealthcare2022,
+	title = {Federated {Learning} for {Healthcare} {Domain} - {Pipeline}, {Applications} and {Challenges}},
+	volume = {3},
+	url = {https://dl.acm.org/doi/10.1145/3533708},
+	doi = {10.1145/3533708},
+	abstract = {Federated learning is the process of developing machine learning models over datasets distributed across data centers such as hospitals, clinical research labs, and mobile devices while preventing data leakage. This survey examines previous research and studies on federated learning in the healthcare sector across a range of use cases and applications. Our survey shows what challenges, methods, and applications a practitioner should be aware of in the topic of federated learning. This paper aims to lay out existing research and list the possibilities of federated learning for healthcare industries.},
+	number = {4},
+	urldate = {2026-11-17},
+	journal = {ACM Trans. Comput. Healthcare},
+	author = {Joshi, Madhura and Pal, Ankit and Sankarasubbu, Malaikannan},
+	month = nov,
+	year = {2022},
+	pages = {40:1--40:36},
+	file = {Full Text PDF:/home/yashindo/Zotero/storage/Y7B3IWJG/Joshi et al. - 2022 - Federated Learning for Healthcare Domain - Pipeline, Applications and Challenges.pdf:application/pdf},
+}
 
-
+% ---- federated-learning/clustering (4) ----
 @misc{ghoshEfficientFrameworkClustered2021,
 	title = {An {Efficient} {Framework} for {Clustered} {Federated} {Learning}},
 	url = {http://arxiv.org/abs/2006.04088},
@@ -125,8 +50,6 @@
 	annote = {Comment: Preliminary results appeared at NeurIPS 2020},
 	file = {PDF:/home/yashindo/Zotero/storage/L8L4JHTC/Ghosh et al. - 2021 - An Efficient Framework for Clustered Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{marfoqFederatedMultiTaskLearning2022,
 	title = {Federated {Multi}-{Task} {Learning} under a {Mixture} of {Distributions}},
 	url = {http://arxiv.org/abs/2108.10252},
@@ -143,8 +66,6 @@
 	annote = {Comment: 77 pages, NeurIPS 2021},
 	file = {PDF:/home/yashindo/Zotero/storage/CDJEXZKR/Marfoq et al. - 2022 - Federated Multi-Task Learning under a Mixture of Distributions.pdf:application/pdf},
 }
-
-
 @misc{morafahFLISClusteredFederated2022,
 	title = {{FLIS}: {Clustered} {Federated} {Learning} via {Inference} {Similarity} for {Non}-{IID} {Data} {Distribution}},
 	shorttitle = {{FLIS}},
@@ -161,8 +82,6 @@
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/JIFJ5PHV/Morafah et al. - 2022 - FLIS Clustered Federated Learning via Inference Similarity for Non-IID Data Distribution.pdf:application/pdf},
 }
-
-
 @misc{sattlerClusteredFederatedLearning2019,
 	title = {Clustered {Federated} {Learning}: {Model}-{Agnostic} {Distributed} {Multi}-{Task} {Optimization} under {Privacy} {Constraints}},
 	shorttitle = {Clustered {Federated} {Learning}},
@@ -180,7 +99,7 @@
 	file = {PDF:/home/yashindo/Zotero/storage/C6XSVNL9/Sattler et al. - 2019 - Clustered Federated Learning Model-Agnostic Distributed Multi-Task Optimization under Privacy Const.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/connectivity-and-offline (12) ----
 @misc{caldasLEAFBenchmarkFederated2019,
 	title = {{LEAF}: {A} {Benchmark} for {Federated} {Settings}},
 	shorttitle = {{LEAF}},
@@ -197,8 +116,6 @@
 	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/2U7EWNKH/Caldas et al. - 2019 - LEAF A Benchmark for Federated Settings.pdf:application/pdf},
 }
-
-
 @article{chukwuElectricityComputingHardware2022,
 	title = {Electricity, {Computing} {Hardware}, and {Internet} {Infrastructures} in {Health} {Facilities} in {Sierra} {Leone}: {Field} {Mapping} {Study}},
 	volume = {10},
@@ -221,8 +138,6 @@ Conclusions: Electricity provision for off-electricity-grid health facilities us
 	pages = {e30040},
 	file = {PDF:/home/yashindo/Zotero/storage/FV6V2IZF/Chukwu et al. - 2022 - Electricity, Computing Hardware, and Internet Infrastructures in Health Facilities in Sierra Leone.pdf:application/pdf},
 }
-
-
 @article{kennyDesignImplementationMobile2020,
 	title = {Design and implementation of a mobile health electronic data capture platform that functions in fully-disconnected settings: a pilot study in rural {Liberia}},
 	volume = {20},
@@ -243,8 +158,6 @@ Conclusions: Running a fully-offline EDC program that completely bypasses the ce
 	pages = {39},
 	file = {PDF:/home/yashindo/Zotero/storage/BXKN386D/Kenny et al. - 2020 - Design and implementation of a mobile health electronic data capture platform that functions in full.pdf:application/pdf},
 }
-
-
 @article{kingElectronicDataCapture2014,
 	title = {Electronic data capture in a rural {African} setting: evaluating experiences with different systems in {Malawi}},
 	volume = {7},
@@ -266,8 +179,6 @@ Conclusions: EDC offers many opportunities for efficient data collection, but br
 	pages = {25878},
 	file = {PDF:/home/yashindo/Zotero/storage/4F7VTIPH/King et al. - 2014 - Electronic data capture in a rural African setting evaluating experiences with different systems in.pdf:application/pdf},
 }
-
-
 @misc{laiFedScaleBenchmarkingModel2022,
 	title = {{FedScale}: {Benchmarking} {Model} and {System} {Performance} of {Federated} {Learning} at {Scale}},
 	shorttitle = {{FedScale}},
@@ -284,8 +195,6 @@ Conclusions: EDC offers many opportunities for efficient data collection, but br
 	keywords = {Computer Science - Artificial Intelligence, Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning, Computer Science - Performance},
 	file = {PDF:/home/yashindo/Zotero/storage/2P4HEI5U/Lai et al. - 2022 - FedScale Benchmarking Model and System Performance of Federated Learning at Scale.pdf:application/pdf},
 }
-
-
 @misc{liuModelingAnalysisIntermittent2022,
 	title = {Modeling and {Analysis} of {Intermittent} {Federated} {Learning} {Over} {Cellular}-{Connected} {UAV} {Networks}},
 	url = {http://arxiv.org/abs/2110.07077},
@@ -302,8 +211,6 @@ Conclusions: EDC offers many opportunities for efficient data collection, but br
 	annote = {Comment: 6 pages, 3 figures, conference},
 	file = {PDF:/home/yashindo/Zotero/storage/K7XJGYLW/Liu et al. - 2022 - Modeling and Analysis of Intermittent Federated Learning Over Cellular-Connected UAV Networks.pdf:application/pdf},
 }
-
-
 @misc{parasnisConnectivityAwareSemiDecentralizedFederated2023,
 	title = {Connectivity-{Aware} {Semi}-{Decentralized} {Federated} {Learning} over {Time}-{Varying} {D2D} {Networks}},
 	url = {http://arxiv.org/abs/2303.08988},
@@ -320,8 +227,6 @@ Conclusions: EDC offers many opportunities for efficient data collection, but br
 	annote = {Comment: 10 pages, 5 figures. This paper has been accepted to ACM-MobiHoc 2023},
 	file = {PDF:/home/yashindo/Zotero/storage/2HI3G7UG/Parasnis et al. - 2023 - Connectivity-Aware Semi-Decentralized Federated Learning over Time-Varying D2D Networks.pdf:application/pdf},
 }
-
-
 @article{scherrEvaluatingNetworkReadiness2020,
 	title = {Evaluating {Network} {Readiness} for {mHealth} {Interventions} {Using} the {Beacon} {Mobile} {Phone} {App}: {Application} {Development} and {Validation} {Study}},
 	volume = {8},
@@ -344,8 +249,6 @@ Conclusions: Beacon was able to compare the performance of different cellular ne
 	pages = {e18413},
 	file = {PDF:/home/yashindo/Zotero/storage/WK642H57/Scherr et al. - 2020 - Evaluating Network Readiness for mHealth Interventions Using the Beacon Mobile Phone App Applicatio.pdf:application/pdf},
 }
-
-
 @misc{shinFedBalancerDataPace2022,
 	title = {{FedBalancer}: {Data} and {Pace} {Control} for {Efficient} {Federated} {Learning} on {Heterogeneous} {Clients}},
 	shorttitle = {{FedBalancer}},
@@ -363,8 +266,6 @@ Conclusions: Beacon was able to compare the performance of different cellular ne
 	annote = {Comment: Accepted to the 20th ACM International Conference on Mobile Systems, Applications, and Services (MobiSys 2022)},
 	file = {PDF:/home/yashindo/Zotero/storage/JQRC3ALB/Shin et al. - 2022 - FedBalancer Data and Pace Control for Efficient Federated Learning on Heterogeneous Clients.pdf:application/pdf},
 }
-
-
 @article{siednerOptimizingNetworkConnectivity2012,
 	title = {Optimizing {Network} {Connectivity} for {Mobile} {Health} {Technologies} in sub-{Saharan} {Africa}},
 	volume = {7},
@@ -386,8 +287,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {e45643},
 	file = {PDF:/home/yashindo/Zotero/storage/8CXQ6CVK/Siedner et al. - 2012 - Optimizing Network Connectivity for Mobile Health Technologies in sub-Saharan Africa.pdf:application/pdf},
 }
-
-
 @article{yangFLASHHeterogeneityAwareFederated2024,
 	title = {{FLASH}: {Heterogeneity}-{Aware} {Federated} {Learning} at {Scale}},
 	volume = {23},
@@ -407,8 +306,25 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {483--500},
 	file = {PDF:/home/yashindo/Zotero/storage/A8B4FGEW/Yang et al. - 2024 - FLASH Heterogeneity-Aware Federated Learning at Scale.pdf:application/pdf},
 }
+@article{yeminiRobustSemiDecentralizedFederated2024,
+	title = {Robust {Semi}-{Decentralized} {Federated} {Learning} via {Collaborative} {Relaying}},
+	volume = {23},
+	issn = {1558-2248},
+	url = {https://ieeexplore.ieee.org/document/10366207},
+	doi = {10.1109/TWC.2023.3342095},
+	abstract = {Intermittent connectivity of clients to the parameter server (PS) is a major bottleneck in federated edge learning frameworks. The lack of constant connectivity induces a large generalization gap, especially when the local data distribution amongst clients exhibits heterogeneity. To overcome intermittent communication outages between clients and the central PS, we introduce the concept of collaborative relaying wherein the participating clients relay their neighbors’ local updates to the PS in order to boost the participation of clients with poor connectivity to the PS. We propose a semi-decentralized federated learning framework in which at every communication round, each client initially computes a local averaging of a subset of its neighboring clients’ updates, and eventually transmits to the PS a weighted average of its own update and those of its neighbors’. We appropriately optimize these local averaging weights to ensure that the global update at the PS is unbiased with minimal variance – consequently improving the convergence rate. Numerical evaluations on the CIFAR-10 dataset demonstrate that our collaborative relaying approach outperforms federated averaging-based benchmarks for learning over intermittently-connected networks such as when the clients communicate over millimeter wave channels with intermittent blockages.},
+	number = {7},
+	urldate = {2026-11-17},
+	journal = {IEEE Transactions on Wireless Communications},
+	author = {Yemini, Michal and Saha, Rajarshi and Ozfatura, Emre and Gündüz, Deniz and Goldsmith, Andrea J.},
+	month = jul,
+	year = {2024},
+	keywords = {Collaboration, collaborative relaying, convergence, Convergence, Federated learning, intermittent connectivity, Optimization, Servers, Topology, weight optimization, Wireless communication},
+	pages = {7520--7536},
+	file = {Snapshot:/home/yashindo/Zotero/storage/RN34VSDF/10366207.html:text/html;Submitted Version:/home/yashindo/Zotero/storage/C4RDQHU5/Yemini et al. - 2024 - Robust Semi-Decentralized Federated Learning via Collaborative Relaying.pdf:application/pdf},
+}
 
-
+% ---- federated-learning/fairness-and-equity (3) ----
 @misc{chouldechovaFairPredictionDisparate2016,
 	title = {Fair prediction with disparate impact: {A} study of bias in recidivism prediction instruments},
 	shorttitle = {Fair prediction with disparate impact},
@@ -426,8 +342,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: FATML 2016 conference paper. A long version of the paper available on the author's website},
 	file = {PDF:/home/yashindo/Zotero/storage/PUY767SJ/Chouldechova - 2016 - Fair prediction with disparate impact A study of bias in recidivism prediction instruments.pdf:application/pdf},
 }
-
-
 @article{obermeyerDissectingRacialBias2019,
 	title = {Dissecting racial bias in an algorithm used to manage the health of populations},
 	volume = {366},
@@ -461,8 +375,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {447--453},
 	file = {PDF:/home/yashindo/Zotero/storage/KLCX37BP/Obermeyer et al. - 2019 - Dissecting racial bias in an algorithm used to manage the health of populations.pdf:application/pdf},
 }
-
-
 @inproceedings{vermaFairnessDefinitionsExplained2018,
 	address = {Gothenburg Sweden},
 	title = {Fairness definitions explained},
@@ -481,7 +393,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/C78Y22R9/Verma and Rubin - 2018 - Fairness definitions explained.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/foundations (3) ----
 @misc{kairouzAdvancesOpenProblems2021,
 	title = {Advances and {Open} {Problems} in {Federated} {Learning}},
 	url = {http://arxiv.org/abs/1912.04977},
@@ -498,8 +410,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: Published in Foundations and Trends in Machine Learning Vol 4 Issue 1. See: https://www.nowpublishers.com/article/Details/MAL-083},
 	file = {PDF:/home/yashindo/Zotero/storage/EZXG4UCB/Kairouz et al. - 2021 - Advances and Open Problems in Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{konecnyFederatedLearningStrategies2017,
 	title = {Federated {Learning}: {Strategies} for {Improving} {Communication} {Efficiency}},
 	shorttitle = {Federated {Learning}},
@@ -516,8 +426,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/W7GTAQAW/Konečný et al. - 2017 - Federated Learning Strategies for Improving Communication Efficiency.pdf:application/pdf},
 }
-
-
 @misc{mcmahanCommunicationEfficientLearningDeep2023,
 	title = {Communication-{Efficient} {Learning} of {Deep} {Networks} from {Decentralized} {Data}},
 	url = {http://arxiv.org/abs/1602.05629},
@@ -535,7 +443,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/CPA4NFWS/McMahan et al. - 2023 - Communication-Efficient Learning of Deep Networks from Decentralized Data.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/heterogeneous-fl (6) ----
 @misc{gaoSurveyHeterogeneousFederated2022,
 	title = {A {Survey} on {Heterogeneous} {Federated} {Learning}},
 	url = {http://arxiv.org/abs/2210.04505},
@@ -552,8 +460,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: 46 pages, 10 figures, 10 tables},
 	file = {PDF:/home/yashindo/Zotero/storage/VPDS23TQ/Gao et al. - 2022 - A Survey on Heterogeneous Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{hsuMeasuringEffectsNonIdentical2019,
 	title = {Measuring the {Effects} of {Non}-{Identical} {Data} {Distribution} for {Federated} {Visual} {Classification}},
 	url = {http://arxiv.org/abs/1909.06335},
@@ -569,8 +475,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/9QVNMEUC/Hsu et al. - 2019 - Measuring the Effects of Non-Identical Data Distribution for Federated Visual Classification.pdf:application/pdf},
 }
-
-
 @misc{karimireddySCAFFOLDStochasticControlled2021,
 	title = {{SCAFFOLD}: {Stochastic} {Controlled} {Averaging} for {Federated} {Learning}},
 	shorttitle = {{SCAFFOLD}},
@@ -588,8 +492,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: v2 contains analysis of FedAvg, non-convex rates of Scaffold, and experimental evaluation. v3 fixes typos, ICML version. v4 slightly improves rate of SCAFFOLD for general convex functions},
 	file = {PDF:/home/yashindo/Zotero/storage/W973HMMM/Karimireddy et al. - 2021 - SCAFFOLD Stochastic Controlled Averaging for Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{liFederatedOptimizationHeterogeneous2020,
 	title = {Federated {Optimization} in {Heterogeneous} {Networks}},
 	url = {http://arxiv.org/abs/1812.06127},
@@ -606,8 +508,23 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: MLSys 2020},
 	file = {PDF:/home/yashindo/Zotero/storage/8GDFEVTM/Li et al. - 2020 - Federated Optimization in Heterogeneous Networks.pdf:application/pdf},
 }
-
-
+@article{muFedProcPrototypicalContrastive2023,
+	title = {{FedProc}: {Prototypical} contrastive federated learning on non-{IID} data},
+	volume = {143},
+	issn = {0167-739X},
+	shorttitle = {{FedProc}},
+	url = {https://www.sciencedirect.com/science/article/pii/S0167739X23000262},
+	doi = {10.1016/j.future.2023.01.019},
+	abstract = {Federated learning (FL) enables multiple clients to jointly train high-performance deep learning models while maintaining the training data locally. However, it is challenging to accomplish this form of efficient collaborative learning when all the clients’ local data are not independent and identically distributed (i.e., non-IID). Despite extensive efforts to address this challenge, the results for image classification tasks remain inadequate. In this paper, we propose FedProc: prototypical contrastive federated learning. The core idea of this approach is to utilize the prototypes as global knowledge to correct the drift of each client’s local training. Specifically, we designed a local network structure and a global prototype contrast loss to regulate the training of the local model. These efforts make the direction of local optimization consistent with the global optimum such that the global model achieves good performance on non-IID data. Evaluative studies supported by theoretical significance demonstrate that FedProc improves accuracy by 1.6\% to 7.9\% with an acceptable computational cost compared to state-of-the-art federated learning methods.},
+	urldate = {2026-11-17},
+	journal = {Future Generation Computer Systems},
+	author = {Mu, Xutong and Shen, Yulong and Cheng, Ke and Geng, Xueli and Fu, Jiaxuan and Zhang, Tao and Zhang, Zhiwei},
+	month = jun,
+	year = {2023},
+	keywords = {Contrastive learning, Federated learning, Non-IID data, Prototypes, Prototypical contrastive loss, Prototypical networks},
+	pages = {93--104},
+	file = {ScienceDirect Snapshot:/home/yashindo/Zotero/storage/TTQ439JJ/S0167739X23000262.html:text/html;Submitted Version:/home/yashindo/Zotero/storage/FB4YQ9YG/Mu et al. - 2023 - FedProc Prototypical contrastive federated learning on non-IID data.pdf:application/pdf},
+}
 @article{zhaoFederatedLearningNonIID2018,
 	title = {Federated {Learning} with {Non}-{IID} {Data}},
 	url = {http://arxiv.org/abs/1806.00582},
@@ -622,7 +539,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/F45KVECR/Zhao et al. - 2018 - Federated Learning with Non-IID Data.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/horizontal-fl (4) ----
 @misc{huangCrossSiloFederatedLearning2022,
 	title = {Cross-{Silo} {Federated} {Learning}: {Challenges} and {Opportunities}},
 	shorttitle = {Cross-{Silo} {Federated} {Learning}},
@@ -639,8 +556,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computer Science and Game Theory, Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/MKI54TY7/Huang et al. - 2022 - Cross-Silo Federated Learning Challenges and Opportunities.pdf:application/pdf},
 }
-
-
 @article{liFederatedLearningChallenges2020,
 	title = {Federated {Learning}: {Challenges}, {Methods}, and {Future} {Directions}},
 	volume = {37},
@@ -661,8 +576,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {50--60},
 	file = {PDF:/home/yashindo/Zotero/storage/GZ3WIU9S/Li et al. - 2020 - Federated Learning Challenges, Methods, and Future Directions.pdf:application/pdf},
 }
-
-
 @article{liuDistributedMachineLearning2022,
 	title = {From {Distributed} {Machine} {Learning} to {Federated} {Learning}: {A} {Survey}},
 	volume = {64},
@@ -684,8 +597,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: Accepted by KAIS},
 	file = {PDF:/home/yashindo/Zotero/storage/ZPXYFT5J/Liu et al. - 2022 - From Distributed Machine Learning to Federated Learning A Survey.pdf:application/pdf},
 }
-
-
 @misc{terrailFLambyDatasetsBenchmarks2023,
 	title = {{FLamby}: {Datasets} and {Benchmarks} for {Cross}-{Silo} {Federated} {Learning} in {Realistic} {Healthcare} {Settings}},
 	shorttitle = {{FLamby}},
@@ -704,7 +615,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/MVV7VHVS/Terrail et al. - 2023 - FLamby Datasets and Benchmarks for Cross-Silo Federated Learning in Realistic Healthcare Settings.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/low-volume-clients (4) ----
 @misc{achituvePersonalizedFederatedLearning2021,
 	title = {Personalized {Federated} {Learning} with {Gaussian} {Processes}},
 	url = {http://arxiv.org/abs/2106.15482},
@@ -720,8 +631,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/Y6JR9IVW/Achituve et al. - 2021 - Personalized Federated Learning with Gaussian Processes.pdf:application/pdf},
 }
-
-
 @article{hauschildFederatedRandomForests2022,
 	title = {Federated {Random} {Forests} can improve local performance of predictive models for various healthcare applications},
 	volume = {38},
@@ -741,8 +650,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {2278--2286},
 	file = {PDF:/home/yashindo/Zotero/storage/EBSLWKAR/Hauschild et al. - 2022 - Federated Random Forests can improve local performance of predictive models for various healthcare a.pdf:application/pdf},
 }
-
-
 @misc{liFederatedLearningNonIID2021,
 	title = {Federated {Learning} on {Non}-{IID} {Data} {Silos}: {An} {Experimental} {Study}},
 	shorttitle = {Federated {Learning} on {Non}-{IID} {Data} {Silos}},
@@ -759,8 +666,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/SV2Z2U6W/Li et al. - 2021 - Federated Learning on Non-IID Data Silos An Experimental Study.pdf:application/pdf},
 }
-
-
 @article{zhuangOptimizingPerformanceFederated2023,
 	title = {Optimizing {Performance} of {Federated} {Person} {Re}-identification: {Benchmarking} and {Analysis}},
 	volume = {19},
@@ -783,7 +688,22 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/KMUXKQ93/Zhuang et al. - 2023 - Optimizing Performance of Federated Person Re-identification Benchmarking and Analysis.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/optimization (4) ----
+@misc{nguyenFederatedLearningBuffered2022,
+	title = {Federated {Learning} with {Buffered} {Asynchronous} {Aggregation}},
+	url = {http://arxiv.org/abs/2106.06639},
+	doi = {10.48550/arXiv.2106.06639},
+	abstract = {Scalability and privacy are two critical concerns for cross-device federated learning (FL) systems. In this work, we identify that synchronous FL - synchronized aggregation of client updates in FL - cannot scale efficiently beyond a few hundred clients training in parallel. It leads to diminishing returns in model performance and training speed, analogous to large-batch training. On the other hand, asynchronous aggregation of client updates in FL (i.e., asynchronous FL) alleviates the scalability issue. However, aggregating individual client updates is incompatible with Secure Aggregation, which could result in an undesirable level of privacy for the system. To address these concerns, we propose a novel buffered asynchronous aggregation method, FedBuff, that is agnostic to the choice of optimizer, and combines the best properties of synchronous and asynchronous FL. We empirically demonstrate that FedBuff is 3.3x more efficient than synchronous FL and up to 2.5x more efficient than asynchronous FL, while being compatible with privacy-preserving technologies such as Secure Aggregation and differential privacy. We provide theoretical convergence guarantees in a smooth non-convex setting. Finally, we show that under differentially private training, FedBuff can outperform FedAvgM at low privacy settings and achieve the same utility for higher privacy settings.},
+	urldate = {2026-11-17},
+	publisher = {arXiv},
+	author = {Nguyen, John and Malik, Kshitiz and Zhan, Hongyuan and Yousefpour, Ashkan and Rabbat, Michael and Malek, Mani and Huba, Dzmitry},
+	month = mar,
+	year = {2022},
+	note = {arXiv:2106.06639 [cs.LG]},
+	keywords = {Computer Science - Machine Learning},
+	annote = {Comment: Accepted at AISTATS 2022. Previously accepted at FL-ICML 2021},
+	file = {Full Text PDF:/home/yashindo/Zotero/storage/AKRXGYJH/Nguyen et al. - 2022 - Federated Learning with Buffered Asynchronous Aggregation.pdf:application/pdf;Snapshot:/home/yashindo/Zotero/storage/BKHHLHLM/2106.html:text/html},
+}
 @misc{reddiAdaptiveFederatedOptimization2021,
 	title = {Adaptive {Federated} {Optimization}},
 	url = {http://arxiv.org/abs/2003.00295},
@@ -800,8 +720,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: Published as a conference paper at ICLR 2021},
 	file = {PDF:/home/yashindo/Zotero/storage/CC6K9RTQ/Reddi et al. - 2021 - Adaptive Federated Optimization.pdf:application/pdf},
 }
-
-
 @misc{wangTacklingObjectiveInconsistency2020,
 	title = {Tackling the {Objective} {Inconsistency} {Problem} in {Heterogeneous} {Federated} {Optimization}},
 	url = {http://arxiv.org/abs/2007.07481},
@@ -817,8 +735,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/ZYWXH6UD/Wang et al. - 2020 - Tackling the Objective Inconsistency Problem in Heterogeneous Federated Optimization.pdf:application/pdf},
 }
-
-
 @misc{wangFieldGuideFederated2021,
 	title = {A {Field} {Guide} to {Federated} {Optimization}},
 	url = {http://arxiv.org/abs/2107.06917},
@@ -835,7 +751,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/37CIPJWV/Wang et al. - 2021 - A Field Guide to Federated Optimization.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/personalization (5) ----
 @misc{dinhPersonalizedFederatedLearning2022,
 	title = {Personalized {Federated} {Learning} with {Moreau} {Envelopes}},
 	url = {http://arxiv.org/abs/2006.08848},
@@ -851,8 +767,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/IHG3B2KN/Dinh et al. - 2022 - Personalized Federated Learning with Moreau Envelopes.pdf:application/pdf},
 }
-
-
 @misc{fallahPersonalizedFederatedLearning2020,
 	title = {Personalized {Federated} {Learning}: {A} {Meta}-{Learning} {Approach}},
 	shorttitle = {Personalized {Federated} {Learning}},
@@ -870,8 +784,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: To appear in 34th Conference on Neural Information Processing Systems (NeurIPS 2020)},
 	file = {PDF:/home/yashindo/Zotero/storage/PJR3TR5I/Fallah et al. - 2020 - Personalized Federated Learning A Meta-Learning Approach.pdf:application/pdf},
 }
-
-
 @misc{jiangImprovingFederatedLearning2023,
 	title = {Improving {Federated} {Learning} {Personalization} via {Model} {Agnostic} {Meta} {Learning}},
 	url = {http://arxiv.org/abs/1909.12488},
@@ -887,8 +799,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/W38Q666Q/Jiang et al. - 2023 - Improving Federated Learning Personalization via Model Agnostic Meta Learning.pdf:application/pdf},
 }
-
-
 @misc{liDittoFairRobust2021,
 	title = {Ditto: {Fair} and {Robust} {Federated} {Learning} {Through} {Personalization}},
 	shorttitle = {Ditto},
@@ -906,8 +816,24 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: Accepted by ICML 2021},
 	file = {PDF:/home/yashindo/Zotero/storage/EWVXG4CJ/Li et al. - 2021 - Ditto Fair and Robust Federated Learning Through Personalization.pdf:application/pdf},
 }
+@misc{liFedBNFederatedLearning2021,
+	title = {{FedBN}: {Federated} {Learning} on {Non}-{IID} {Features} via {Local} {Batch} {Normalization}},
+	shorttitle = {{FedBN}},
+	url = {http://arxiv.org/abs/2102.07623},
+	doi = {10.48550/arXiv.2102.07623},
+	abstract = {The emerging paradigm of federated learning (FL) strives to enable collaborative training of deep models on the network edge without centrally aggregating raw data and hence improving data privacy. In most cases, the assumption of independent and identically distributed samples across local clients does not hold for federated learning setups. Under this setting, neural network training performance may vary significantly according to the data distribution and even hurt training convergence. Most of the previous work has focused on a difference in the distribution of labels or client shifts. Unlike those settings, we address an important problem of FL, e.g., different scanners/sensors in medical imaging, different scenery distribution in autonomous driving (highway vs. city), where local clients store examples with different distributions compared to other clients, which we denote as feature shift non-iid. In this work, we propose an effective method that uses local batch normalization to alleviate the feature shift before averaging models. The resulting scheme, called FedBN, outperforms both classical FedAvg, as well as the state-of-the-art for non-iid data (FedProx) on our extensive experiments. These empirical results are supported by a convergence analysis that shows in a simplified setting that FedBN has a faster convergence rate than FedAvg. Code is available at https://github.com/med-air/FedBN.},
+	urldate = {2026-11-17},
+	publisher = {arXiv},
+	author = {Li, Xiaoxiao and Jiang, Meirui and Zhang, Xiaofei and Kamp, Michael and Dou, Qi},
+	month = may,
+	year = {2021},
+	note = {arXiv:2102.07623 [cs.LG]},
+	keywords = {Computer Science - Machine Learning},
+	annote = {Comment: Accepted at ICLR 2021},
+	file = {Preprint PDF:/home/yashindo/Zotero/storage/6FUABW5P/Li et al. - 2021 - FedBN Federated Learning on Non-IID Features via Local Batch Normalization.pdf:application/pdf;Snapshot:/home/yashindo/Zotero/storage/LBLNYK2J/2102.html:text/html},
+}
 
-
+% ---- federated-learning/platforms (3) ----
 @misc{bonawitzFederatedLearningScale2019,
 	title = {Towards {Federated} {Learning} at {Scale}: {System} {Design}},
 	shorttitle = {Towards {Federated} {Learning} at {Scale}},
@@ -924,8 +850,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/9ICMW7MG/Bonawitz et al. - 2019 - Towards Federated Learning at Scale System Design.pdf:application/pdf},
 }
-
-
 @misc{mcmurryCumulusFederatedEHRbased2024,
 	title = {Cumulus: {A} federated {EHR}-based learning system powered by {FHIR} and {AI}},
 	shorttitle = {Cumulus},
@@ -955,8 +879,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	year = {2024},
 	file = {PDF:/home/yashindo/Zotero/storage/4C3YNS4G/McMurry et al. - 2024 - Cumulus A federated EHR-based learning system powered by FHIR and AI.pdf:application/pdf},
 }
-
-
 @article{mullieCODAOpensourcePlatform2024,
 	title = {{CODA}: an open-source platform for federated analysis and machine learning on distributed healthcare data},
 	volume = {31},
@@ -977,7 +899,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/DR5K4XEQ/Mullie et al. - 2024 - CODA an open-source platform for federated analysis and machine learning on distributed healthcare.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/privacy-and-security (3) ----
 @inproceedings{abadiDeepLearningDifferential2016,
 	title = {Deep {Learning} with {Differential} {Privacy}},
 	url = {http://arxiv.org/abs/1607.00133},
@@ -994,8 +916,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {308--318},
 	file = {PDF:/home/yashindo/Zotero/storage/2U4JGT6B/Abadi et al. - 2016 - Deep Learning with Differential Privacy.pdf:application/pdf},
 }
-
-
 @misc{bagdasaryanHowBackdoorFederated2019,
 	title = {How {To} {Backdoor} {Federated} {Learning}},
 	url = {http://arxiv.org/abs/1807.00459},
@@ -1011,8 +931,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Cryptography and Security, Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/FHPJY4R8/Bagdasaryan et al. - 2019 - How To Backdoor Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{bonawitzPracticalSecureAggregation2016,
 	title = {Practical {Secure} {Aggregation} for {Federated} {Learning} on {User}-{Held} {Data}},
 	url = {http://arxiv.org/abs/1611.04482},
@@ -1030,7 +948,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/8D4MJ5ER/Bonawitz et al. - 2016 - Practical Secure Aggregation for Federated Learning on User-Held Data.pdf:application/pdf},
 }
 
-
+% ---- federated-learning/selection-and-inclusion (12) ----
 @misc{chaiTiFLTierbasedFederated2020,
 	title = {{TiFL}: {A} {Tier}-based {Federated} {Learning} {System}},
 	shorttitle = {{TiFL}},
@@ -1047,8 +965,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Machine Learning, Computer Science - Performance, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/KE5S2NGC/Chai et al. - 2020 - TiFL A Tier-based Federated Learning System.pdf:application/pdf},
 }
-
-
 @misc{choClientSelectionFederated2020,
 	title = {Client {Selection} in {Federated} {Learning}: {Convergence} {Analysis} and {Power}-of-{Choice} {Selection} {Strategies}},
 	shorttitle = {Client {Selection} in {Federated} {Learning}},
@@ -1065,8 +981,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning, Statistics - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/Y8VX9CM4/Cho et al. - 2020 - Client Selection in Federated Learning Convergence Analysis and Power-of-Choice Selection Strategie.pdf:application/pdf},
 }
-
-
 @misc{guFastFederatedLearning2021,
 	title = {Fast {Federated} {Learning} in the {Presence} of {Arbitrary} {Device} {Unavailability}},
 	url = {http://arxiv.org/abs/2106.04159},
@@ -1082,8 +996,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Machine Learning, Mathematics - Optimization and Control},
 	file = {PDF:/home/yashindo/Zotero/storage/W4HK2J3P/Gu et al. - 2021 - Fast Federated Learning in the Presence of Arbitrary Device Unavailability.pdf:application/pdf},
 }
-
-
 @article{huangEfficiencyboostingClientSelection2021,
 	title = {An {Efficiency}-boosting {Client} {Selection} {Scheme} for {Federated} {Learning} with {Fairness} {Guarantee}},
 	volume = {32},
@@ -1104,8 +1016,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: Accepted by IEEE TPDS. DOI: 10.1109/TPDS.2020.3040887},
 	file = {PDF:/home/yashindo/Zotero/storage/KA5TCDKK/Huang et al. - 2021 - An Efficiency-boosting Client Selection Scheme for Federated Learning with Fairness Guarantee.pdf:application/pdf},
 }
-
-
 @misc{laiOortEfficientFederated2021,
 	title = {Oort: {Efficient} {Federated} {Learning} via {Guided} {Participant} {Selection}},
 	shorttitle = {Oort},
@@ -1122,8 +1032,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/IUWPNEX7/Lai et al. - 2021 - Oort Efficient Federated Learning via Guided Participant Selection.pdf:application/pdf},
 }
-
-
 @misc{liFairResourceAllocation2020,
 	title = {Fair {Resource} {Allocation} in {Federated} {Learning}},
 	url = {http://arxiv.org/abs/1905.10497},
@@ -1140,8 +1048,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: ICLR 2020},
 	file = {PDF:/home/yashindo/Zotero/storage/QZQPPENM/Li et al. - 2020 - Fair Resource Allocation in Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{mohriAgnosticFederatedLearning2019,
 	title = {Agnostic {Federated} {Learning}},
 	url = {http://arxiv.org/abs/1902.00146},
@@ -1158,8 +1064,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: 30 pages},
 	file = {PDF:/home/yashindo/Zotero/storage/5RY2EBJS/Mohri et al. - 2019 - Agnostic Federated Learning.pdf:application/pdf},
 }
-
-
 @inproceedings{nishioClientSelectionFederated2019,
 	title = {Client {Selection} for {Federated} {Learning} with {Heterogeneous} {Resources} in {Mobile} {Edge}},
 	url = {http://arxiv.org/abs/1804.08333},
@@ -1176,8 +1080,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {1--7},
 	file = {PDF:/home/yashindo/Zotero/storage/IUUCLSRL/Nishio and Yonetani - 2019 - Client Selection for Federated Learning with Heterogeneous Resources in Mobile Edge.pdf:application/pdf},
 }
-
-
 @article{riberoFederatedLearningIntermittent2023,
 	title = {Federated {Learning} {Under} {Intermittent} {Client} {Availability} and {Time}-{Varying} {Communication} {Constraints}},
 	volume = {17},
@@ -1196,8 +1098,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {98--111},
 	file = {PDF:/home/yashindo/Zotero/storage/ZD8PLFVJ/Ribero et al. - 2023 - Federated Learning Under Intermittent Client Availability and Time-Varying Communication Constraints.pdf:application/pdf},
 }
-
-
 @misc{shiFairnessAwareClientSelection2023,
 	title = {Fairness-{Aware} {Client} {Selection} for {Federated} {Learning}},
 	url = {http://arxiv.org/abs/2307.10738},
@@ -1214,8 +1114,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	annote = {Comment: Accepted by ICME 2023},
 	file = {PDF:/home/yashindo/Zotero/storage/6AMP4VRA/Shi et al. - 2023 - Fairness-Aware Client Selection for Federated Learning.pdf:application/pdf},
 }
-
-
 @misc{soltaniSurveyParticipantSelection2022,
 	title = {A {Survey} on {Participant} {Selection} for {Federated} {Learning} in {Mobile} {Networks}},
 	url = {http://arxiv.org/abs/2207.03681},
@@ -1231,8 +1129,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	keywords = {Computer Science - Distributed, Parallel, and Cluster Computing, Computer Science - Machine Learning},
 	file = {PDF:/home/yashindo/Zotero/storage/U543FY3B/Soltani et al. - 2022 - A Survey on Participant Selection for Federated Learning in Mobile Networks.pdf:application/pdf},
 }
-
-
 @misc{wangFederatedLearningFair2021,
 	title = {Federated {Learning} with {Fair} {Averaging}},
 	url = {http://arxiv.org/abs/2104.14937},
@@ -1250,7 +1146,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/6ESK42KP/Wang et al. - 2021 - Federated Learning with Fair Averaging.pdf:application/pdf},
 }
 
-
+% ---- interoperability (6) ----
 @article{akhmetovEnhancingHealthcareData2025,
 	title = {Enhancing healthcare data privacy and interoperability with federated learning},
 	volume = {11},
@@ -1268,8 +1164,17 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {e2870},
 	file = {PDF:/home/yashindo/Zotero/storage/9N99SDBF/Akhmetov et al. - 2025 - Enhancing healthcare data privacy and interoperability with federated learning.pdf:application/pdf},
 }
-
-
+@techreport{departmentofhealthNationalHealthData2022,
+	type = {Framework},
+	title = {National {Health} {Data} {Repository} {Framework}},
+	language = {en},
+	number = {Release 1.a},
+	institution = {Department of Health and Philippine Health Insurance Corporation},
+	author = {{Department of Health} and {Philippine Health Insurance Corporation}},
+	month = mar,
+	year = {2022},
+	file = {PhilHealth2022 - National Health Data Repository Framework:/home/yashindo/Zotero/storage/Y7GRGNER/PhilHealth2022 - National Health Data Repository Framework.pdf:application/pdf},
+}
 @article{mandlPushButtonPopulation2020,
 	title = {Push {Button} {Population} {Health}: {The} {SMART}/{HL7} {FHIR} {Bulk} {Data} {Access} {Application} {Programming} {Interface}},
 	volume = {3},
@@ -1289,8 +1194,16 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	pages = {151},
 	file = {PDF:/home/yashindo/Zotero/storage/TZGE6NCS/Mandl et al. - 2020 - Push Button Population Health The SMARTHL7 FHIR Bulk Data Access Application Programming Interface.pdf:application/pdf},
 }
-
-
+@techreport{philippinehealthinsurancecorporationElectronicMedicalRecord2016,
+	type = {{PhilHealth} {Circular}},
+	title = {Electronic {Medical} {Record} {System} ({PhilHealth} {Circular} {No}. 2016-0040)},
+	language = {en},
+	number = {Circular No. 2016-0040},
+	institution = {Philippine Health Insurance Corporation},
+	author = {{Philippine Health Insurance Corporation}},
+	year = {2016},
+	file = {PhilHealth2016 - Electronic Medical Record System:/home/yashindo/Zotero/storage/RYA4SFZM/PhilHealth2016 - Electronic Medical Record System.pdf:application/pdf},
+}
 @article{rochaImplementationIClinicSysRural2024,
 	title = {The {Implementation} of {IClinicSys} in {Rural} {Health} {Units}},
 	volume = {05},
@@ -1302,8 +1215,6 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	year = {2024},
 	file = {PDF:/home/yashindo/Zotero/storage/DHYPBYIK/Rocha - 2024 - The Implementation of IClinicSys in Rural Health Units.pdf:application/pdf},
 }
-
-
 @article{zunigaDevelopmentImplementationInteroperable2026,
 	title = {Development and implementation of an interoperable local health information exchange platform for the attainment of universal health coverage in the {Philippines}},
 	volume = {7},
@@ -1330,317 +1241,7 @@ Conclusions: Addition of SMS to standard GPRS cellular network connectivity can 
 	file = {PDF:/home/yashindo/Zotero/storage/G4JXBXHE/Zuniga et al. - 2026 - Development and implementation of an interoperable local health information exchange platform for th.pdf:application/pdf},
 }
 
-
-@misc{bertsimasPredictivePrescriptiveAnalytics2018,
-	title = {From {Predictive} to {Prescriptive} {Analytics}},
-	url = {http://arxiv.org/abs/1402.5481},
-	doi = {10.48550/arXiv.1402.5481},
-	abstract = {In this paper, we combine ideas from machine learning (ML) and operations research and management science (OR/MS) in developing a framework, along with specific methods, for using data to prescribe optimal decisions in OR/MS problems. In a departure from other work on data-driven optimization and reflecting our practical experience with the data available in applications of OR/MS, we consider data consisting, not only of observations of quantities with direct effect on costs/revenues, such as demand or returns, but predominantly of observations of associated auxiliary quantities. The main problem of interest is a conditional stochastic optimization problem, given imperfect observations, where the joint probability distributions that specify the problem are unknown. We demonstrate that our proposed solution methods, which are inspired by ML methods such as local regression, CART, and random forests, are generally applicable to a wide range of decision problems. We prove that they are tractable and asymptotically optimal even when data is not iid and may be censored. We extend this to the case where decision variables may directly affect uncertainty in unknown ways, such as pricing's effect on demand. As an analogue to R{\textasciicircum}2, we develop a metric P termed the coefficient of prescriptiveness to measure the prescriptive content of data and the efficacy of a policy from an operations perspective. To demonstrate the power of our approach in a real-world setting we study an inventory management problem faced by the distribution arm of an international media conglomerate, which ships an average of 1bil units per year. We leverage internal data and public online data harvested from IMDb, Rotten Tomatoes, and Google to prescribe operational decisions that outperform baseline measures. Specifically, the data we collect, leveraged by our methods, accounts for an 88{\textbackslash}\% improvement as measured by our P.},
-	language = {en},
-	urldate = {2026-11-17},
-	publisher = {arXiv},
-	author = {Bertsimas, Dimitris and Kallus, Nathan},
-	month = jul,
-	year = {2018},
-	note = {arXiv:1402.5481 [stat.ML]},
-	keywords = {Computer Science - Machine Learning, Mathematics - Optimization and Control, Statistics - Machine Learning},
-	file = {PDF:/home/yashindo/Zotero/storage/RE554297/Bertsimas and Kallus - 2018 - From Predictive to Prescriptive Analytics.pdf:application/pdf},
-}
-
-
-@misc{elmachtoubSmartPredictThen2020,
-	title = {Smart "{Predict}, then {Optimize}"},
-	url = {http://arxiv.org/abs/1710.08005},
-	doi = {10.48550/arXiv.1710.08005},
-	abstract = {Many real-world analytics problems involve two significant challenges: prediction and optimization. Due to the typically complex nature of each challenge, the standard paradigm is predict-then-optimize. By and large, machine learning tools are intended to minimize prediction error and do not account for how the predictions will be used in the downstream optimization problem. In contrast, we propose a new and very general framework, called Smart "Predict, then Optimize" (SPO), which directly leverages the optimization problem structure, i.e., its objective and constraints, for designing better prediction models. A key component of our framework is the SPO loss function which measures the decision error induced by a prediction. Training a prediction model with respect to the SPO loss is computationally challenging, and thus we derive, using duality theory, a convex surrogate loss function which we call the SPO+ loss. Most importantly, we prove that the SPO+ loss is statistically consistent with respect to the SPO loss under mild conditions. Our SPO+ loss function can tractably handle any polyhedral, convex, or even mixed-integer optimization problem with a linear objective. Numerical experiments on shortest path and portfolio optimization problems show that the SPO framework can lead to significant improvement under the predict-then-optimize paradigm, in particular when the prediction model being trained is misspecified. We find that linear models trained using SPO+ loss tend to dominate random forest algorithms, even when the ground truth is highly nonlinear.},
-	language = {en},
-	urldate = {2026-11-17},
-	publisher = {arXiv},
-	author = {Elmachtoub, Adam N. and Grigas, Paul},
-	month = nov,
-	year = {2020},
-	note = {arXiv:1710.08005 [math.OC]},
-	keywords = {Computer Science - Machine Learning, Mathematics - Optimization and Control, Statistics - Machine Learning},
-	file = {PDF:/home/yashindo/Zotero/storage/ZNKQHXGZ/Elmachtoub and Grigas - 2020 - Smart Predict, then Optimize.pdf:application/pdf},
-}
-
-
-@misc{hewamalageForecastEvaluationData2022,
-	title = {Forecast {Evaluation} for {Data} {Scientists}: {Common} {Pitfalls} and {Best} {Practices}},
-	shorttitle = {Forecast {Evaluation} for {Data} {Scientists}},
-	url = {http://arxiv.org/abs/2203.10716},
-	doi = {10.48550/arXiv.2203.10716},
-	abstract = {Machine Learning (ML) and in particular Deep Learning (DL) methods nowadays are increasingly replacing traditional methods in many diﬀerent domains involved with important decision making activities. Sophisticated DL techniques tailor-made for speciﬁc tasks such as image recognition, signal processing, or speech analysis are being introduced at a fast pace with many improvements. However, for the domain of time series forecasting, the current state in the ML community is perhaps where other domains such as Natural Language Processing and Computer Vision were at several years ago. The ﬁeld of forecasting has mainly been fostered by statisticians/econometricians; consequently the related concepts are not the mainstream knowledge among general ML practitioners. The diﬀerent forms of non-stationarities associated with time series challenge the capabilities of data-driven ML models. Nevertheless, recent trends in the domain have demonstrated that with the availability of massive amounts of time series, ML and DL techniques are quite competent in time series forecasting, when related pitfalls are properly handled. Therefore, in this work we provide a tutorial-like compilation of the details of one of the most important steps in the overall forecasting process, namely the evaluation. This way, we intend to impart the information associated with forecast evaluation to ﬁt the context of ML, as means of bridging the knowledge gap between traditional methods of forecasting and current state-of-the-art ML techniques. We elaborate the details of the diﬀerent problematic characteristics of time series such as non-normalities and non-stationarities and how they are associated with common pitfalls in forecast evaluation. Best practices in forecast evaluation are outlined with respect to the diﬀerent steps such as data partitioning, error calculation, statistical testing, and others. Further guidelines are also provided along selecting valid and suitable error measures depending on the speciﬁc characteristics of the dataset at hand.},
-	language = {en},
-	urldate = {2026-11-17},
-	publisher = {arXiv},
-	author = {Hewamalage, Hansika and Ackermann, Klaus and Bergmeir, Christoph},
-	month = apr,
-	year = {2022},
-	note = {arXiv:2203.10716 [cs.LG]},
-	keywords = {Computer Science - Machine Learning, Statistics - Methodology},
-	file = {PDF:/home/yashindo/Zotero/storage/JWLEK263/Hewamalage et al. - 2022 - Forecast Evaluation for Data Scientists Common Pitfalls and Best Practices.pdf:application/pdf},
-}
-
-
-@article{huberDatadrivenNewsvendorProblem2019,
-	title = {A data-driven newsvendor problem: {From} data to decision},
-	volume = {278},
-	issn = {03772217},
-	shorttitle = {A data-driven newsvendor problem},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0377221719303807},
-	doi = {10.1016/j.ejor.2019.04.043},
-	abstract = {Retailers that oﬀer perishable items are required to make ordering decisions for hundreds of products on a daily basis. This task is non-trivial because the risk of ordering too much or too little is associated with overstocking costs and unsatisﬁed customers. The well-known newsvendor model captures the essence of this trade-oﬀ. Traditionally, this newsvendor problem is solved based on a demand distribution assumption. However, in reality, the true demand distribution is hardly ever known to the decision maker. Instead, large datasets are available that enable the use of empirical distributions. In this paper, we investigate how to exploit this data for making better decisions. We identify three levels on which data can generate value, and we assess their potential. To this end, we present data-driven solution methods based on Machine Learning and Quantile Regression that do not require the assumption of a speciﬁc demand distribution. We provide an empirical evaluation of these methods with point-of-sales data for a large German bakery chain. We ﬁnd that Machine Learning approaches substantially outperform traditional methods if the dataset is large enough. We also ﬁnd that the beneﬁt of improved forecasting dominates other potential beneﬁts of data-driven solution methods.},
-	language = {en},
-	number = {3},
-	urldate = {2026-11-17},
-	journal = {European Journal of Operational Research},
-	author = {Huber, Jakob and Müller, Sebastian and Fleischmann, Moritz and Stuckenschmidt, Heiner},
-	month = nov,
-	year = {2019},
-	pages = {904--915},
-	file = {PDF:/home/yashindo/Zotero/storage/P6IQFZ6A/Huber et al. - 2019 - A data-driven newsvendor problem From data to decision.pdf:application/pdf},
-}
-
-
-@article{hyndmanAnotherLookMeasures2006,
-	title = {Another look at measures of forecast accuracy},
-	volume = {22},
-	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
-	issn = {01692070},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207006000239},
-	doi = {10.1016/j.ijforecast.2006.03.001},
-	abstract = {We discuss and compare measures of accuracy of univariate time series forecasts. The methods used in the M-competition and the M3-competition, and many of the measures recommended by previous authors on this topic, are found to be inadequate, and many of them are degenerate in commonly occurring situations. Instead, we propose that the mean absolute scaled error become the standard measure for comparing forecast accuracy across multiple time series.},
-	language = {en},
-	number = {4},
-	urldate = {2026-11-17},
-	journal = {International Journal of Forecasting},
-	author = {Hyndman, Rob J. and Koehler, Anne B.},
-	month = oct,
-	year = {2006},
-	pages = {679--688},
-	file = {PDF:/home/yashindo/Zotero/storage/JCTQ2Q9T/Hyndman and Koehler - 2006 - Another look at measures of forecast accuracy.pdf:application/pdf},
-}
-
-
-@article{hyndmanOptimalCombinationForecasts2011,
-	title = {Optimal combination forecasts for hierarchical time series},
-	volume = {55},
-	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
-	issn = {01679473},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0167947311000971},
-	doi = {10.1016/j.csda.2011.03.006},
-	abstract = {In many applications, there are multiple time series that are hierarchically organized and can be aggregated at several diﬀerent levels in groups based on products, geography or some other features. We call these “hierarchical time series”. They are commonly forecast using either a “bottom-up” or a “top-down” method.},
-	language = {en},
-	number = {9},
-	urldate = {2026-11-17},
-	journal = {Computational Statistics \& Data Analysis},
-	author = {Hyndman, Rob J. and Ahmed, Roman A. and Athanasopoulos, George and Shang, Han Lin},
-	month = sep,
-	year = {2011},
-	pages = {2579--2589},
-	file = {PDF:/home/yashindo/Zotero/storage/QYPKEYF9/Hyndman et al. - 2011 - Optimal combination forecasts for hierarchical time series.pdf:application/pdf},
-}
-
-
-@article{hyndmanFastComputationReconciled2016,
-	title = {Fast computation of reconciled forecasts for hierarchical and grouped time series},
-	volume = {97},
-	issn = {01679473},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S016794731500290X},
-	doi = {10.1016/j.csda.2015.11.007},
-	abstract = {It is shown that the least squares approach to reconciling hierarchical time series forecasts can be extended to much more general collections of time series with aggregation constraints. The constraints arise due to the need for forecasts of collections of time series to add up in the same way as the observed time series. It is also shown that the computations involved can be handled eﬃciently by exploiting the structure of the associated design matrix, or by using sparse matrix routines. The proposed algorithms make forecast reconciliation feasible in business applications involving very large numbers of time series.},
-	language = {en},
-	urldate = {2026-11-17},
-	journal = {Computational Statistics \& Data Analysis},
-	author = {Hyndman, Rob J. and Lee, Alan J. and Wang, Earo},
-	month = may,
-	year = {2016},
-	pages = {16--32},
-	file = {PDF:/home/yashindo/Zotero/storage/D3IHVSWS/Hyndman et al. - 2016 - Fast computation of reconciled forecasts for hierarchical and grouped time series.pdf:application/pdf},
-}
-
-
-@article{makridakisM5AccuracyCompetition2022,
-	title = {M5 accuracy competition: {Results}, findings, and conclusions},
-	volume = {38},
-	issn = {01692070},
-	shorttitle = {M5 accuracy competition},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207021001874},
-	doi = {10.1016/j.ijforecast.2021.11.013},
-	abstract = {In this study, we present the results of the M5 ‘‘Accuracy’’ competition, which was the first of two parallel challenges in the latest M competition with the aim of advancing the theory and practice of forecasting. The main objective in the M5 ‘‘Accuracy’’ competition was to accurately predict 42,840 time series representing the hierarchical unit sales for the largest retail company in the world by revenue, Walmart. The competition required the submission of 30,490 point forecasts for the lowest cross-sectional aggregation level of the data, which could then be summed up accordingly to estimate forecasts for the remaining upward levels. We provide details of the implementation of the M5 ‘‘Accuracy’’ challenge, as well as the results and best performing methods, and summarize the major findings and conclusions. Finally, we discuss the implications of these findings and suggest directions for future research.},
-	language = {en},
-	number = {4},
-	urldate = {2026-11-17},
-	journal = {International Journal of Forecasting},
-	author = {Makridakis, Spyros and Spiliotis, Evangelos and Assimakopoulos, Vassilios},
-	month = oct,
-	year = {2022},
-	pages = {1346--1364},
-	file = {PDF:/home/yashindo/Zotero/storage/6WMFIFII/Makridakis et al. - 2022 - M5 accuracy competition Results, findings, and conclusions.pdf:application/pdf},
-}
-
-
-@article{panagiotelisForecastReconciliationGeometric2021,
-	title = {Forecast reconciliation: {A} geometric view with new insights on bias correction},
-	volume = {37},
-	issn = {01692070},
-	shorttitle = {Forecast reconciliation},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207020300911},
-	doi = {10.1016/j.ijforecast.2020.06.004},
-	language = {en},
-	number = {1},
-	urldate = {2026-11-17},
-	journal = {International Journal of Forecasting},
-	author = {Panagiotelis, Anastasios and Athanasopoulos, George and Gamakumara, Puwasala and Hyndman, Rob J.},
-	month = jan,
-	year = {2021},
-	pages = {343--359},
-	file = {PDF:/home/yashindo/Zotero/storage/XACG4G24/Panagiotelis et al. - 2021 - Forecast reconciliation A geometric view with new insights on bias correction.pdf:application/pdf},
-}
-
-
-@article{qinNewsvendorProblemReview2011,
-	title = {The newsvendor problem: {Review} and directions for future research},
-	volume = {213},
-	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
-	issn = {03772217},
-	shorttitle = {The newsvendor problem},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0377221710008040},
-	doi = {10.1016/j.ejor.2010.11.024},
-	abstract = {In this paper, we review the contributions to date for analyzing the newsvendor problem. Our focus is on examining the speciﬁc extensions for analyzing this problem in the context of modeling customer demand, supplier costs, and the buyer risk proﬁle. More speciﬁcally, we analyze the impact of market price, marketing eﬀort, and stocking quantity on customer demand; how supplier prices can serve as a coordination mechanism in a supply chain setting; integrating alternative supplier pricing policies within the newsvendor framework; and how the buyer’s risk proﬁle moderates the newsvendor order quantity decision. For each of these areas, we summarize the current literature and develop extensions. Finally, we also propose directions for future research.},
-	language = {en},
-	number = {2},
-	urldate = {2026-11-17},
-	journal = {European Journal of Operational Research},
-	author = {Qin, Yan and Wang, Ruoxuan and Vakharia, Asoo J. and Chen, Yuwen and Seref, Michelle M.H.},
-	month = sep,
-	year = {2011},
-	pages = {361--374},
-	file = {PDF:/home/yashindo/Zotero/storage/HIEDC7SA/Qin et al. - 2011 - The newsvendor problem Review and directions for future research.pdf:application/pdf},
-}
-
-
-@article{quickZerosOnesCase2015,
-	title = {Zeros and ones: a case for suppressing zeros in sensitive count data with an application to stroke mortality},
-	volume = {4},
-	copyright = {http://onlinelibrary.wiley.com/termsAndConditions\#vor},
-	issn = {2049-1573, 2049-1573},
-	shorttitle = {Zeros and ones},
-	url = {https://onlinelibrary.wiley.com/doi/10.1002/sta4.92},
-	doi = {10.1002/sta4.92},
-	abstract = {In the current era of global internet connectivity, privacy concerns are of the utmost importance. When official statistical agencies collect spatially referenced, confidential data that they intend to release as public‐use files, the suppression of small counts is a common measure that agencies take to protect the confidentiality of the data‐subjects from ill‐intentioned users. The goal of this paper is to demonstrate that an interval suppression criterion that does not suppress zeros can fail to protect regions with a single occurrence. We illustrate the difference in disclosure risk between an interval suppression criterion and a one‐sided suppression criterion by considering a US county‐level dataset composed of the number of deaths due to stroke in White men. Here, we illustrate that an interval suppression criterion leads to a twofold increase in the disclosure risk when compared with a one‐sided suppression criterion for regions with a single incidence among a population of less than 600. We conclude with an extension of these findings beyond stroke mortality and by offering general guidelines for data suppression. Copyright © 2015 John Wiley \& Sons, Ltd.},
-	language = {en},
-	number = {1},
-	urldate = {2026-11-17},
-	journal = {Stat},
-	author = {Quick, Harrison and Holan, Scott H. and Wikle, Christopher K.},
-	month = feb,
-	year = {2015},
-	pages = {227--234},
-	file = {PDF:/home/yashindo/Zotero/storage/D8PQKUT4/Quick et al. - 2015 - Zeros and ones a case for suppressing zeros in sensitive count data with an application to stroke m.pdf:application/pdf},
-}
-
-
-@article{syntetosCategorizationDemandPatterns2005,
-	title = {On the categorization of demand patterns},
-	volume = {56},
-	copyright = {http://www.springer.com/tdm},
-	issn = {0160-5682, 1476-9360},
-	url = {https://www.tandfonline.com/doi/full/10.1057/palgrave.jors.2601841},
-	doi = {10.1057/palgrave.jors.2601841},
-	language = {en},
-	number = {5},
-	urldate = {2026-11-17},
-	journal = {Journal of the Operational Research Society},
-	author = {Syntetos, A A and Boylan, J E and Croston, J D},
-	month = may,
-	year = {2005},
-	pages = {495--503},
-	file = {PDF:/home/yashindo/Zotero/storage/FEISKJ4N/Syntetos et al. - 2005 - On the categorization of demand patterns.pdf:application/pdf},
-}
-
-
-@article{syntetosAccuracyIntermittentDemand2005,
-	title = {The accuracy of intermittent demand estimates},
-	volume = {21},
-	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
-	issn = {01692070},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207004000792},
-	doi = {10.1016/j.ijforecast.2004.10.001},
-	abstract = {Intermittent demand appears sporadically, with some time periods showing no demand at all. In this paper, four forecasting methods, Simple Moving Average (SMA, 13 periods), Single Exponential Smoothing (SES), Croston’s method, and a new method (based on Croston’s approach) recently developed by the authors, are compared on 3000 real intermittent demand data series from the automotive industry. The mean signed and relative geometric root-mean-square errors are shown to meet the theoretical and practical requirements of intermittent demand, as do the Percentage Better and Percentage Best summary statistics based on these measures. These measures are subsequently applied in a simulation experiment. The out-of-sample comparison results indicate superior performance of the new method. In addition, the results show that the mean signed error is not strongly scale dependent and the relative geometric root-mean-square error is a well-behaved accuracy measure for intermittent demand.},
-	language = {en},
-	number = {2},
-	urldate = {2026-11-17},
-	journal = {International Journal of Forecasting},
-	author = {Syntetos, Aris A. and Boylan, John E.},
-	month = apr,
-	year = {2005},
-	pages = {303--314},
-	file = {PDF:/home/yashindo/Zotero/storage/H65NRVBY/Syntetos and Boylan - 2005 - The accuracy of intermittent demand estimates.pdf:application/pdf},
-}
-
-
-@article{teunterIntermittentDemandLinking2011,
-	title = {Intermittent demand: {Linking} forecasting to inventory obsolescence},
-	volume = {214},
-	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
-	issn = {03772217},
-	shorttitle = {Intermittent demand},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S0377221711004437},
-	doi = {10.1016/j.ejor.2011.05.018},
-	abstract = {The standard method to forecast intermittent demand is that by Croston. This method is available in ERPtype solutions such as SAP and specialised forecasting software packages (e.g. Forecast Pro), and often applied in practice. It uses exponential smoothing to separately update the estimated demand size and demand interval whenever a positive demand occurs, and their ratio provides the forecast of demand per period. The Croston method has two important disadvantages. First and foremost, not updating after (many) periods with zero demand renders the method unsuitable for dealing with obsolescence issues. Second, the method is positively biased and this is true for all points in time (i.e. considering the forecasts made at an arbitrary time period) and issue points only (i.e. considering the forecasts following a positive demand occurrence only). The second issue has been addressed in the literature by the proposal of an estimator (Syntetos–Boylan Approximation, SBA) that is approximately unbiased. In this paper, we propose a new method that overcomes both these shortcomings while not adding complexity. Different from the Croston method, the new method is unbiased (for all points in time) and it updates the demand probability instead of the demand interval, doing so in every period. The comparative merits of the new estimator are assessed by means of an extensive simulation experiment. The results indicate its superior performance and enable insights to be gained into the linkage between demand forecasting and obsolescence.},
-	language = {en},
-	number = {3},
-	urldate = {2026-11-17},
-	journal = {European Journal of Operational Research},
-	author = {Teunter, Ruud H. and Syntetos, Aris A. and Zied Babai, M.},
-	month = nov,
-	year = {2011},
-	pages = {606--615},
-	file = {PDF:/home/yashindo/Zotero/storage/634K4JK4/Teunter et al. - 2011 - Intermittent demand Linking forecasting to inventory obsolescence.pdf:application/pdf},
-}
-
-
-@article{wickramasuriyaOptimalForecastReconciliation2019,
-	title = {Optimal {Forecast} {Reconciliation} for {Hierarchical} and {Grouped} {Time} {Series} {Through} {Trace} {Minimization}},
-	volume = {114},
-	issn = {0162-1459, 1537-274X},
-	url = {https://www.tandfonline.com/doi/full/10.1080/01621459.2018.1448825},
-	doi = {10.1080/01621459.2018.1448825},
-	abstract = {Large collections of time series often have aggregation constraints due to product or geographical groupings. The forecasts for the most disaggregated series are usually required to add-up exactly to the forecasts of the aggregated series, a constraint we refer to as “coherence”. Forecast reconciliation is the process of adjusting forecasts to make them coherent.},
-	language = {en},
-	number = {526},
-	urldate = {2026-11-17},
-	journal = {Journal of the American Statistical Association},
-	author = {Wickramasuriya, Shanika L. and Athanasopoulos, George and Hyndman, Rob J.},
-	month = apr,
-	year = {2019},
-	pages = {804--819},
-	file = {PDF:/home/yashindo/Zotero/storage/GUZ9GD7H/Wickramasuriya et al. - 2019 - Optimal Forecast Reconciliation for Hierarchical and Grouped Time Series Through Trace Minimization.pdf:application/pdf},
-}
-
-
-@article{willemainNewApproachForecasting2004,
-	title = {A new approach to forecasting intermittent demand for service parts inventories},
-	volume = {20},
-	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
-	issn = {01692070},
-	url = {https://linkinghub.elsevier.com/retrieve/pii/S016920700300013X},
-	doi = {10.1016/S0169-2070(03)00013-X},
-	abstract = {A fundamental aspect of supply chain management is accurate demand forecasting. We address the problem of forecasting intermittent (or irregular) demand, i.e. random demand with a large proportion of zero values. This pattern is characteristic of demand for service parts inventories and capital goods and is difficult to predict. We forecast the cumulative distribution of demand over a fixed lead time using a new type of time series bootstrap. To assess accuracy in forecasting an entire distribution, we adapt the probability integral transformation to intermittent demand. Using nine large industrial datasets, we show that the bootstrapping method produces more accurate forecasts of the distribution of demand over a fixed lead time than do exponential smoothing and Croston’s method.},
-	language = {en},
-	number = {3},
-	urldate = {2026-11-17},
-	journal = {International Journal of Forecasting},
-	author = {Willemain, Thomas R. and Smart, Charles N. and Schwarz, Henry F.},
-	month = jul,
-	year = {2004},
-	pages = {375--387},
-	file = {PDF:/home/yashindo/Zotero/storage/3Y7RBVR4/Willemain et al. - 2004 - A new approach to forecasting intermittent demand for service parts inventories.pdf:application/pdf},
-}
-
-
+% ---- literature (3) ----
 @article{aryaniDeterminantsModelsPerformances2026,
 	title = {Determinants, {Models}, performances, and strategies of supply chain to address medicine stockouts in primary health care: a scoping review},
 	volume = {19},
@@ -1662,8 +1263,6 @@ Conclusion:: Successful models for MSOs integrate key factors such as digital te
 	pages = {2659077},
 	file = {PDF:/home/yashindo/Zotero/storage/QJUEIUAT/Aryani et al. - 2026 - Determinants, Models, performances, and strategies of supply chain to address medicine stockouts in.pdf:application/pdf},
 }
-
-
 @article{johnsonTripleHowAnalytics2026,
 	title = {Triple {A}: {How} {Analytics}, {AI}, and {Algorithms} {Are} {Improving} {Inventory} {Management} in {Healthcare}},
 	volume = {10},
@@ -1682,8 +1281,6 @@ Conclusion:: Successful models for MSOs integrate key factors such as digital te
 	pages = {103},
 	file = {PDF:/home/yashindo/Zotero/storage/4766HCC6/Johnson and Ebakivie - 2026 - Triple A How Analytics, AI, and Algorithms Are Improving Inventory Management in Healthcare.pdf:application/pdf},
 }
-
-
 @article{weiFederatedBloodSupply2023,
 	title = {Federated {Blood} {Supply} {Chain} {Demand} {Forecasting}: {A} {Case} {Study}},
 	abstract = {Blood transfusion is a commonly used, life-saving medical therapeutics worldwide. A significant challenge is the high variability of supply and demand in blood products, making it difficult to maintain a balance between preventing shortages of blood products and preventing wastage. Recent studies used data-driven methods on demand forecasting for blood products from regional and centralized databases due to regulatory restrictions, which lack the panorama view of the national blood supply and demand picture. Motivated by achieving better policy-making through national blood supply chain demand forecasting, in this paper, we propose to use federated learning (FL) to forecast the demand for platelets through a case study with simulated scenarios considering a national demand and supply network. Our solution facilitates FL with a Long-ShortTerm Memory (LSTM) model to make collaborative predictions for future decision-making processes from distributed and regional time-series data. Empirical studies show that FL brings additional performance improvement in various settings, especially for regions with scarcer and shorter data histories. We release the source code for our study at https://github.com/denoslab/fl-blood-supply-chain.},
@@ -1693,32 +1290,22 @@ Conclusion:: Successful models for MSOs integrate key factors such as digital te
 	file = {PDF:/home/yashindo/Zotero/storage/WNIQ26FC/Wei et al. - 2023 - Federated Blood Supply Chain Demand Forecasting A Case Study.pdf:application/pdf},
 }
 
-
-@techreport{philippinehealthinsurancecorporationElectronicMedicalRecord2016,
-	type = {{PhilHealth} {Circular}},
-	title = {Electronic {Medical} {Record} {System} ({PhilHealth} {Circular} {No}. 2016-0040)},
+% ---- literature/methods (17) ----
+@misc{bertsimasPredictivePrescriptiveAnalytics2018,
+	title = {From {Predictive} to {Prescriptive} {Analytics}},
+	url = {http://arxiv.org/abs/1402.5481},
+	doi = {10.48550/arXiv.1402.5481},
+	abstract = {In this paper, we combine ideas from machine learning (ML) and operations research and management science (OR/MS) in developing a framework, along with specific methods, for using data to prescribe optimal decisions in OR/MS problems. In a departure from other work on data-driven optimization and reflecting our practical experience with the data available in applications of OR/MS, we consider data consisting, not only of observations of quantities with direct effect on costs/revenues, such as demand or returns, but predominantly of observations of associated auxiliary quantities. The main problem of interest is a conditional stochastic optimization problem, given imperfect observations, where the joint probability distributions that specify the problem are unknown. We demonstrate that our proposed solution methods, which are inspired by ML methods such as local regression, CART, and random forests, are generally applicable to a wide range of decision problems. We prove that they are tractable and asymptotically optimal even when data is not iid and may be censored. We extend this to the case where decision variables may directly affect uncertainty in unknown ways, such as pricing's effect on demand. As an analogue to R{\textasciicircum}2, we develop a metric P termed the coefficient of prescriptiveness to measure the prescriptive content of data and the efficacy of a policy from an operations perspective. To demonstrate the power of our approach in a real-world setting we study an inventory management problem faced by the distribution arm of an international media conglomerate, which ships an average of 1bil units per year. We leverage internal data and public online data harvested from IMDb, Rotten Tomatoes, and Google to prescribe operational decisions that outperform baseline measures. Specifically, the data we collect, leveraged by our methods, accounts for an 88{\textbackslash}\% improvement as measured by our P.},
 	language = {en},
-	number = {Circular No. 2016-0040},
-	institution = {Philippine Health Insurance Corporation},
-	author = {{Philippine Health Insurance Corporation}},
-	year = {2016},
-	file = {PhilHealth2016 - Electronic Medical Record System:/home/yashindo/Zotero/storage/RYA4SFZM/PhilHealth2016 - Electronic Medical Record System.pdf:application/pdf},
+	urldate = {2026-11-17},
+	publisher = {arXiv},
+	author = {Bertsimas, Dimitris and Kallus, Nathan},
+	month = jul,
+	year = {2018},
+	note = {arXiv:1402.5481 [stat.ML]},
+	keywords = {Computer Science - Machine Learning, Mathematics - Optimization and Control, Statistics - Machine Learning},
+	file = {PDF:/home/yashindo/Zotero/storage/RE554297/Bertsimas and Kallus - 2018 - From Predictive to Prescriptive Analytics.pdf:application/pdf},
 }
-
-
-@techreport{departmentofhealthNationalHealthData2022,
-	type = {Framework},
-	title = {National {Health} {Data} {Repository} {Framework}},
-	language = {en},
-	number = {Release 1.a},
-	institution = {Department of Health and Philippine Health Insurance Corporation},
-	author = {{Department of Health} and {Philippine Health Insurance Corporation}},
-	month = mar,
-	year = {2022},
-	file = {PhilHealth2022 - National Health Data Repository Framework:/home/yashindo/Zotero/storage/Y7GRGNER/PhilHealth2022 - National Health Data Repository Framework.pdf:application/pdf},
-}
-
-
 @article{crostonForecastingStockControl1972,
 	title = {Forecasting and {Stock} {Control} for {Intermittent} {Demands}},
 	volume = {23},
@@ -1731,4 +1318,266 @@ Conclusion:: Successful models for MSOs integrate key factors such as digital te
 	pages = {289--303},
 	file = {Croston1972 - Forecasting and Stock Control for Intermittent Demands:/home/yashindo/Zotero/storage/2WD984IB/Croston1972 - Forecasting and Stock Control for Intermittent Demands.pdf:application/pdf},
 }
-
+@misc{elmachtoubSmartPredictThen2020,
+	title = {Smart "{Predict}, then {Optimize}"},
+	url = {http://arxiv.org/abs/1710.08005},
+	doi = {10.48550/arXiv.1710.08005},
+	abstract = {Many real-world analytics problems involve two significant challenges: prediction and optimization. Due to the typically complex nature of each challenge, the standard paradigm is predict-then-optimize. By and large, machine learning tools are intended to minimize prediction error and do not account for how the predictions will be used in the downstream optimization problem. In contrast, we propose a new and very general framework, called Smart "Predict, then Optimize" (SPO), which directly leverages the optimization problem structure, i.e., its objective and constraints, for designing better prediction models. A key component of our framework is the SPO loss function which measures the decision error induced by a prediction. Training a prediction model with respect to the SPO loss is computationally challenging, and thus we derive, using duality theory, a convex surrogate loss function which we call the SPO+ loss. Most importantly, we prove that the SPO+ loss is statistically consistent with respect to the SPO loss under mild conditions. Our SPO+ loss function can tractably handle any polyhedral, convex, or even mixed-integer optimization problem with a linear objective. Numerical experiments on shortest path and portfolio optimization problems show that the SPO framework can lead to significant improvement under the predict-then-optimize paradigm, in particular when the prediction model being trained is misspecified. We find that linear models trained using SPO+ loss tend to dominate random forest algorithms, even when the ground truth is highly nonlinear.},
+	language = {en},
+	urldate = {2026-11-17},
+	publisher = {arXiv},
+	author = {Elmachtoub, Adam N. and Grigas, Paul},
+	month = nov,
+	year = {2020},
+	note = {arXiv:1710.08005 [math.OC]},
+	keywords = {Computer Science - Machine Learning, Mathematics - Optimization and Control, Statistics - Machine Learning},
+	file = {PDF:/home/yashindo/Zotero/storage/ZNKQHXGZ/Elmachtoub and Grigas - 2020 - Smart Predict, then Optimize.pdf:application/pdf},
+}
+@misc{hewamalageForecastEvaluationData2022,
+	title = {Forecast {Evaluation} for {Data} {Scientists}: {Common} {Pitfalls} and {Best} {Practices}},
+	shorttitle = {Forecast {Evaluation} for {Data} {Scientists}},
+	url = {http://arxiv.org/abs/2203.10716},
+	doi = {10.48550/arXiv.2203.10716},
+	abstract = {Machine Learning (ML) and in particular Deep Learning (DL) methods nowadays are increasingly replacing traditional methods in many diﬀerent domains involved with important decision making activities. Sophisticated DL techniques tailor-made for speciﬁc tasks such as image recognition, signal processing, or speech analysis are being introduced at a fast pace with many improvements. However, for the domain of time series forecasting, the current state in the ML community is perhaps where other domains such as Natural Language Processing and Computer Vision were at several years ago. The ﬁeld of forecasting has mainly been fostered by statisticians/econometricians; consequently the related concepts are not the mainstream knowledge among general ML practitioners. The diﬀerent forms of non-stationarities associated with time series challenge the capabilities of data-driven ML models. Nevertheless, recent trends in the domain have demonstrated that with the availability of massive amounts of time series, ML and DL techniques are quite competent in time series forecasting, when related pitfalls are properly handled. Therefore, in this work we provide a tutorial-like compilation of the details of one of the most important steps in the overall forecasting process, namely the evaluation. This way, we intend to impart the information associated with forecast evaluation to ﬁt the context of ML, as means of bridging the knowledge gap between traditional methods of forecasting and current state-of-the-art ML techniques. We elaborate the details of the diﬀerent problematic characteristics of time series such as non-normalities and non-stationarities and how they are associated with common pitfalls in forecast evaluation. Best practices in forecast evaluation are outlined with respect to the diﬀerent steps such as data partitioning, error calculation, statistical testing, and others. Further guidelines are also provided along selecting valid and suitable error measures depending on the speciﬁc characteristics of the dataset at hand.},
+	language = {en},
+	urldate = {2026-11-17},
+	publisher = {arXiv},
+	author = {Hewamalage, Hansika and Ackermann, Klaus and Bergmeir, Christoph},
+	month = apr,
+	year = {2022},
+	note = {arXiv:2203.10716 [cs.LG]},
+	keywords = {Computer Science - Machine Learning, Statistics - Methodology},
+	file = {PDF:/home/yashindo/Zotero/storage/JWLEK263/Hewamalage et al. - 2022 - Forecast Evaluation for Data Scientists Common Pitfalls and Best Practices.pdf:application/pdf},
+}
+@article{huberDatadrivenNewsvendorProblem2019,
+	title = {A data-driven newsvendor problem: {From} data to decision},
+	volume = {278},
+	issn = {03772217},
+	shorttitle = {A data-driven newsvendor problem},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0377221719303807},
+	doi = {10.1016/j.ejor.2019.04.043},
+	abstract = {Retailers that oﬀer perishable items are required to make ordering decisions for hundreds of products on a daily basis. This task is non-trivial because the risk of ordering too much or too little is associated with overstocking costs and unsatisﬁed customers. The well-known newsvendor model captures the essence of this trade-oﬀ. Traditionally, this newsvendor problem is solved based on a demand distribution assumption. However, in reality, the true demand distribution is hardly ever known to the decision maker. Instead, large datasets are available that enable the use of empirical distributions. In this paper, we investigate how to exploit this data for making better decisions. We identify three levels on which data can generate value, and we assess their potential. To this end, we present data-driven solution methods based on Machine Learning and Quantile Regression that do not require the assumption of a speciﬁc demand distribution. We provide an empirical evaluation of these methods with point-of-sales data for a large German bakery chain. We ﬁnd that Machine Learning approaches substantially outperform traditional methods if the dataset is large enough. We also ﬁnd that the beneﬁt of improved forecasting dominates other potential beneﬁts of data-driven solution methods.},
+	language = {en},
+	number = {3},
+	urldate = {2026-11-17},
+	journal = {European Journal of Operational Research},
+	author = {Huber, Jakob and Müller, Sebastian and Fleischmann, Moritz and Stuckenschmidt, Heiner},
+	month = nov,
+	year = {2019},
+	pages = {904--915},
+	file = {PDF:/home/yashindo/Zotero/storage/P6IQFZ6A/Huber et al. - 2019 - A data-driven newsvendor problem From data to decision.pdf:application/pdf},
+}
+@article{hyndmanAnotherLookMeasures2006,
+	title = {Another look at measures of forecast accuracy},
+	volume = {22},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {01692070},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207006000239},
+	doi = {10.1016/j.ijforecast.2006.03.001},
+	abstract = {We discuss and compare measures of accuracy of univariate time series forecasts. The methods used in the M-competition and the M3-competition, and many of the measures recommended by previous authors on this topic, are found to be inadequate, and many of them are degenerate in commonly occurring situations. Instead, we propose that the mean absolute scaled error become the standard measure for comparing forecast accuracy across multiple time series.},
+	language = {en},
+	number = {4},
+	urldate = {2026-11-17},
+	journal = {International Journal of Forecasting},
+	author = {Hyndman, Rob J. and Koehler, Anne B.},
+	month = oct,
+	year = {2006},
+	pages = {679--688},
+	file = {PDF:/home/yashindo/Zotero/storage/JCTQ2Q9T/Hyndman and Koehler - 2006 - Another look at measures of forecast accuracy.pdf:application/pdf},
+}
+@article{hyndmanFastComputationReconciled2016,
+	title = {Fast computation of reconciled forecasts for hierarchical and grouped time series},
+	volume = {97},
+	issn = {01679473},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S016794731500290X},
+	doi = {10.1016/j.csda.2015.11.007},
+	abstract = {It is shown that the least squares approach to reconciling hierarchical time series forecasts can be extended to much more general collections of time series with aggregation constraints. The constraints arise due to the need for forecasts of collections of time series to add up in the same way as the observed time series. It is also shown that the computations involved can be handled eﬃciently by exploiting the structure of the associated design matrix, or by using sparse matrix routines. The proposed algorithms make forecast reconciliation feasible in business applications involving very large numbers of time series.},
+	language = {en},
+	urldate = {2026-11-17},
+	journal = {Computational Statistics \& Data Analysis},
+	author = {Hyndman, Rob J. and Lee, Alan J. and Wang, Earo},
+	month = may,
+	year = {2016},
+	pages = {16--32},
+	file = {PDF:/home/yashindo/Zotero/storage/D3IHVSWS/Hyndman et al. - 2016 - Fast computation of reconciled forecasts for hierarchical and grouped time series.pdf:application/pdf},
+}
+@article{hyndmanOptimalCombinationForecasts2011,
+	title = {Optimal combination forecasts for hierarchical time series},
+	volume = {55},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {01679473},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0167947311000971},
+	doi = {10.1016/j.csda.2011.03.006},
+	abstract = {In many applications, there are multiple time series that are hierarchically organized and can be aggregated at several diﬀerent levels in groups based on products, geography or some other features. We call these “hierarchical time series”. They are commonly forecast using either a “bottom-up” or a “top-down” method.},
+	language = {en},
+	number = {9},
+	urldate = {2026-11-17},
+	journal = {Computational Statistics \& Data Analysis},
+	author = {Hyndman, Rob J. and Ahmed, Roman A. and Athanasopoulos, George and Shang, Han Lin},
+	month = sep,
+	year = {2011},
+	pages = {2579--2589},
+	file = {PDF:/home/yashindo/Zotero/storage/QYPKEYF9/Hyndman et al. - 2011 - Optimal combination forecasts for hierarchical time series.pdf:application/pdf},
+}
+@article{makridakisM5AccuracyCompetition2022,
+	title = {M5 accuracy competition: {Results}, findings, and conclusions},
+	volume = {38},
+	issn = {01692070},
+	shorttitle = {M5 accuracy competition},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207021001874},
+	doi = {10.1016/j.ijforecast.2021.11.013},
+	abstract = {In this study, we present the results of the M5 ‘‘Accuracy’’ competition, which was the first of two parallel challenges in the latest M competition with the aim of advancing the theory and practice of forecasting. The main objective in the M5 ‘‘Accuracy’’ competition was to accurately predict 42,840 time series representing the hierarchical unit sales for the largest retail company in the world by revenue, Walmart. The competition required the submission of 30,490 point forecasts for the lowest cross-sectional aggregation level of the data, which could then be summed up accordingly to estimate forecasts for the remaining upward levels. We provide details of the implementation of the M5 ‘‘Accuracy’’ challenge, as well as the results and best performing methods, and summarize the major findings and conclusions. Finally, we discuss the implications of these findings and suggest directions for future research.},
+	language = {en},
+	number = {4},
+	urldate = {2026-11-17},
+	journal = {International Journal of Forecasting},
+	author = {Makridakis, Spyros and Spiliotis, Evangelos and Assimakopoulos, Vassilios},
+	month = oct,
+	year = {2022},
+	pages = {1346--1364},
+	file = {PDF:/home/yashindo/Zotero/storage/6WMFIFII/Makridakis et al. - 2022 - M5 accuracy competition Results, findings, and conclusions.pdf:application/pdf},
+}
+@article{panagiotelisForecastReconciliationGeometric2021,
+	title = {Forecast reconciliation: {A} geometric view with new insights on bias correction},
+	volume = {37},
+	issn = {01692070},
+	shorttitle = {Forecast reconciliation},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207020300911},
+	doi = {10.1016/j.ijforecast.2020.06.004},
+	language = {en},
+	number = {1},
+	urldate = {2026-11-17},
+	journal = {International Journal of Forecasting},
+	author = {Panagiotelis, Anastasios and Athanasopoulos, George and Gamakumara, Puwasala and Hyndman, Rob J.},
+	month = jan,
+	year = {2021},
+	pages = {343--359},
+	file = {PDF:/home/yashindo/Zotero/storage/XACG4G24/Panagiotelis et al. - 2021 - Forecast reconciliation A geometric view with new insights on bias correction.pdf:application/pdf},
+}
+@article{qinNewsvendorProblemReview2011,
+	title = {The newsvendor problem: {Review} and directions for future research},
+	volume = {213},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {03772217},
+	shorttitle = {The newsvendor problem},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0377221710008040},
+	doi = {10.1016/j.ejor.2010.11.024},
+	abstract = {In this paper, we review the contributions to date for analyzing the newsvendor problem. Our focus is on examining the speciﬁc extensions for analyzing this problem in the context of modeling customer demand, supplier costs, and the buyer risk proﬁle. More speciﬁcally, we analyze the impact of market price, marketing eﬀort, and stocking quantity on customer demand; how supplier prices can serve as a coordination mechanism in a supply chain setting; integrating alternative supplier pricing policies within the newsvendor framework; and how the buyer’s risk proﬁle moderates the newsvendor order quantity decision. For each of these areas, we summarize the current literature and develop extensions. Finally, we also propose directions for future research.},
+	language = {en},
+	number = {2},
+	urldate = {2026-11-17},
+	journal = {European Journal of Operational Research},
+	author = {Qin, Yan and Wang, Ruoxuan and Vakharia, Asoo J. and Chen, Yuwen and Seref, Michelle M.H.},
+	month = sep,
+	year = {2011},
+	pages = {361--374},
+	file = {PDF:/home/yashindo/Zotero/storage/HIEDC7SA/Qin et al. - 2011 - The newsvendor problem Review and directions for future research.pdf:application/pdf},
+}
+@article{quickZerosOnesCase2015,
+	title = {Zeros and ones: a case for suppressing zeros in sensitive count data with an application to stroke mortality},
+	volume = {4},
+	copyright = {http://onlinelibrary.wiley.com/termsAndConditions\#vor},
+	issn = {2049-1573, 2049-1573},
+	shorttitle = {Zeros and ones},
+	url = {https://onlinelibrary.wiley.com/doi/10.1002/sta4.92},
+	doi = {10.1002/sta4.92},
+	abstract = {In the current era of global internet connectivity, privacy concerns are of the utmost importance. When official statistical agencies collect spatially referenced, confidential data that they intend to release as public‐use files, the suppression of small counts is a common measure that agencies take to protect the confidentiality of the data‐subjects from ill‐intentioned users. The goal of this paper is to demonstrate that an interval suppression criterion that does not suppress zeros can fail to protect regions with a single occurrence. We illustrate the difference in disclosure risk between an interval suppression criterion and a one‐sided suppression criterion by considering a US county‐level dataset composed of the number of deaths due to stroke in White men. Here, we illustrate that an interval suppression criterion leads to a twofold increase in the disclosure risk when compared with a one‐sided suppression criterion for regions with a single incidence among a population of less than 600. We conclude with an extension of these findings beyond stroke mortality and by offering general guidelines for data suppression. Copyright © 2015 John Wiley \& Sons, Ltd.},
+	language = {en},
+	number = {1},
+	urldate = {2026-11-17},
+	journal = {Stat},
+	author = {Quick, Harrison and Holan, Scott H. and Wikle, Christopher K.},
+	month = feb,
+	year = {2015},
+	pages = {227--234},
+	file = {PDF:/home/yashindo/Zotero/storage/D8PQKUT4/Quick et al. - 2015 - Zeros and ones a case for suppressing zeros in sensitive count data with an application to stroke m.pdf:application/pdf},
+}
+@article{syntetosCategorizationDemandPatterns2005,
+	title = {On the categorization of demand patterns},
+	volume = {56},
+	copyright = {http://www.springer.com/tdm},
+	issn = {0160-5682, 1476-9360},
+	url = {https://www.tandfonline.com/doi/full/10.1057/palgrave.jors.2601841},
+	doi = {10.1057/palgrave.jors.2601841},
+	language = {en},
+	number = {5},
+	urldate = {2026-11-17},
+	journal = {Journal of the Operational Research Society},
+	author = {Syntetos, A A and Boylan, J E and Croston, J D},
+	month = may,
+	year = {2005},
+	pages = {495--503},
+	file = {PDF:/home/yashindo/Zotero/storage/FEISKJ4N/Syntetos et al. - 2005 - On the categorization of demand patterns.pdf:application/pdf},
+}
+@article{syntetosAccuracyIntermittentDemand2005,
+	title = {The accuracy of intermittent demand estimates},
+	volume = {21},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {01692070},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0169207004000792},
+	doi = {10.1016/j.ijforecast.2004.10.001},
+	abstract = {Intermittent demand appears sporadically, with some time periods showing no demand at all. In this paper, four forecasting methods, Simple Moving Average (SMA, 13 periods), Single Exponential Smoothing (SES), Croston’s method, and a new method (based on Croston’s approach) recently developed by the authors, are compared on 3000 real intermittent demand data series from the automotive industry. The mean signed and relative geometric root-mean-square errors are shown to meet the theoretical and practical requirements of intermittent demand, as do the Percentage Better and Percentage Best summary statistics based on these measures. These measures are subsequently applied in a simulation experiment. The out-of-sample comparison results indicate superior performance of the new method. In addition, the results show that the mean signed error is not strongly scale dependent and the relative geometric root-mean-square error is a well-behaved accuracy measure for intermittent demand.},
+	language = {en},
+	number = {2},
+	urldate = {2026-11-17},
+	journal = {International Journal of Forecasting},
+	author = {Syntetos, Aris A. and Boylan, John E.},
+	month = apr,
+	year = {2005},
+	pages = {303--314},
+	file = {PDF:/home/yashindo/Zotero/storage/H65NRVBY/Syntetos and Boylan - 2005 - The accuracy of intermittent demand estimates.pdf:application/pdf},
+}
+@article{teunterIntermittentDemandLinking2011,
+	title = {Intermittent demand: {Linking} forecasting to inventory obsolescence},
+	volume = {214},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {03772217},
+	shorttitle = {Intermittent demand},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0377221711004437},
+	doi = {10.1016/j.ejor.2011.05.018},
+	abstract = {The standard method to forecast intermittent demand is that by Croston. This method is available in ERPtype solutions such as SAP and specialised forecasting software packages (e.g. Forecast Pro), and often applied in practice. It uses exponential smoothing to separately update the estimated demand size and demand interval whenever a positive demand occurs, and their ratio provides the forecast of demand per period. The Croston method has two important disadvantages. First and foremost, not updating after (many) periods with zero demand renders the method unsuitable for dealing with obsolescence issues. Second, the method is positively biased and this is true for all points in time (i.e. considering the forecasts made at an arbitrary time period) and issue points only (i.e. considering the forecasts following a positive demand occurrence only). The second issue has been addressed in the literature by the proposal of an estimator (Syntetos–Boylan Approximation, SBA) that is approximately unbiased. In this paper, we propose a new method that overcomes both these shortcomings while not adding complexity. Different from the Croston method, the new method is unbiased (for all points in time) and it updates the demand probability instead of the demand interval, doing so in every period. The comparative merits of the new estimator are assessed by means of an extensive simulation experiment. The results indicate its superior performance and enable insights to be gained into the linkage between demand forecasting and obsolescence.},
+	language = {en},
+	number = {3},
+	urldate = {2026-11-17},
+	journal = {European Journal of Operational Research},
+	author = {Teunter, Ruud H. and Syntetos, Aris A. and Zied Babai, M.},
+	month = nov,
+	year = {2011},
+	pages = {606--615},
+	file = {PDF:/home/yashindo/Zotero/storage/634K4JK4/Teunter et al. - 2011 - Intermittent demand Linking forecasting to inventory obsolescence.pdf:application/pdf},
+}
+@article{wickramasuriyaOptimalForecastReconciliation2019,
+	title = {Optimal {Forecast} {Reconciliation} for {Hierarchical} and {Grouped} {Time} {Series} {Through} {Trace} {Minimization}},
+	volume = {114},
+	issn = {0162-1459, 1537-274X},
+	url = {https://www.tandfonline.com/doi/full/10.1080/01621459.2018.1448825},
+	doi = {10.1080/01621459.2018.1448825},
+	abstract = {Large collections of time series often have aggregation constraints due to product or geographical groupings. The forecasts for the most disaggregated series are usually required to add-up exactly to the forecasts of the aggregated series, a constraint we refer to as “coherence”. Forecast reconciliation is the process of adjusting forecasts to make them coherent.},
+	language = {en},
+	number = {526},
+	urldate = {2026-11-17},
+	journal = {Journal of the American Statistical Association},
+	author = {Wickramasuriya, Shanika L. and Athanasopoulos, George and Hyndman, Rob J.},
+	month = apr,
+	year = {2019},
+	pages = {804--819},
+	file = {PDF:/home/yashindo/Zotero/storage/GUZ9GD7H/Wickramasuriya et al. - 2019 - Optimal Forecast Reconciliation for Hierarchical and Grouped Time Series Through Trace Minimization.pdf:application/pdf},
+}
+@article{willemainNewApproachForecasting2004,
+	title = {A new approach to forecasting intermittent demand for service parts inventories},
+	volume = {20},
+	copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+	issn = {01692070},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S016920700300013X},
+	doi = {10.1016/S0169-2070(03)00013-X},
+	abstract = {A fundamental aspect of supply chain management is accurate demand forecasting. We address the problem of forecasting intermittent (or irregular) demand, i.e. random demand with a large proportion of zero values. This pattern is characteristic of demand for service parts inventories and capital goods and is difficult to predict. We forecast the cumulative distribution of demand over a fixed lead time using a new type of time series bootstrap. To assess accuracy in forecasting an entire distribution, we adapt the probability integral transformation to intermittent demand. Using nine large industrial datasets, we show that the bootstrapping method produces more accurate forecasts of the distribution of demand over a fixed lead time than do exponential smoothing and Croston’s method.},
+	language = {en},
+	number = {3},
+	urldate = {2026-11-17},
+	journal = {International Journal of Forecasting},
+	author = {Willemain, Thomas R. and Smart, Charles N. and Schwarz, Henry F.},
+	month = jul,
+	year = {2004},
+	pages = {375--387},
+	file = {PDF:/home/yashindo/Zotero/storage/3Y7RBVR4/Willemain et al. - 2004 - A new approach to forecasting intermittent demand for service parts inventories.pdf:application/pdf},
+}
