@@ -3,7 +3,7 @@ title: "Source library index"
 type: index
 status: active
 created: 2026-11-11
-updated: 2026-11-17
+updated: 2026-11-18
 source: "PDF inventory in docs/"
 ---
 
@@ -22,7 +22,7 @@ collection (the same topic tree as the folders below), then by first author and 
 group; citation keys come from Better BibTeX, so they stay stable across exports. Re-run the script
 after adding or fixing items in Zotero; a failed or empty export leaves the existing `.bib` untouched.
 
-**92 PDFs across 17 categories.**
+**94 PDFs across 17 categories.**
 
 ## Categories
 
@@ -38,7 +38,7 @@ after adding or fixing items in Zotero; a failed or empty export leaves the exis
 | [federated-learning/low-volume-clients](#federated-learninglow-volume-clients) | 4 |
 | [federated-learning/optimization](#federated-learningoptimization) | 4 |
 | [federated-learning/personalization](#federated-learningpersonalization) | 5 |
-| [federated-learning/platforms](#federated-learningplatforms) | 3 |
+| [federated-learning/platforms](#federated-learningplatforms) | 5 |
 | [federated-learning/privacy-and-security](#federated-learningprivacy-and-security) | 3 |
 | [federated-learning/selection-and-inclusion](#federated-learningselection-and-inclusion) | 12 |
 | [interoperability](#interoperability) | 6 |
@@ -125,7 +125,9 @@ after adding or fixing items in Zotero; a failed or empty export leaves the exis
 
 ## federated-learning/platforms
 
+- [Beutel2022 - Flower: A Friendly Federated Learning Framework](federated-learning/platforms/pdf/Beutel2022%20-%20Flower%3A%20A%20Friendly%20Federated%20Learning%20Framework.pdf)
 - [Bonawitz2019 - Towards Federated Learning at Scale: System Design](federated-learning/platforms/pdf/Bonawitz2019%20-%20Towards%20Federated%20Learning%20at%20Scale%3A%20System%20Design.pdf)
+- [Hidalgo-Izquierdo2026 - Semi-asynchronous Federated Learning in Flower: Framework Extension and Performance Assessment](federated-learning/platforms/pdf/Hidalgo-Izquierdo2026%20-%20Semi-asynchronous%20Federated%20Learning%20in%20Flower%3A%20Framework%20Extension%20and%20Performance%20Assessment.pdf)
 - [McMurry2024 - Cumulus: A federated EHR-based learning system powered by FHIR and AI](federated-learning/platforms/pdf/McMurry2024%20-%20Cumulus%3A%20A%20federated%20EHR-based%20learning%20system%20powered%20by%20FHIR%20and%20AI.pdf)
 - [Mullie2024 - CODA: an open-source platform for federated analysis and machine learning on distributed healthcare data](federated-learning/platforms/pdf/Mullie2024%20-%20CODA%3A%20an%20open-source%20platform%20for%20federated%20analysis%20and%20machine%20learning%20on%20distributed%20healthcare%20data.pdf)
 
