@@ -58,9 +58,11 @@ echo "Fetching group $GROUP_ID from $LOCAL_API" >&2
 start=0
 while :; do
   # -f turns an HTTP error into a non-zero exit instead of feeding error text
-  # into the key list.
+  # into the key list. Sort by dateAdded ascending: the default ordering follows
+  # dateModified, so every edit in Zotero would reshuffle the whole .bib and
+  # turn a one-line change into a 180-line diff.
   page="$(curl -fsS --max-time 30 \
-    "$LOCAL_API/groups/$GROUP_ID/items/top?limit=$PAGE_SIZE&start=$start")" \
+    "$LOCAL_API/groups/$GROUP_ID/items/top?limit=$PAGE_SIZE&start=$start&sort=dateAdded&direction=asc")" \
     || fail "request failed: items/top?start=$start (is Zotero running with the local API enabled?)"
 
   # first line is the raw page size, which drives pagination; the rest are keys
