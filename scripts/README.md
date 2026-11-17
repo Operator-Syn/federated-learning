@@ -13,6 +13,7 @@ uv run python scripts/<name>.py
 | `setup_git_hooks.py` | points `core.hooksPath` at `scripts/git-hooks/` | once per clone, after `uv sync` |
 | `git-hooks/pre-commit` | lint gate: ruff errors block, formatting drift warns | automatic, on every `git commit` |
 | `nbstripout_safe.py` | the clean-filter/textconv wrapper itself | never by hand — git invokes it |
+| `check_notebook_outputs.py` | fails when a committed notebook still holds outputs | CI, and before pushing if you skipped the filter |
 | `refresh-references.py` | regenerates `docs/literature/references.bib` from Zotero | whenever the Zotero library changes |
 
 ## Fresh clone setup
@@ -70,6 +71,28 @@ Bypass with `git commit --no-verify` when a commit genuinely needs to go in dirt
 Maintenance: add a hook by dropping another executable in this directory and listing it in `HOOKS` in
 `setup_git_hooks.py`. Keep hooks Python — git runs them through `sh` on Windows, and a Python file
 with a shebang is the portable choice.
+
+## `check_notebook_outputs.py`
+
+The remote backstop for collaborators who never ran `setup_notebook_filters.py`: the clean filter
+strips notebooks on the way into *their* commit, but nothing forces them to install it. This script
+fails the change when a committed notebook still carries outputs or execution counts. Standard library
+only, so `.github/workflows/notebooks.yml` runs it on a bare runner with no environment setup.
+
+```bash
+uv run python scripts/check_notebook_outputs.py                # every tracked *.ipynb
+uv run python scripts/check_notebook_outputs.py notebooks/x.ipynb
+```
+
+`--github-output` also writes `dirty=true|false` to `$GITHUB_OUTPUT`, which is how the workflow decides
+whether the autofix job has anything to do.
+
+Why the workflow has two jobs: **GitHub cannot rewrite what a contributor pushed.** The `check` job is
+the guarantee — it works for fork pull requests too and blocks the merge. The `autofix` job is a
+convenience that strips the notebooks and pushes a `chore: strip notebook outputs` commit back to the
+pull request branch; it only runs for branches in this repository (a fork's branch is not writable with
+`GITHUB_TOKEN`), only on `pull_request`, and never when the actor is the bot, which would loop. Nothing
+writes to `main` directly, so a protected branch still needs a human merge.
 
 ## `refresh-references.py`
 
