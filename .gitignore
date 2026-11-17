@@ -2,13 +2,37 @@
 .venv/
 __pycache__/
 *.pyc
+*.egg-info/
+build/
+dist/
+
+# tooling caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # experiment output
 runs/
 *.csv
 
-# editor
+# local environment and secrets — never commit these
+.env
+.env.*
+!.env.example
+
+# editor and OS cruft
 .DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
 
 # obsidian vault config
 .obsidian/
