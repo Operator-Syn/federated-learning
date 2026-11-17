@@ -1,0 +1,42 @@
+[project]
+name = "fl-thesis"
+version = "0.1.0"
+description = "Simulation workspace for an inclusion-aware federated learning study on medicine demand across barangay health centers"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "ipykernel>=6.29",
+    "jupyterlab>=4.2",
+    "matplotlib>=3.9",
+    "numpy>=2.0",
+    "pandas>=2.2",
+]
+
+[dependency-groups]
+# Only needed to run notebooks headlessly, lint, or maintain the Git filter.
+dev = [
+    "nbconvert>=7.16",
+    "nbstripout>=0.9.1",
+    "ruff>=0.7",
+]
+
+[build-system]
+# src-layout package: `uv sync` installs fl-thesis into .venv so notebooks, tests and
+# scripts import the same modules instead of carrying their own copy of the logic.
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fl_thesis"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "notebooks", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# matplotlib.use("Agg") must run before pyplot is imported, so those imports cannot sit
+# at the top of the file.
+"src/fl_thesis/figures.py" = ["E402"]
