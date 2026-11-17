@@ -1,6 +1,6 @@
-# Evaluating Inclusion-Aware Client Selection for Federated Learning under Intermittent Connectivity
+# An Inclusion-Aware Federated Learning System for Medicine Demand Prediction and Distribution Across Barangay Health Centers under Intermittent Connectivity
 
-**A Simulation Study Calibrated to Iligan City Barangay Health Facilities**
+**A Simulation Study Calibrated to Iligan City Barangay Health Centers**
 
 CSC198 · Group Beira, Jagonia, Ybanez
 
