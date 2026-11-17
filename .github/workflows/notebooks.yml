@@ -1,0 +1,108 @@
+name: Notebook hygiene
+
+# Two layers, because GitHub cannot rewrite what a contributor pushed:
+#
+#   check   — fails the change when a committed notebook still holds outputs. This is
+#             the layer that actually guarantees the repository stays clean, and it
+#             works for fork pull requests too.
+#   autofix — strips the notebooks and pushes the result back to the pull request
+#             branch. Only possible for branches in this repository (a fork's branch is
+#             not writable with GITHUB_TOKEN) and only useful as a convenience.
+#
+# Nothing here touches main directly: autofix runs on pull_request only, so a protected
+# branch still requires a human merge.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notebook-hygiene-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Notebooks are stored stripped
+    runs-on: ubuntu-latest
+    outputs:
+      dirty: ${{ steps.inspect.outputs.dirty }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Inspect notebooks for execution state
+        id: inspect
+        # continue-on-error so the result is published through steps.*.outputs even when
+        # notebooks are dirty; the next step is what fails the job. A step that fails
+        # outright is a less reliable carrier of its own output.
+        continue-on-error: true
+        run: python3 scripts/check_notebook_outputs.py --github-output
+
+      - name: Fail when a notebook carries outputs
+        if: steps.inspect.outputs.dirty == 'true'
+        run: |
+          echo "::error::A notebook in this change was committed with outputs or execution counts."
+          echo "Notebook outputs are ephemeral in this repository: they are stripped before commit."
+          echo "Run 'uv run python scripts/setup_notebook_filters.py' once, then re-add the notebook."
+          exit 1
+
+  autofix:
+    name: Strip outputs and push to the pull request branch
+    needs: check
+    # always() because the check job fails on purpose; the rest of the guard keeps this
+    # job from touching forks, the base branch, or its own commits (which would loop).
+    if: >
+      always() &&
+      needs.check.outputs.dirty == 'true' &&
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the pull request branch
+        uses: actions/checkout@v4
+        with:
+          # the head SHA, not the branch name: a branch name is attacker-influenced text
+          # and ref parameters are a known injection surface
+          ref: ${{ github.event.pull_request.head.sha }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - name: Install nbstripout
+        run: |
+          python3 -m venv .venv-ci
+          .venv-ci/bin/python -m pip install --quiet --disable-pip-version-check nbstripout
+
+      - name: Strip notebook outputs
+        run: |
+          mapfile -t notebooks < <(git ls-files '*.ipynb')
+          if [ "${#notebooks[@]}" -eq 0 ]; then
+            echo "No notebooks in this checkout."
+            exit 0
+          fi
+          .venv-ci/bin/nbstripout "${notebooks[@]}"
+
+      - name: Commit and push
+        env:
+          # passed through the environment, never interpolated into the script body
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          if ! printf '%s' "$HEAD_REF" | grep -qE '^[A-Za-z0-9._/-]+$'; then
+            echo "::error::Refusing to push to an unexpected branch name: $HEAD_REF"
+            exit 1
+          fi
+          if git diff --quiet -- '*.ipynb'; then
+            echo "Notebooks are already stripped; nothing to push."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.ipynb'
+          git commit -m "chore: strip notebook outputs"
+          git push origin "HEAD:refs/heads/${HEAD_REF}"
