@@ -66,7 +66,8 @@ def fetch(path: str) -> bytes:
         raise SystemExit(f"error: {url} returned HTTP {err.code}") from err
     except urllib.error.URLError as err:
         raise SystemExit(
-            f"error: cannot reach {url} ({err.reason}); is Zotero running with the local API enabled?"
+            f"error: cannot reach {url} ({err.reason}); "
+            "is Zotero running with the local API enabled?"
         ) from err
 
 
@@ -105,7 +106,8 @@ def collection_paths() -> dict[str, str]:
             return by_key[key]["data"]["name"]
         parent = by_key[key]["data"].get("parentCollection")
         prefix = resolve(parent, seen | {key}) if parent else ""
-        paths[key] = f"{prefix}/{by_key[key]['data']['name']}" if prefix else by_key[key]["data"]["name"]
+        name = by_key[key]["data"]["name"]
+        paths[key] = f"{prefix}/{name}" if prefix else name
         return paths[key]
 
     for key in by_key:
@@ -144,12 +146,15 @@ def ordered_sections() -> list[tuple[str, list[str]]]:
                 claimed[item["key"]] = paths[key]
                 sections.setdefault(paths[key], []).append(item["key"])
 
-    leftovers = [i for i in paginate("/items/top?") if is_bibliographic(i) and i["key"] not in claimed]
+    leftovers = [
+        i for i in paginate("/items/top?") if is_bibliographic(i) and i["key"] not in claimed
+    ]
     if leftovers:
         leftovers.sort(key=sort_key)
         sections[UNFILED] = [i["key"] for i in leftovers]
 
-    return [(name, sections[name]) for name in sorted(sections, key=lambda n: (n == UNFILED, n.lower()))]
+    order = sorted(sections, key=lambda name: (name == UNFILED, name.lower()))
+    return [(name, sections[name]) for name in order]
 
 
 def bibtex_for(key: str) -> str:
@@ -161,7 +166,9 @@ def main() -> int:
     sections = ordered_sections()
     total = sum(len(keys) for _, keys in sections)
     if total == 0:
-        raise SystemExit(f"error: group {GROUP_ID} has no bibliographic items; leaving {TARGET.name} untouched")
+        raise SystemExit(
+            f"error: group {GROUP_ID} has no bibliographic items; leaving {TARGET.name} untouched"
+        )
 
     lines: list[str] = []
     exported = 0
