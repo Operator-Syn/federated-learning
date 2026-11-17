@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# experiment output
+runs/
+*.csv
+
+# editor
+.DS_Store
+
+# obsidian vault config
+.obsidian/
+
+# Keep the complete source library versioned, except local editor settings.
+!docs/
+!docs/**
+docs/**/.obsidian/
