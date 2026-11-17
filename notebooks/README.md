@@ -61,8 +61,13 @@ On Windows run the same command in PowerShell or Git Bash. The script prints the
 registered, so a wrong one is visible immediately.
 
 Verify with `git check-attr -a -- notebooks/00-workspace-check.ipynb` — it should report
-`filter: nbstripout` and `diff: ipynb`. If the filter is missing, git commits unstripped notebooks
-without complaining, so run the script once per clone and after moving the checkout.
+`filter: nbstripout` and `diff: ipynb`. Without the registration git commits unstripped notebooks
+without complaining.
+
+CI checks the same thing from the other side: `.github/workflows/notebooks.yml` fails any change that
+still contains outputs, and strips-and-pushes a fix to same-repository pull request branches. The local
+filter is still the one that matters — it keeps your working tree clean and your diffs readable; the
+workflow only catches what slipped through someone else's clone.
 
 ## Conventions
 
