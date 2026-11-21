@@ -1,0 +1,45 @@
+\section{Tunable parameters}
+\label{sec:parameters}
+
+These are configuration, not constants. If the review of related literature concludes the
+study needs a different facility spread, or the City Health Office supplies a different
+reliability picture, the answer is a configuration change and a re-run. The table states who
+may change each one, so that a number in the thesis can always be traced to a decision.
+
+% Symbols stay upright rather than bold: bold maths reads as a vector, which these are not.
+\begin{spectab}{|L{0.125\textwidth}|L{0.29\textwidth}|L{0.165\textwidth}|L{0.26\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Parameter} & \textbf{Meaning} & \textbf{Changed by} & \textbf{Notes} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Parameter} & \textbf{Meaning} & \textbf{Changed by} & \textbf{Notes} \\ \hline
+\endhead
+$N$ & Number of facilities in a run & study / CHO & Starts at three; the city has more
+    barangays than this study attempts. \\ \hline
+\rowcolor{rowshade}$\rho_i$ & Probability facility $i$ answers a given round &
+  calibration & Uneven by design; a city-wide outage multiplies every facility's chance
+  downward. \\ \hline
+$\ell_i$ & Latency of facility $i$ per round, seconds & calibration & Sets the straggler
+  pace; the longest participant defines the round. \\ \hline
+\rowcolor{rowshade}$n_i$ & Record volume at facility $i$ & data & Simulated volumes start at
+    a few hundred records per facility; scarcity is part of the problem, not a nuisance. \\ \hline
+$p$ & Participation floor as a share of rounds & study / CHO & The inclusion policy under
+  test. \\ \hline
+\rowcolor{rowshade}$\tau$ & Target value of the reported quality metric $Q_r$ & study & Balanced accuracy of the
+  local-only baseline, computed once per condition before any comparison and declared with it
+  (Section~\ref{sec:metrics}). \\ \hline
+$k$ & Facilities selected per round & study & Selection budget. \\ \hline
+\rowcolor{rowshade}$R$ & Rounds per run & study & Bounded so a comparison is
+  affordable. \\ \hline
+$s$ & Random seed & study & Required on every reported number. \\ \hline
+\rowcolor{rowshade}$f$ & Held-out fraction per facility & study & Chronological split,
+  never shuffled. \\ \hline
+\end{spectab}
+
+\subsection{The calibration profile}
+A \emph{calibration profile} is one city's settings from this section, with a name and a version:
+the facility count, each facility's reliability, latency and record volume, the participation floor,
+and the target. Kept as its own record, it lets a later team rerun the comparison, with more
+facilities or with corrected records, without reading back through this document to work out which
+values produced an earlier result. A profile describes one data version. Change the records behind
+it, and it needs recalibrating.
