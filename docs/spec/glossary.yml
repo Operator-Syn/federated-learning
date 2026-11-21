@@ -1,0 +1,184 @@
+# Machine-readable names for the technical specification.
+#
+# The prose lives in technical-spec.tex; this file is the canonical list of identifiers.
+# The implementation keys its policy plug-ins and entity classes by these ids, and
+# scripts/check_glossary.py fails when the two disagree. Add a name here only when the
+# document defines it, and add it to the document only when this file lists it.
+
+version: "0.1"
+updated: "2026-11-18"
+
+entities:
+  domain:
+    - id: facility
+      name: Barangay Health Center
+      core: true
+    - id: commodity
+      name: Health Commodity
+      core: true
+    - id: demand_observation
+      name: Demand Observation
+      core: true
+    - id: reporting_period
+      name: Reporting Period
+      core: true
+    - id: surge
+      name: Surge
+      core: true
+    - id: connectivity_episode
+      name: Connectivity Episode
+      core: false
+    - id: forecast
+      name: Forecast
+      core: true
+    - id: stock_position
+      name: Stock Position
+      core: false
+    - id: allocation_recommendation
+      name: Allocation Recommendation
+      core: false
+    - id: shortage_event
+      name: Shortage Event
+      core: false
+
+  system:
+    - id: node
+      name: Node
+      core: true
+    - id: aggregator
+      name: Aggregator
+      core: true
+    - id: round
+      name: Round
+      core: true
+    - id: model_version
+      name: Model Version
+      core: true
+    - id: selection_decision
+      name: Selection Decision
+      core: false
+    - id: participation_record
+      name: Participation Record
+      core: false
+    - id: policy_configuration
+      name: Policy Configuration
+      core: false
+    - id: calibration_profile
+      name: Calibration Profile
+      core: false
+    - id: evaluation_snapshot
+      name: Evaluation Snapshot
+      core: false
+    - id: audit_record
+      name: Audit Record
+      core: false
+
+  governance:
+    - id: data_controller
+      name: Data Controller
+      core: false
+    - id: data_processor
+      name: Data Processor
+      core: false
+    - id: data_sharing_agreement
+      name: Data-Sharing Agreement
+      core: false
+    - id: ethics_approval
+      name: Ethics Approval
+      core: false
+    - id: operator_role
+      name: Operator Role
+      core: false
+    - id: retention_schedule
+      name: Retention Schedule
+      core: false
+
+# The four families compared by the study. `baseline: true` marks the strawman that is
+# included deliberately, so a reader cannot mistake it for a recommendation.
+policies:
+  - id: adaptive_sampling
+    name: Adaptive sampling
+    baseline: false
+  - id: resource_aware
+    name: Resource-aware selection
+    baseline: false
+  - id: fair_sampling
+    name: Fair sampling
+    baseline: false
+  - id: baseline_uniform
+    name: Reachability-blind uniform (baseline)
+    baseline: true
+
+metrics:
+  - id: model_quality
+    symbol: "Q_r"
+    defined_in: "sec:quality"
+  - id: time_to_target
+    symbol: "T*"
+    defined_in: "eq:tstar"
+  - id: floor_round
+    symbol: "R_p"
+    defined_in: "eq:rfloor"
+  - id: round_duration
+    symbol: "d_r"
+    defined_in: "eq:duration"
+
+# Who may change each parameter. `configuration` means a re-run, not a code change.
+parameters:
+  - id: n_facilities
+    symbol: "N"
+    changed_by: [study, cho]
+  - id: reliability
+    symbol: "rho_i"
+    changed_by: [calibration]
+  - id: latency
+    symbol: "ell_i"
+    changed_by: [calibration]
+  - id: record_volume
+    symbol: "n_i"
+    changed_by: [data]
+  - id: participation_floor
+    symbol: "p"
+    changed_by: [study, cho]
+  - id: target_accuracy
+    symbol: "tau"
+    changed_by: [study]
+  - id: clients_per_round
+    symbol: "k"
+    changed_by: [study]
+  - id: rounds
+    symbol: "R"
+    changed_by: [study]
+  - id: seed
+    symbol: "s"
+    changed_by: [study]
+  - id: eval_fraction
+    symbol: "f"
+    changed_by: [study]
+
+# Recorded, not resolved. Mirrors section 10 of the specification.
+open_decisions:
+  - id: OD-1
+    question: Who is the data controller on paper?
+    owner: cho
+  - id: OD-2
+    question: What is the reporting period?
+    owner: [cho, rrl]
+  - id: OD-3
+    question: Is distribution in scope, or forecasting only?
+    owner: [study, adviser]
+  - id: OD-4
+    question: How is a surge defined?
+    owner: [rrl, cho]
+  - id: OD-5
+    question: Where does the aggregator run?
+    owner: [cho, study]
+  - id: OD-6
+    question: Are national facility and PSGC codes obtainable?
+    owner: cho
+  - id: OD-7
+    question: Which quality metric is primary, and what threshold makes a model usable?
+    owner: [rrl, adviser]
+  - id: OD-8
+    question: In deployment, how is quality computed without moving rows?
+    owner: [cho, adviser]
