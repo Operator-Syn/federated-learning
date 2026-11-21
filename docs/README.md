@@ -11,7 +11,8 @@ source: "PDF inventory in docs/"
 
 The single index for the source documents in `docs/`. PDFs are grouped by topic; each link opens
 the file directly. Subdirectory notes, drafts, matrices, and snapshots have been removed.
-Research PDFs use `SurnameYear - Full Title.pdf`; the unattributed course handout retains its descriptive name.
+Research PDFs use `SurnameYear - Full Title.pdf`, with a compound surname keeping its spaces
+(`Ogier du Terrail2023 - …`); the unattributed course handout retains its descriptive name.
 
 ## Bibliography
 
@@ -20,9 +21,23 @@ Research PDFs use `SurnameYear - Full Title.pdf`; the unattributed course handou
 Zotero running with the local API enabled and Better BibTeX installed. Entries are grouped by
 collection (the same topic tree as the folders below), then by first author and year within each
 group; citation keys come from Better BibTeX, so they stay stable across exports. Re-run the script
-after adding or fixing items in Zotero; a failed or empty export leaves the existing `.bib` untouched.
+after adding or fixing items in Zotero.
 
-**94 PDFs across 17 categories.**
+The script takes no arguments and always writes `docs/literature/references.bib`, resolved from the
+repository root rather than from the caller's directory. Run it from the repository root so `uv run`
+finds the project environment:
+
+```bash
+uv run python scripts/refresh-references.py
+```
+
+If Zotero cannot be reached, or no entry renders at all, it exits with an error and leaves the
+existing `.bib` untouched. A single item that yields no BibTeX is handled differently: it is skipped
+with a `warning:` line on stderr and the file **is** rewritten without that entry, so read the warnings
+rather than assuming the export is complete.
+
+**94 source PDFs across 17 categories.** The only other PDF under `docs/` is the compiled
+`spec/technical-spec.pdf`, which is a build artifact and not part of this index.
 
 ## Categories
 
