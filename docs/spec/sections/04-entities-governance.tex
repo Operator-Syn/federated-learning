@@ -1,0 +1,47 @@
+\section{Governance entities}
+\label{sec:governance}
+
+These are not software. They are the objects that make it lawful to process a real
+clinic's data, and the system must conform to them; there is nothing here to implement. They
+are specified here because two design decisions depend on them (the audit record and
+the deletion path), and because retrofitting either one is a rewrite.
+
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.215\textwidth}|L{0.44\textwidth}|L{0.235\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Entity} & \textbf{Definition} & \textbf{Consequence for the design} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Entity} & \textbf{Definition} & \textbf{Consequence for the design} \\ \hline
+\endhead
+Data Controller & The body that determines the purpose of processing and carries the
+  legal responsibility for it. Expected to be the City Health Office. & The purpose is
+  recorded per dataset version, not left implicit. \\ \hline
+\rowcolor{rowshade}Data Processor & The party that processes on the controller's
+  instruction, and only for the stated purpose. Expected to be the university. & Reuse for
+  a second purpose requires a new agreement, not a config flag. \\ \hline
+Data-Sharing Agreement & The signed instrument covering data scope, purpose, security,
+  retention, breach notification, publication rights and termination. & Fixes what may be
+  stored locally and what must be deleted on exit. \\ \hline
+\rowcolor{rowshade}Ethics Approval & Clearance from the university research ethics
+  committee to use human-subject-derived health data, aggregated counts included where
+  required. & Approval reference is recorded per run; its scope bounds which evaluations
+  are admissible. \\ \hline
+Operator Role & The permission to start a run, read a model output, or export a report, held
+  separately from server administration. & Requires role-based access and one audit record
+  per action. \\ \hline
+\rowcolor{rowshade}Retention Schedule & How long raw observations, model versions,
+  evaluation snapshots and audit records are kept, and what deletes them. & Deletion must
+  be an operation the system performs, not a sentence in a policy. \\ \hline
+\end{spectab}
+
+\subsection{The patient is deliberately absent}
+There is no patient entity in this system: no identifier, no pseudonym, no row, no key.
+Demand exists only as aggregate counts per facility, commodity and period. This is a
+design claim, not a promise, and every downstream privacy statement depends on it
+remaining true. Any future feature that would require patient-level data is out of scope
+and requires a new specification.
+
+\subsection{Transition boundary}
+Until a data-sharing agreement and ethics clearance exist, every value the system
+processes is synthetic and every artifact says so. This boundary is stated once here and
+referenced wherever a result is reported.
