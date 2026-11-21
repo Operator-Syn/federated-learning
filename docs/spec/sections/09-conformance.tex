@@ -1,0 +1,31 @@
+\section{Conformance requirements}
+\label{sec:conformance}
+
+The implementation is built against these requirements. Each is
+cheap to meet while the system is small, and expensive to retrofit once runs, reports and
+agreements exist.
+
+\begin{description}[leftmargin=2.6em,itemsep=0.5em]
+  \item[C1: no patient-level entity.] The system stores no identifier, pseudonym, row or key at
+        patient granularity. Demand appears only as aggregates per facility, commodity and
+        period.
+  \item[C2: an audit record per action.] Starting a run, changing a configuration, reading a
+        model output and exporting a report each produce a record naming the operator, the object,
+        the time and the configuration hash.
+  \item[C3: deletion by run.] A run's raw inputs, model versions, evaluation snapshots and
+        audit records must be deletable as one operation, and the deletion must be
+        demonstrable.
+  \item[C4: one purpose per dataset version.] Each dataset version states the purpose it was
+        collected for. A second purpose needs a new agreement.
+  \item[C5: synthetic until agreed.] Until a data-sharing agreement and ethics clearance
+        exist, every artifact carries the word synthetic, and the label travels inside the
+        file.
+  \item[C6: one name per object.] Every policy, entity and parameter keeps a single name wherever
+        it appears: in this document, in the configuration of a run, and in any report produced
+        from it. The implementation checks its own vocabulary against the one defined here and
+        reports a name that matches nothing.
+\end{description}
+
+\noindent
+C1, C5 and C6 bind the first build. The others are what a deployment would need, listed now
+so that the prototype does not have to be dismantled first.
