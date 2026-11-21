@@ -1,0 +1,355 @@
+\section{Metrics}
+\label{sec:metrics}
+
+Two things are reported for every policy: what the model achieved, and what it cost to get
+there. The second is the study's subject. A policy that reaches a good model slowly has spent
+rounds its facilities could not spare. Which quality metric the first of those uses is not fixed
+here; that choice belongs to the review of related literature, which does not yet exist
+(Section~\ref{sec:open}).
+
+\subsection{Notation}
+
+\begin{spectab}{|L{0.16\textwidth}|L{0.74\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Symbol} & \textbf{Meaning} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Symbol} & \textbf{Meaning} \\ \hline
+\endhead
+$i$ & facility index \\ \hline
+\rowcolor{rowshade}$r$ & round index, counted from 1 \\ \hline
+$c_i(r)$ & number of rounds facility $i$ contributed to, after round $r$ \\ \hline
+\rowcolor{rowshade}$P_r$ & facilities that actually trained in round $r$ \\ \hline
+$\ell_i$ & time facility $i$ needs to complete one round, in seconds \\ \hline
+\rowcolor{rowshade}$d_r$ & duration of round $r$, in seconds \\ \hline
+$t_r$ & simulated elapsed time after $r$ rounds \\ \hline
+\rowcolor{rowshade}$Q_r$ & the reported quality metric after $r$ rounds (Section~\ref{sec:open}) \\ \hline
+$\tau$ & target value of $Q_r$ for a usable model \\ \hline
+\rowcolor{rowshade}$r^{*}$ & the first round at which $Q_r$ meets $\tau$ \\ \hline
+$T^{*}$ & the elapsed time at that round, $t_{r^{*}}$ \\ \hline
+\rowcolor{rowshade}$R_p$ & the first round at which every facility has met the floor $p$ \\ \hline
+$p$ & participation floor, as a share of rounds \\ \hline
+\rowcolor{rowshade}$h_i$ & rows held out at facility $i$ (Section~\ref{sec:quality}) \\ \hline
+\end{spectab}
+
+\noindent
+Throughout, a star marks the round at which a condition first holds: notation, never a
+multiplication. Both minima below range over the
+$R$ rounds of a single run (Section~\ref{sec:parameters}), so a condition met in no round of the
+run leaves its quantity undefined. The run's own parameters --- the round budget $R$, the
+held-out fraction $f$ and the record volume $n_i$ --- are listed in
+Section~\ref{sec:parameters}; within a sum, $j$ indexes a round. In the listings,
+\texttt{c[i][r]}, \texttt{d[r]} and \texttt{t[r]} are $c_i(r)$, $d_r$ and $t_r$. Three
+conventions apply: time is
+simulated rather than wall-clock, because the study prices time and not compute; every figure
+carries its seed, configuration and data version; and a result that cannot be computed is printed
+as undefined rather than coerced to zero.
+
+\subsection{Model quality}
+\label{sec:quality}
+
+The study classifies each facility period as a surge or not, from facility records, and two ways
+of scoring such a model are defensible. The period can be treated as a quantity and scored with a
+scaled error measure, or the surge label can be treated as a class and scored with balanced
+accuracy, the mean per-class recall that a rare class makes necessary. They answer different
+questions. An error measure says how far a count is missed by; balanced accuracy says how reliably
+a surge is caught.
+
+The study chooses balanced accuracy on surge periods (OD-7, resolved 2026-11-20). Two reasons. A
+low-volume facility's demand series is zero-heavy, and a percentage error is undefined or explosive
+on zeros, whereas balanced accuracy never divides by a count that may be zero. And the comparison
+this study reports is per facility: an error measure is not scale-free, so ranking a station
+holding a few hundred records against one holding a few thousand would need a scaling argument
+before any ranking could be stated. Balanced accuracy also has a floor a reader can reason with ---
+a trivial always-negative classifier scores $0.5$ --- which is what makes a target interpretable.
+
+\noindent
+Balanced accuracy is the mean of the per-class recall rates, so that a rare class carries the same
+weight as a common one:
+
+\begin{equation}
+\mathrm{BA} \;=\; \frac{1}{K}\sum_{k=1}^{K}
+  \frac{\text{rows of class } k \text{ classified correctly}}{\text{all rows of class } k},
+\label{eq:ba}
+\end{equation}
+
+\noindent
+with $K$ classes and, here, $K = 2$. On a pooled held-out set of $100$ surge rows and $400$
+non-surge rows, a model that catches $60$ surges and classifies $380$ of the non-surges correctly
+scores
+
+\[
+\mathrm{BA} \;=\; \frac{1}{2}\left(\frac{60}{100} + \frac{380}{400}\right)
+\;=\; \frac{0.60 + 0.95}{2} \;=\; 0.775 .
+\]
+
+\noindent
+Plain accuracy cannot stand in. Those same predictions give $(60 + 380)/500 = 0.88$ plain accuracy,
+but a model that always answers ``no surge'' gives $400/500 = 0.80$ plain accuracy while catching no
+surge at all, and only $0.50$ balanced accuracy. Averaging the two recall rates is what keeps a rare
+event from being averaged away.
+
+What the document fixes is the shape of the
+requirement: one scalar $Q_r$, comparable across policies, computed on the pooled held-out rows
+of every facility, split chronologically because neighbouring clinic-days are predictive, and
+carrying its own direction --- for balanced accuracy, a rate, so higher is better.
+
+\noindent
+The evaluation itself is fixed:
+
+{\small
+\begin{verbatim}
+for each facility i:
+    sort the rows of i by period, oldest first
+    h <- ceil(f * n[i])            # f from Section 7
+    held-out[i] <- last h rows of i    # none if h = 0
+    training[i] <- the rows before them
+pooled <- union of held-out rows over all i
+valid <- pooled non-empty and all training[i] non-empty
+for r = 1 to R:
+    if valid:
+        Q[r] <- score(model after round r, pooled)
+    else:
+        Q[r] <- undefined          # nothing comparable to score
+output Q[1..R]
+\end{verbatim}
+}
+
+\noindent
+Each facility holds out the last $h_i$ rows of its own record, where
+
+\begin{equation}
+h_i \;=\; \lceil f\, n_i \rceil
+\label{eq:holdout}
+\end{equation}
+
+\noindent
+and the pooled evaluation set is the sum of those counts:
+
+\begin{equation}
+\text{pooled rows} \;=\; \sum_i h_i
+\label{eq:pooled}
+\end{equation}
+
+\noindent
+In arithmetic, at $f = 0.2$ and $n_i = 350$:
+
+\[
+h_i \;=\; \lceil 0.2 \times 350 \rceil \;=\; 70\ \text{held out},
+\qquad
+350 - 70 \;=\; 280\ \text{trained on},
+\]
+
+\noindent
+and three facilities of that size give a pooled evaluation set of
+
+\[
+\sum_i h_i \;=\; 70 + 70 + 70 \;=\; 210\ \text{rows}.
+\]
+
+\noindent
+A configuration
+that leaves a facility with no training rows, or leaves the pooled set empty, has no comparable
+quality: $Q_r$ is then undefined for every round, and the run is reported as invalid rather than
+scored.
+
+\noindent\textbf{In plain terms.} Quality is scored only on records the model never saw while
+training, so it cannot look good by memorising. The two options answer different questions: how
+far short a count may be missed by, or how reliably a surge period is flagged. A stock decision,
+or a warning.
+
+\subsection{Time to a usable model}
+
+The clock starts when training starts and stops at the round where quality is good enough. Whether
+a value clears the target depends on which way the metric runs:
+
+\[
+Q_r \text{ meets } \tau \quad\Longleftrightarrow\quad
+\begin{cases}
+Q_r \le \tau, & \text{when } Q \text{ is an error},\\[2pt]
+Q_r \ge \tau, & \text{when } Q \text{ is a rate}.
+\end{cases}
+\]
+
+\begin{equation}
+r^{*} = \min\{\, r : Q_r \text{ meets } \tau \,\},
+\qquad T^{*} = t_{r^{*}}
+\label{eq:tstar}
+\end{equation}
+
+\noindent
+If no round reaches $\tau$, $T^{*}$ is \emph{undefined}, not zero. A policy that never produces
+a usable model has failed in a way a zero would hide.
+
+\noindent
+$\tau$ is not chosen from outside the study. It is the balanced accuracy of the local-only baseline
+--- a model trained on one facility's own records --- computed once per experimental condition from
+the frozen baselines before any policy comparison runs, and declared with that condition
+(Section~\ref{sec:open}, OD-7). $T^{*}$ then answers something a facility can act on: how long
+until federation catches up to what it could already do alone. A condition whose local-only
+baseline falls at or below $0.5$ has no usable $\tau$, since $0.5$ is what an always-negative
+classifier scores; such a condition is reported as unevaluable rather than compared.
+
+\noindent
+The same definition as a procedure, for readers who find the set notation harder than the loop:
+
+{\small
+\begin{verbatim}
+time <- 0
+r* <- undefined
+T* <- undefined
+for r = 1 to R:                # the run is R rounds (Section 7)
+    d[r] <- round duration      # from 6.5; 0 if nobody answered
+    time <- time + d[r]        # after this line, time = t_r
+    if Q[r] is defined and Q[r] meets tau:    # <= error, >= rate
+        r* <- r
+        T* <- time
+        break
+output (r*, T*)                # undefined pair if none met tau
+\end{verbatim}
+}
+
+\noindent
+The same quantity in arithmetic: $T^{*}$ is the sum of the round durations up to and including
+the round that reaches the target.
+
+\begin{equation}
+T^{*} \;=\; d_1 + d_2 + \cdots + d_{r^{*}} \;=\; \sum_{j=1}^{r^{*}} d_j
+\label{eq:tstar-sum}
+\end{equation}
+
+\noindent
+If the target is first reached at round four, and those four rounds took two, five, three and
+four hours, then
+
+\[
+T^{*} \;=\; 2 + 5 + 3 + 4 \;=\; 14\ \text{hours}.
+\]
+
+\noindent
+The durations are quoted in hours here for readability; the model itself counts seconds. A round
+that stalls contributes its zero like any other term in the sum.
+
+\noindent\textbf{In plain terms.} Training runs in rounds, and each round costs time: staff, power,
+a working connection. Quality does not rise evenly, so what matters is when the model becomes good
+enough to trust. $r^{*}$ is that round, and $T^{*}$ is the clock when it arrives.
+
+\subsection{Participation floor and its cost}
+
+\begin{equation}
+R_p = \min\left\{\, r : \min_i \frac{c_i(r)}{r} \;\ge\; p \,\right\},
+\qquad \text{cost} = t_{R_p}
+\label{eq:rfloor}
+\end{equation}
+
+\noindent
+$R_p$ is the first round at which every facility has met the floor \emph{at the same time}.
+Because the share is cumulative, a facility that reaches it once can fall below it again by
+missing later rounds, so $R_p$ is read alongside each facility's trajectory $c_i(r)/r$; the
+single number would otherwise claim a sustained inclusion the data has not shown. A facility that
+never reaches the floor leaves $R_p$ undefined: that is the finding, not a missing value.
+
+\noindent
+The search for that round, as a procedure:
+
+{\small
+\begin{verbatim}
+Rp <- undefined
+cost <- undefined
+for r = 1 to R:
+    low <- min over all i of c[i][r]/r    # every facility
+    if low >= p:
+        Rp <- r
+        cost <- t[r]
+        break
+output (Rp, cost)
+\end{verbatim}
+}
+
+\noindent
+Its cost is the same elapsed-time sum as any other round:
+
+\begin{equation}
+t_{R_p} \;=\; d_1 + d_2 + \cdots + d_{R_p} \;=\; \sum_{j=1}^{R_p} d_j
+\label{eq:rfloor-cost}
+\end{equation}
+
+\noindent
+The round itself has an arithmetic form too. Because $c_i(r)$ is a whole number,
+
+\[
+\frac{c_i(r)}{r} \;\ge\; p \quad\Longleftrightarrow\quad c_i(r) \;\ge\; \lceil p\,r \rceil,
+\]
+
+\noindent
+so $R_p$ is the smallest $r$ at which the right-hand inequality holds for every facility. Take
+$p = 0.75$ and compare six rounds; each facility must then have joined at least
+
+\[
+\lceil 0.75 \times 6 \rceil \;=\; \lceil 4.5 \rceil \;=\; 5
+\]
+
+\noindent
+of the six. If those six rounds took three, four, two, five, three and two hours, the cost is
+
+\[
+t_{R_p} \;=\; 3 + 4 + 2 + 5 + 3 + 2 \;=\; 19\ \text{hours}.
+\]
+
+\noindent\textbf{In plain terms.} The floor exists to catch a health center being quietly left out:
+it measures whether every facility took part in at least a stated share of rounds, so that the
+model in use is built with each of them, not around them. $R_p$ is the first round where all have
+reached that share at once, and the cost is how long it took. Reaching it once is not holding it.
+
+\subsection{Round duration and elapsed time}
+
+\begin{equation}
+d_r = \max_{i \in P_r} \ell_i,
+\qquad t_r = \sum_{j=1}^{r} d_j
+\label{eq:duration}
+\end{equation}
+
+\noindent
+$\ell_i$ is the whole per-round cost to facility $i$: local training, then transfer in both
+directions. A synchronous round ends when the last update arrives, so $d_r$ is the slowest
+participant's time and not the average, and one slow facility sets the pace for every other
+participant in that round. Server-side work (selection and aggregation) is assumed to take no
+time: what is priced is the facilities' time, not the aggregator's.
+
+The maximum in equation~\eqref{eq:duration} is taken as zero when no participant answers, so a
+stalled round has $d_r = 0$ and no progress claimed. That zero is a modelling assumption, not a
+measurement: a deployment with timeouts would charge the timeout instead, and stating the
+assumption keeps the difference visible.
+
+\noindent
+Round by round, those two equations are one loop:
+
+{\small
+\begin{verbatim}
+t[0] <- 0
+for r = 1 to R:
+    if P[r] is empty:
+        d[r] <- 0                  # stalled round
+    else:
+        d[r] <- max ell[i], i in P[r]
+    t[r] <- t[r-1] + d[r]
+output t[1..R], d[1..R]
+\end{verbatim}
+}
+
+\noindent
+\[
+t_r \;=\; d_1 + d_2 + \cdots + d_r
+\]
+
+\noindent
+Three rounds lasting two, zero and three hours, with the middle one stalled, give
+
+\[
+t_3 \;=\; 2 + 0 + 3 \;=\; 5\ \text{hours}.
+\]
+
+\noindent\textbf{In plain terms.} A round is not finished when the fastest center answers. It is
+finished when the slowest one does, because the server waits for every update before it can
+combine them. One facility having a bad week therefore sets the pace for everyone that week, and
+the total time is those rounds added up.
