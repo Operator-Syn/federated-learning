@@ -1,0 +1,140 @@
+\section{Open decisions}
+\label{sec:open}
+
+Each one changes the entity set or the metrics, so an invented answer here would quietly
+invalidate later work. Owners are named so that a decision has somewhere to land. Two items have
+been resolved by the study, and one has a proposed ruling that the partner has not yet agreed to;
+the table marks both, and the reasoning follows it so that a decision and its grounds stay
+traceable to one place.
+
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.065\textwidth}|L{0.315\textwidth}|L{0.16\textwidth}|L{0.30\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{ID} & \textbf{Decision} & \textbf{Owner} & \textbf{Blocks} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{ID} & \textbf{Decision} & \textbf{Owner} & \textbf{Blocks} \\ \hline
+\endhead
+OD-1 & Who is the data controller on paper: the City Health Office, or the Department of
+  Health regional office? & CHO & The agreement, and every claim about who may
+  publish. \\ \hline
+\rowcolor{rowshade}OD-2 & What is the reporting period: daily, weekly or monthly? &
+  CHO / RRL & Demand labels, the surge window, and whether a few hundred records is enough
+  history. \\ \hline
+OD-3 & Is distribution in scope, meaning stock positions and allocation recommendations, or
+  is the study classifying only? & resolved & Whether two domain entities become
+  core, and whether a shortage outcome is required. \\ \hline
+\rowcolor{rowshade}OD-4 & How is a surge defined: facility-relative percentile, or
+  district-wide outbreak signal? & study (proposed) & The label behind every reported metric.
+  Needs partner agreement, since an existing system is likely to already define it. \\ \hline
+OD-5 & Where does the aggregator run: university-hosted or CHO-hosted? & CHO / study &
+  The strength of the privacy claim and the operational burden. \\ \hline
+\rowcolor{rowshade}OD-6 & Are national facility codes and PSGC barangay codes obtainable
+  for the pilot sites? & CHO & Entity identity; without them, facility identity must be
+  redesigned. \\ \hline
+OD-7 & Which quality metric is primary: a scaled error measure on demand
+  counts, or balanced accuracy on surge days? And what threshold makes a model usable? &
+  resolved & Every reported result, and the meaning of $\tau$ (Section~\ref{sec:metrics}). \\ \hline
+\rowcolor{rowshade}OD-8 & In deployment, how is $Q_r$ computed without moving rows, when only
+  parameters may cross to the aggregator? & CHO / adviser & What $Q_r$ means outside simulation: a
+  per-facility score is neither a row nor a parameter, so the parameters-only promise may need
+  narrowing (Section~\ref{sec:deployment}). \\ \hline
+\end{spectab}
+
+\noindent
+Until an item is resolved, the text that depends on it should cite this table rather than assume
+a default. A fallback stated as conditional is not an assumption: it applies only if the item is
+still open after the review, and the section that states it says so.
+
+\subsection{Resolved}
+
+\textbf{OD-3 --- distribution is out of scope (resolved 2026-11-20).}
+The study classifies surge periods at each facility. It does not forecast quantities, track stock
+positions, or recommend allocations. The domain entities for distribution remain defined so that
+the answer can change without redesigning the record, but no shortage outcome is required and none
+is claimed.
+
+\textbf{OD-7, metric --- balanced accuracy is primary (resolved 2026-11-20).}
+$Q_r$ is balanced accuracy on surge periods. A low-volume facility's series is zero-heavy, and a
+percentage error is undefined or explosive on zeros, whereas balanced accuracy never divides by a
+count that may be zero. The comparison is also per facility, and an error measure is not
+scale-free: ranking a station holding a few hundred records against one holding a few thousand
+would need a scaling argument before any ranking could be stated.
+
+\textbf{OD-7, threshold --- $\tau$ is the local-only baseline (resolved 2026-11-20).}
+$\tau$ is the balanced accuracy of a model trained on one facility's own records, computed once per
+experimental condition from the frozen baselines before any policy comparison runs, and declared
+with that condition. $T^{*}$ then answers something a facility can act on: how long until
+federation catches up to what it could already do alone. A condition whose local-only baseline
+falls at or below $0.5$ --- what an always-negative classifier scores --- has no usable $\tau$ and
+is reported as unevaluable rather than compared.
+
+\subsection{Proposed --- awaiting partner review}
+
+\textbf{OD-4 --- surge is facility-relative (proposed 2026-11-20, not agreed).}
+A surge is a facility's own demand rising above its own past, because barangays do not surge
+together: Barangay A may need a commodity when Barangay B does not. The definition is ready and is
+what the study implements unless it is overridden. It should be read as contested rather than
+settled: a partner that already runs a system will tend to hold its existing definition as the
+correct one, and a district-wide outbreak signal is a defensible alternative. The disagreement is
+not cosmetic, because the label changes every reported metric.
+
+Two parts of the definition separate, and only one of them is negotiable.
+
+\textbf{Negotiable: what counts as elevated.} A facility-relative percentile, a district-wide
+outbreak signal, or the partner's existing rule.
+
+\textbf{Not negotiable: the threshold is computable from past data alone.} Whatever rule is chosen,
+the label at period $t$ uses records up to $t-1$ and never a facility's whole history. Under the
+proposed definition that is
+\[
+\text{surge}_t = 1 \quad\Longleftrightarrow\quad D_t > P_q\!\left(D_{t-w},\ldots,D_{t-1}\right)
+\]
+with window $w$ and percentile $q$ declared per condition. A district-wide rule is admissible only
+if it can be written in the same form; otherwise the threshold would not be computable at the point
+it is needed.
+
+\noindent
+The same rule in arithmetic, for a facility reporting monthly with $w = 12$ and $q = 80$. The
+twelve counts recorded before this month, sorted into ascending order:
+
+\[
+38,\;40,\;41,\;43,\;45,\;46,\;47,\;49,\;52,\;55,\;58,\;60
+\]
+
+\noindent
+The eightieth percentile sits between the ninth value and the tenth, eight tenths of the way along:
+
+\[
+P_{80} \;=\; 52 + 0.8 \times (55 - 52) \;=\; 54.4
+\]
+
+\noindent
+so the label for a month is decided by a single comparison against $54.4$:
+
+\[
+D_t = 58 > 54.4 \;\Longrightarrow\; \text{surge}_t = 1,
+\qquad
+D_t = 47 \le 54.4 \;\Longrightarrow\; \text{surge}_t = 0 .
+\]
+
+\noindent
+That example exposes something the symbolic form hides. $P_{80}$ of twelve values is not one of the
+recorded counts, so the percentile needs a convention. Linear interpolation between the two
+neighbouring order statistics is the convention used here; taking the tenth value outright would
+set the threshold at $55$ and flip a month of exactly $55$ units. The threshold is a computed
+number, not a count anyone wrote down, and the convention is part of the definition.
+
+\noindent\textbf{In plain terms.} Each facility is measured against its own recent past. If this
+month's demand is above what four months in five of its own recent months looked like, that month is
+a surge for that barangay. Another barangay's numbers never enter the comparison, and neither does
+any fixed number of units, so a station that is always busy and one that is never busy are each
+judged against themselves.
+
+Three consequences are stated rather than discovered later. $q$ sets the class balance instead of
+measuring Iligan's: at $q = 80$ roughly one period in five is a surge at every facility by
+construction. A facility-relative label is not the same as an operational shortfall --- a facility
+can sit at its own ninetieth percentile and still be nowhere near a stockout --- which OD-3 puts out
+of scope and which this study therefore does not measure. And the estimate is unstable at the period
+length currently reported: informal talks put local reporting at monthly or quarterly, so a
+percentile over a couple of dozen periods rests on very little history, and neither $w$ nor $q$ can
+be declared until OD-2 fixes the period.
