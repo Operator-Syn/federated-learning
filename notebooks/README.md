@@ -12,11 +12,15 @@ that is `.venv\Scripts\python.exe`, elsewhere `.venv/bin/python`, and the script
 ```bash
 uv sync                                   # create .venv from uv.lock
 uv run python scripts/setup_notebook_filters.py   # once per clone
+uv run python -m ipykernel install --prefix .venv \
+  --name fl-thesis --display-name "Python (fl-thesis)"   # kernelspec inside .venv
 uv run jupyter lab --notebook-dir=notebooks
 ```
 
 Pick the **Python (fl-thesis)** kernel. The kernelspec is installed inside `.venv`, not in your
-home directory, so it exists only while you are working in this checkout.
+home directory, so it exists only while you are working in this checkout. `uv sync` provides only
+ipykernel's own `python3` kernel, so the install line above is what registers `fl-thesis`; rerun it
+after recreating `.venv`.
 
 The repository tooling behind these commands — the notebook filter, the lint gate and the Zotero
 export — is documented in [`scripts/README.md`](../scripts/README.md).
@@ -26,11 +30,11 @@ the repo root however Jupyter or `nbconvert` was launched.
 
 ## Check the environment
 
-`00-workspace-check.ipynb` prints the interpreter path, library versions and plotting backend, then
-writes one synthetic figure to `runs/`. If it runs clean, the workspace is wired correctly.
+`00-workspace-check.ipynb` prints the interpreter path, Python version, host and library versions,
+then writes one synthetic figure to `runs/`. If it runs clean, the workspace is wired correctly.
 
-Run it headlessly, the way CI would. The commands are identical across platforms; only the way you set
-an environment variable differs:
+Run it headlessly from the repository root. The commands are identical across platforms; only the way
+you set an environment variable differs:
 
 ```bash
 # Linux / macOS
@@ -47,7 +51,8 @@ $env:MPLBACKEND="Agg"; uv run --frozen jupyter nbconvert --to notebook --execute
 ## Git filter (one-time, per clone)
 
 Notebooks are stored stripped: `.gitattributes` routes `*.ipynb` through a clean filter, so outputs
-and execution counts never reach a commit, and diffs render as readable cells instead of raw JSON.
+and execution counts are stripped on commit — once the filter is registered in your clone, which is
+the next step. Diffs render as readable cells instead of raw JSON.
 
 The attribute rules are committed; the filter *command* cannot be, because git keeps it in
 `.git/config`. So after cloning:
@@ -66,8 +71,9 @@ without complaining.
 
 CI checks the same thing from the other side: `.github/workflows/notebooks.yml` fails any change that
 still contains outputs, and strips-and-pushes a fix to same-repository pull request branches. The local
-filter is still the one that matters — it keeps your working tree clean and your diffs readable; the
-workflow only catches what slipped through someone else's clone.
+filter is still the one that matters — it keeps what git stores and the diffs it shows clean; the
+workflow only catches what slipped through someone else's clone. A clean filter does not rewrite your
+working file, so the notebook on disk keeps its outputs until something strips it.
 
 ## Conventions
 
