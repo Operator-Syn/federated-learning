@@ -1,5 +1,6 @@
 # Python
 .venv/
+.venv-ci/
 __pycache__/
 *.pyc
 *.egg-info/
@@ -10,15 +11,31 @@ dist/
 .ruff_cache/
 .pytest_cache/
 .mypy_cache/
+.hypothesis/
+.cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
+*.nbconvert.ipynb
 
-# experiment output
+# experiment output and model artifacts — run output belongs in runs/
 runs/
 *.csv
+*.npy
+*.npz
+*.parquet
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.ckpt
+
+# scratch files left by interrupted writes (scripts/refresh-references.py)
+*.tmp
 
 # local environment and secrets — never commit these
 .env
@@ -37,7 +54,8 @@ desktop.ini
 # obsidian vault config
 .obsidian/
 
-# Keep the complete source library versioned, except local editor settings.
+# Keep the complete source library versioned, except local editor settings and scratch files.
 !docs/
 !docs/**
 docs/**/.obsidian/
+docs/**/*.tmp
