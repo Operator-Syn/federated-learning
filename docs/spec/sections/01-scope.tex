@@ -1,0 +1,42 @@
+\section{Scope and non-claims}
+\label{sec:scope}
+
+\subsection{Purpose}
+The system predicts medicine demand at individual barangay health centers, without moving
+patient records out of the facilities that hold them. Whether it also supports distribution,
+by tracking stock positions and recommending allocation, is open decision OD-3 in
+Section~\ref{sec:open}; the entities for it are defined so that the answer can change without
+redesigning the record.
+Federated learning supplies the mechanism: each facility trains on its own records and
+only model parameters cross to an aggregator, the coordinating server.
+
+\subsection{Two modes of use}
+The same entity definitions serve both, because a simulated facility must be the same
+\emph{kind} of thing as a real one:
+\begin{description}[leftmargin=1.5em,itemsep=0.2em]
+  \item[Simulated mode] Every entity is instantiated with synthetic values. This is the mode the
+    thesis evaluates until a data-sharing agreement with the City Health Office is signed, and
+    every artifact produced in it is labelled synthetic.
+  \item[Deployment mode] Entities are instantiated from City Health Office (CHO) records under
+    that agreement. It supersedes simulated mode for the pilot sites once the agreement exists;
+    until then the study is a simulation, not a deployed service.
+\end{description}
+
+\subsection{What this specification does not claim}
+\begin{enumerate}[leftmargin=1.5em,itemsep=0.2em]
+  \item No policy is better than another. Comparing them is the study's work.
+  \item No number here is Iligan's until calibration is separately justified. While the study
+    runs in simulated mode every reported value is synthetic and labelled so; values derived from
+    CHO records take their provenance from the signed agreement, not from this document.
+  \item The predictive model is not the contribution. A model that works is part of the
+    study's goal, since every policy is measured against one, but it is specified only far
+    enough to serve that measurement; improving it is not the aim.
+  \item The design is not validated until a pilot runs. Simulated results establish that the
+    prototype runs and the metrics compute; they do not establish that the system works in a
+    health center, and nothing in this document should be read as an operational claim.
+  \item Every reported value is admissible only with the seed and configuration that
+    produced it.
+  \item Nothing in this document constitutes legal terms. The governance requirements in
+    Section~\ref{sec:governance} state what the system must conform to; the data-sharing
+    agreement is drafted by the partner, not by the study.
+\end{enumerate}
