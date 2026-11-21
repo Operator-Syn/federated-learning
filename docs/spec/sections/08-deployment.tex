@@ -1,0 +1,109 @@
+\section{Deployment requirements}
+\label{sec:deployment}
+
+A facility deciding whether to sign asks one question about hardware: will the computer we already own
+run this? The figures below are a \emph{sizing baseline} to check a machine against, not a measurement
+--- planning assumptions until the prototype is benchmarked on a machine of this class. The named
+processor is an illustration, not a purchase order: any part of comparable class is expected to meet
+the same workload. Comparable class is settled by a benchmark, not by a spec sheet — the same test
+that confirms the reference part below would confirm any candidate — so until that benchmark exists,
+compare core count and vintage rather than one clock number.
+
+\noindent\textbf{One facility node.} Each participating health center runs one. It trains on its own
+records and uploads the resulting parameters; no row, identifier or label leaves the machine
+(Section~\ref{sec:entities-system}).
+
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.145\textwidth}|L{0.315\textwidth}|L{0.44\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Part} & \textbf{Planning baseline} & \textbf{Why it is set here} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Part} & \textbf{Planning baseline} & \textbf{Why it is set here} \\ \hline
+\endhead
+Processor & 6 cores, about 2.9\,GHz base; an Intel Core i5-10400 is the reference part & Training reads hundreds to low thousands of rows against a model specified to be simple on purpose (Section~\ref{sec:scope}). A model that needed a workstation would undercut that position. \\ \hline
+\rowcolor{rowshade}Memory & 8\,GB & One operating system, one interpreter and one model. The model persists between rounds; nothing else is held. The operating system is the binding case, not the model. \\ \hline
+Storage & 256\,GB, at least 40\,GB free & Facility records stay on this machine. Their retention is settled by the data-sharing agreement and C3 (Section~\ref{sec:conformance}), not by this section. \\ \hline
+\rowcolor{rowshade}Graphics & Integrated only & No step in this system is specified to need a discrete graphics processor. A machine that has one is not disqualified. \\ \hline
+Operating system & Windows 11 Pro 64-bit, or Ubuntu 22.04 LTS & Both are intended targets and both must be exercised before either is called supported. Windows~11 is limited to Microsoft's published supported-processor lists (Intel 8th generation and newer, AMD Ryzen 2000 and newer), which is where the floor comes from; the compatibility check is the authority, not this table. \\ \hline
+\rowcolor{rowshade}Network & 512\,kbps upload, with interruptions & A round sends one model file: about sixteen seconds at 512\,kbps for a one-megabyte file, before protocol overhead. Section~\ref{sec:metrics} prices a whole round; it does not establish that the link dominates one. \\ \hline
+Power & 600\,VA uninterruptible supply & An interrupted write can damage records the facility holds. Whether the supply is the facility's cost or the study's is not settled here. \\ \hline
+\end{spectab}
+
+\noindent\textbf{The aggregator.} One machine for the whole pilot, not one per health center. It receives
+parameter updates and keeps the model versions and the run record; it is the same order of computer as
+a node, not a server.
+
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.145\textwidth}|L{0.315\textwidth}|L{0.44\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Part} & \textbf{Planning baseline} & \textbf{Why it is set here} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Part} & \textbf{Planning baseline} & \textbf{Why it is set here} \\ \hline
+\endhead
+Processor & 4 cores or more; the same reference part, or a 4-vCPU virtual machine & It combines the updates it receives and writes them to disk. A hosted virtual machine is an expected arrangement, not a compromise. \\ \hline
+\rowcolor{rowshade}Memory & 16\,GB & The global model and every facility's update are held at once, and that number grows with the facility count $N$ (Section~\ref{sec:parameters}). The 16\,GB figure assumes at most ten facilities and a model of a few megabytes. \\ \hline
+Storage & 512\,GB, at least 250\,GB free & One model file per round, so versions cost about $R \times$ model size: at 200 rounds and 1\,MB, roughly 200\,MB. That is an illustration, not a measured setting, and it assumes a model of a few megabytes over a round budget of a few hundred. \\ \hline
+\rowcolor{rowshade}Operating system & Ubuntu 22.04 LTS & It is intended to run unattended for the length of a study. Windows Server is untested and not claimed. \\ \hline
+Network & Wired, 5\,Mbps or more, reachable by every facility & Every upload arrives here, so it has to be the dependable end of an unreliable network. \\ \hline
+\rowcolor{rowshade}Backup & A copy off the machine at least nightly & The model versions are the study's evidence; losing them loses the run. The cadence is a planning figure. \\ \hline
+\end{spectab}
+
+\noindent\textbf{Checking a machine already on the desk.} On Windows, the processor and installed memory
+are under \textsf{Settings} $\rightarrow$ \textsf{System} $\rightarrow$ \textsf{About}, and free space
+under \textsf{This PC}; Windows~11 eligibility is answered by Microsoft's own compatibility check. For
+the link, the upload rate matters, not the download figure a speed test quotes first. A machine that
+meets every row is expected to need nothing bought, and one that misses a row is expected to need
+that row fixed rather than a new computer; the benchmark is what confirms either reading.
+
+
+\noindent\textbf{Data requested from the City Health Office.} The study needs one kind of record:
+what left the store. Each entry should carry five facts, and the
+office's own file already carries most of them under whatever names it uses.
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item \textbf{Facility.} The office's way of telling one health center from another: a name, a
+        code, or both. National facility and barangay codes if they are held; whether they are is
+        OD-6.
+  \item \textbf{Medicine.} Generic name, dosage form, strength and unit, as the facility stocks it
+        (Section~\ref{sec:entities-domain}). An internal product code or a brand name may travel
+        alongside. Where the office records only codes or brand names, converting them to generic
+        names can be done by the office or by the study, whichever suits the office --- the request
+        is that each medicine carry a generic name by the time the file is used.
+  \item \textbf{Period.} The span each entry covers, stated once for the file. A day, a week and a
+        month all work; which one is used remains OD-2, and all this asks is that the file say which.
+  \item \textbf{Quantity.} How much left the store in that period, and the unit it is counted in
+        (tablets, bottles, boxes). A closing stock balance instead of a dispensed quantity can also
+        be worked with.
+  \item \textbf{Completeness.} A marker on entries that were estimated or reconstructed, or a note
+        saying the office keeps none. A gap that is marked is usable data; a gap quietly filled in
+        is not.
+\end{enumerate}
+
+\noindent
+Column names, codes and file layout stay the office's. A system export, a spreadsheet or a written
+log typed up afterwards all serve. If the facts sit under unfamiliar headings, or across two files
+that join on facility and date, that is acceptable: what would not be acceptable is a file from
+which those five facts cannot be recovered.
+
+\noindent
+History is whatever continuous run the office holds, with its start and end stated. A short run is
+accepted and recorded as short; the study does not ask for a period the records cannot cover, and a
+longer run is better than a short one because demand has seasons. Patient identities, prescriptions,
+staff names and prices are not requested, and a file containing them will be reduced to the five
+facts above before it is used (C1).
+
+\noindent
+The mapped file becomes one dataset version with a stated purpose and date (C4). Until an agreement
+exists and the real file is provided, every figure in this annex comes from a synthetic dataset built
+to this shape, and is labelled synthetic (C5).
+
+\noindent\textbf{What this section does not settle.} Who hosts the aggregator, and therefore who pays
+for it and for its backup, is open decision OD-5; the shape of the data request follows OD-2 and
+OD-6 (both Section~\ref{sec:open}). Whether power protection is
+the facility's obligation or the study's is undecided. And how the quality metric of
+Section~\ref{sec:metrics} is computed across facilities in a real deployment is open decision OD-8:
+the specification describes the computation as the study runs it, on held-out rows pooled inside one
+process. A deployment would instead need some exchange --- a score per facility, or a sufficient statistic
+--- and neither is a row or a parameter: Section~\ref{sec:scope} promises that only parameters
+cross, so that promise is narrower than deployment evaluation would need. Answer OD-8 before this section's figures are
+treated as sufficient.
