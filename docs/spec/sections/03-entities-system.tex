@@ -1,0 +1,51 @@
+\section{System entities}
+\label{sec:entities-system}
+
+A barangay health center exists whether or not anything is built around it. A round, the
+facilities that joined it, and the audit record of what happened exist only while the
+software is running. The entities below are defined in those terms, because they are how the
+study's evidence is recorded: who trained, how long a round took, which facility never
+answered.
+
+\noindent A filled square marks the entities implemented by the first version.
+
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.20\textwidth}|L{0.42\textwidth}|L{0.27\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Entity} & \textbf{Definition} & \textbf{Notes} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Entity} & \textbf{Definition} & \textbf{Notes} \\ \hline
+\endhead
+Node\core & The facility's agent. Holds that facility's records and performs local
+  training. & The only component that ever reads rows. \\ \hline
+\rowcolor{rowshade}Aggregator\core & The coordinating server. Shares the global model,
+  receives parameter updates, and records what happened. & Hosting location is an open
+  decision (Section~\ref{sec:open}). \\ \hline
+Round\core & One exchange: model distributed, local training at selected facilities,
+  parameter updates aggregated. Identified by number; records which facilities were
+  selected, which could be reached, which trained, the duration and the timestamps. & A round
+  completes at the pace
+  of its slowest participant (Section~\ref{sec:metrics}). \\ \hline
+\rowcolor{rowshade}Model Version\core & A global model artifact: parameter vector,
+  architecture and configuration hash, training provenance. & Parameters only. No row,
+  label or gradient for an individual record is ever stored in a model version. \\ \hline
+Selection Decision & The per-round record of which facilities were invited, which
+  answered, and the policy that chose them. & The evidence for whatever a policy claims
+  about inclusion. \\ \hline
+\rowcolor{rowshade}Participation Record & Cumulative counts of rounds each facility
+  contributed to. & Basis of the participation floor metric
+  (Section~\ref{sec:metrics}). \\ \hline
+Policy Configuration & The named selection family and its parameters for a run. & Names
+  are fixed by Section~\ref{sec:policies} and used unchanged in configuration and
+  reports. \\ \hline
+\rowcolor{rowshade}Calibration Profile & The parameter set that describes a city: facility
+  roster, reliabilities, latencies, volumes, floor and target. & The durable artifact the
+  study intends to leave behind, so the comparison can be re-run as facilities come
+  online. \\ \hline
+Evaluation Snapshot & The held-out evaluation of a model version at a point in time:
+  data version, metric values, seed. & Ties a reported number to the exact conditions
+  that produced it. \\ \hline
+\rowcolor{rowshade}Audit Record & Who performed which action on which object, when, under
+  which configuration hash. & Required for conformance;
+  see Section~\ref{sec:conformance}. \\ \hline
+\end{spectab}
