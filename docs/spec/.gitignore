@@ -1,0 +1,9 @@
+# LaTeX build artifacts. The PDF is generated, not committed: rebuild with `make`.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+technical-spec.pdf
