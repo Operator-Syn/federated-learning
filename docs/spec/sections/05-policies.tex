@@ -1,0 +1,42 @@
+\section{Selection policy families}
+\label{sec:policies}
+
+The study does not propose a new selection algorithm. It instantiates the families that
+already exist and measures what each costs under Iligan-like connectivity. Four families are
+compared; the fourth is a baseline included on purpose. Uniform random selection is what the
+other three have to beat. Without that neutral comparison, a better result could come from an
+easier comparison rather than from the policy.
+
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.175\textwidth}|L{0.44\textwidth}|L{0.285\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Family} & \textbf{Behaviour} & \textbf{Cost it is expected to pay} \\ \hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Family} & \textbf{Behaviour} & \textbf{Cost it is expected to pay} \\ \hline
+\endhead
+Adaptive sampling & Select only among facilities that answered this round. & Wastes no
+  slot, but inherits whichever population happens to be reachable. \\ \hline
+\rowcolor{rowshade}Resource-aware selection & Among reachable facilities, prefer the
+  lowest expected completion time. & May shorten rounds; can starve slow facilities and push
+  them under the floor. \\ \hline
+Fair sampling & Among reachable facilities, prefer the least-served. & Aims to protect the floor;
+  may lengthen rounds, since under-served facilities can also be the slow ones. \\ \hline
+\rowcolor{rowshade}Baseline: reachability-blind uniform & Sample without consulting
+  availability. & Selected facilities that never answer waste the slot. Included as the
+  strawman, not as a recommendation. \\ \hline
+\end{spectab}
+
+\subsection{Naming rule}
+The four names above are normative; the thesis and the review of related literature (RRL) are to
+use the same four. Wherever the implementation distinguishes the families — in its configuration,
+in its reports, in its records — it uses these names and no others, so that a policy discussed
+here can be found unambiguously in the system that runs it. Changing which family is compared
+is then a change of configuration rather than a rebuild of the system. A fifth name, or a
+family called one thing in a report and another in a configuration file, is a defect in the
+implementation.
+
+\subsection{What a policy may not do}
+No policy may select a facility and later report it as participating when it did not
+answer. Selection and participation are recorded separately
+(Section~\ref{sec:entities-system}), so that a wasted slot shows up in the run's record instead
+of being quietly refilled.
