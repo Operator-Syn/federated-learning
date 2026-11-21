@@ -1,0 +1,46 @@
+\section{Domain entities}
+\label{sec:entities-domain}
+
+Everything here exists in a barangay health center whether or not software is built. In
+simulation these entities hold generated values, in deployment values from clinic records; they
+are described in clinic terms, not algorithmic ones.
+
+\noindent A filled square marks the entities built by the first version; the rest are defined for
+a later one.
+
+% Grid lines and a zebra band: with ten rows of wrapped prose, the eye needs a rule to
+% follow from an entity to its definition. The lines are pale enough not to fight the text.
+\begin{spectab}{|>{\raggedright\arraybackslash\bfseries}p{0.215\textwidth}|L{0.395\textwidth}|L{0.275\textwidth}|}
+\hline
+\rowcolor{headcell}\textbf{Entity} & \textbf{Definition} & \textbf{Notes} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{headcell}\textbf{Entity} & \textbf{Definition} & \textbf{Notes} \\
+\hline
+\endhead
+Barangay Health Center\core & A village health facility that keeps its own records and
+  trains the model on them. & Counted per facility; identified by its national facility
+  code and Philippine Standard Geographic Code (PSGC) where these are obtainable (OD-6). \\ \hline
+\rowcolor{rowshade}Health Commodity\core & One medicine as stocked: generic
+  name, dosage form, strength and unit. & Facilities counting a medicine in different
+  units cannot be compared until converted. \\ \hline
+Demand Observation\core & Units of one commodity given out at one facility in one period,
+  with its source and completeness. & The model's only input. \\ \hline
+\rowcolor{rowshade}Reporting Period\core & The span one observation covers (a day, a week
+  or a month). & Totals and the surge window depend on it. \\ \hline
+Surge\core & A rise in demand above a stated threshold over a stated window. & A definition,
+  not a measurement: two definitions give two answers (Section~\ref{sec:open}). \\ \hline
+\rowcolor{rowshade}Connectivity Episode & A span when a facility could not be reached,
+  with cause and duration. & Whether a facility could be reached in a
+  round is recorded with that round (Section~\ref{sec:entities-system}). \\ \hline
+Forecast\core & Predicted units for one facility, one commodity and one future period,
+  with horizon, uncertainty and model version. & Unusable without its model version. \\ \hline
+\rowcolor{rowshade}Stock Position & Units on hand at a moment, with batch and expiry where
+  recorded. & Needed only if distribution is in scope (Section~\ref{sec:open}). \\ \hline
+Allocation Recommendation & A proposed transfer of stock: commodity, quantity, from and
+  to, and the reason. & For a person to accept or reject; never automatic. \\ \hline
+\rowcolor{rowshade}Shortage Event & A period when a facility ran out of a commodity, or
+  fell below its reserve level. & The harm the study measures, if distribution is in scope
+  (OD-3). \\ \hline
+\end{spectab}
